@@ -1,0 +1,5 @@
+" splits navigation
+nnoremap <C-J> <C-W><C-H>| " left
+nnoremap <C-L> <C-W><C-L>| " right
+nnoremap <C-I> <C-W><C-K>| " up
+nnoremap <C-K> <C-W><C-J>| " down

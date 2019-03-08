@@ -7,17 +7,4 @@ colorscheme ayu
 hi StatusLine   ctermbg=0 ctermfg=15
 hi StatusLineNC ctermbg=0 ctermfg=7
 
-" Configure lightline
-let g:lightline = {
-  \ 'colorscheme': 'one',
-  \ 'active': {
-  \   'left': [
-  \     [ 'mode', 'paste' ],
-  \     [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \   ]
-  \ },
-  \ 'component_function': {
-  \   'gitbranch': 'gitbranch#name'
-  \ },
-\ }
 
