@@ -7,4 +7,6 @@ colorscheme ayu
 hi StatusLine   ctermbg=0 ctermfg=15
 hi StatusLineNC ctermbg=0 ctermfg=7
 
+" Set block cursor even in gui mode
+set guicursor =
 
