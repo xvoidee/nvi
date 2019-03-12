@@ -9,6 +9,8 @@ Plug 'scrooloose/nerdtree'   , { 'commit' : '288669d' }
 Plug 'mhinz/vim-startify'    , { 'commit' : '9c5680c' }
 Plug 'ap/vim-buftabline'     , { 'commit' : '14d208b' }
 Plug 'airblade/vim-gitgutter', { 'commit' : '8a4b9cc' }
+Plug 'junegunn/fzf'          , { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()

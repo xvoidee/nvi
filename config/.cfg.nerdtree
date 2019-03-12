@@ -1,3 +1,6 @@
+" Enable nerdtree by default
+autocmd VimEnter * NERDTree
+
 " Change NERDcons for folders
 let g:NERDTreeDirArrowExpandable  = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -5,13 +8,6 @@ let g:NERDTreeDirArrowCollapsible = '-'
 " Show all files and folders
 let NERDTreeShowHidden = 1
 
-" Enable nerdtree by default
-autocmd VimEnter * NERDTree
-
 " Jump to file, not to tree
 autocmd VimEnter * wincmd p
-
-" Toggle tree navigation
-nnoremap <C-T> :NERDTreeToggle<CR>
-
 
