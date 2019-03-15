@@ -11,6 +11,7 @@ Plug 'ap/vim-buftabline'     , { 'commit' : '14d208b' }
 Plug 'airblade/vim-gitgutter', { 'commit' : '8a4b9cc' }
 Plug 'junegunn/fzf'          , { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim'     , {'do': { -> coc#util#install() } }
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()
@@ -40,7 +41,9 @@ set hls
 
 " Source any local vimrc's
 source ~/.nvimclipse/.vimrc_theme
+source ~/.nvimclipse/.cfg.coc
 source ~/.nvimclipse/.cfg.lightline
 source ~/.nvimclipse/.cfg.nerdtree
 source ~/.nvimclipse/.cfg.startify
 source ~/.nvimclipse/.vimrc_hotkeys
+

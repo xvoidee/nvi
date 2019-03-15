@@ -1,0 +1,13 @@
+" jump to definition/implementation
+nmap <silent> <F3> <Plug>(coc-definition)
+nmap <silent> <F4> <Plug>(coc-implementation)
+
+" coc completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" close coc preview window after completion is done
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" do not show preview for autocomplete
+set completeopt-=preview
+
