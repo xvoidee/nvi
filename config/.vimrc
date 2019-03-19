@@ -13,6 +13,7 @@ Plug 'junegunn/fzf'             , { 'dir' : '~/.fzf', 'do' : './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim'        , { 'do' : { -> coc#util#install() } }
 Plug 'arakashic/chromatica.nvim', { 'commit' : 'ae7d498' }
+Plug 'ryanoasis/vim-devicons'   , { 'commit' : '83808e8' }
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()
@@ -48,4 +49,3 @@ source ~/.nvimclipse/.cfg.lightline
 source ~/.nvimclipse/.cfg.nerdtree
 source ~/.nvimclipse/.cfg.startify
 source ~/.nvimclipse/.vimrc_hotkeys
-
