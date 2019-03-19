@@ -63,3 +63,21 @@ Check that your ccls binary is accessible via $PATH.
 
 xvoidee$ cat ~/.profile | grep ccls
 export PATH=$PATH:/opt/ccls
+
+7. Create alias for neovim
+
+xvoidee$ alias | grep nvim
+alias nv='nvim -u ~/.nvimclipse/init.vim'
+
+8. Export project to language server index
+
+Assumption: CMake used as build system. In this case (and many others) steps will be:
+
+cd your_project
+mkdir build
+cd build
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+cd ..
+ln -s build/compile_commands.json ./
+
+Open neovim via nv (step 7) and start editing C++ files. Plugins will scan whole project using compile database and put sources into index.
