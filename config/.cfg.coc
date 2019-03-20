@@ -1,13 +1,17 @@
-" jump to definition/implementation
+" Jump to definition/implementation
 nmap <silent> <F3> <Plug>(coc-definition)
 nmap <silent> <F4> <Plug>(coc-implementation)
 
 " coc completion
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" close coc preview window after completion is done
+" Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" do not show preview for autocomplete
+" Do not show preview for autocomplete
 set completeopt-=preview
 
+" Colorize underline for errors
+hi CocUnderline        gui=undercurl  term=undercurl
+hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
+hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl
