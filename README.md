@@ -4,7 +4,7 @@ Download and extract neovim for your platform.
 
 ```
 wget -c https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-tar -zxf nvim-linux64.tar.gz
+tar -xf nvim-linux64.tar.gz
 ```
 
 Check that executable nvim in nvim-linux64/bin is visible from your $PATH variable. In my case:
