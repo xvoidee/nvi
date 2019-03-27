@@ -4,7 +4,7 @@ Download and extract neovim for your platform.
 
 ```
 wget -c https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-tar -zxf nvim-linux64.tar.gz
+tar -xf nvim-linux64.tar.gz
 ```
 
 Check that executable nvim in nvim-linux64/bin is visible from your $PATH variable. In my case:
@@ -20,8 +20,7 @@ Download and extract clang for your platform.
 
 ```
 wget -c http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-xz --decompress clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz 
-tar -xf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar
+tar -xf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz 
 ```
 
 Check that clang is visible from your $PATH variable. In my case:
@@ -35,8 +34,7 @@ export PATH=$PATH:/opt/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/bin
 
 ```
 wget -c https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
-xz --decompress node-v10.15.3-linux-x64.tar.xz 
-tar -xf node-v10.15.3-linux-x64.tar 
+tar -xf node-v10.15.3-linux-x64.tar.xz 
 ```
 Check that nodejs is visible from your $PATH variable. In my case:
 
