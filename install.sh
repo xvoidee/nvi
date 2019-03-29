@@ -207,7 +207,7 @@ install_nodejs() {
 		"https://nodejs.org/dist/v10.15.3" \
 		"node-v10.15.3-linux-x64.tar.xz"
 
-	nodejs_path="$thirdparty_path/nodejs"
+	nodejs_path="$thirdparty_path/node-v10.15.3-linux-x64"
 }
 
 install_nvimclipse() {
@@ -237,21 +237,16 @@ install_nvimclipse() {
 }
 
 install_alias() {
-	echo "\nalias nv='PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $nvimclipse_path/init.vim'\n" >> ~/.bashrc
+	echo "\nalias nv='PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $nvimclipse_path/init.vim'" >> ~/.bashrc
 }
 
-#mkdir temp
-#mkdir $thirdparty_path
+mkdir temp
+mkdir $thirdparty_path
 mkdir $nvimclipse_path
 
-clang_path="$thirdparty_path/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04"
-neovim_path="$thirdparty_path/nvim-0.3.4"
-ccls_path="$thirdparty_path/ccls"
-nodejs_path="$thirdparty_path/node-v10.15.3-linux-x64"
-
-#install_clang
-#install_ccls
-#install_neovim
-#install_nodejs
+install_clang
+install_ccls
+install_neovim
+install_nodejs
 install_nvimclipse
 install_alias
