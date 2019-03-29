@@ -1,3 +1,0 @@
-- index vim-plug help
-- autorun :PlugInstall on 1st startup
-
