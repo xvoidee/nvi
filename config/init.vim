@@ -1,5 +1,5 @@
-set runtimepath^=~/.nvimclipse
-set runtimepath+=~/.nvimclipse/vim-plug
+set runtimepath^=%nvimclipse_path%
+set runtimepath+=%nvimclipse_path%/vim-plug
 let &packpath = &runtimepath
-source ~/.nvimclipse/.vimrc
+source %nvimclipse_path%/.vimrc
 

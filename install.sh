@@ -3,30 +3,34 @@
 print_help() {
 	cat << EOF
 Options:
- --help                display help
- --no-alias            do not create alias in ~/.bashrc
- --no-ccls             do not install ccls
- --ccls-path=<path>    target directory where ccls will be installed
-                       or directory with pre-installed ccls
-                       default /opt/nvimclipse_3rdparty/
- --no-clang            do not install clang
- --clang-path=<path>   target directory where clang will be installed
-                       or directory with pre-installed clang
-                       default /opt/nvimclipse_3rdparty/
- --no-neovim           do not install neovim
- --neovim-path=<path>  target directory where neovim will be installed
-                       or directory with pre-installed neovim
-                       default /opt/nvimclipse_3rdparty/
- --no-nodejs           do not install nodejs
- --nodejs-path=<path>  target directory where nodejs will be installed
-                       default /opt/nvimclipse_3rdparty/
- --keep-cache          do not remove downloaded binaries
+ --help                     display help
+ --no-alias                 do not create alias in ~/.bashrc
+ --no-ccls                  do not install ccls
+ --ccls-path=<path>         target directory where ccls will be installed
+                            or directory with pre-installed ccls
+                            default /opt/nvimclipse_3rdparty/
+ --no-clang                 do not install clang
+ --clang-path=<path>        target directory where clang will be installed
+                            or directory with pre-installed clang
+                            default /opt/nvimclipse_3rdparty/
+ --no-neovim                do not install neovim
+ --neovim-path=<path>       target directory where neovim will be installed
+                            or directory with pre-installed neovim
+                            default /opt/nvimclipse_3rdparty/
+ --no-nodejs                do not install nodejs
+ --nodejs-path=<path>       target directory where nodejs will be installed
+                            default /opt/nvimclipse_3rdparty/
+ --keep-cache               do not remove downloaded binaries
+ --nvimclipse-path=<path>   target directory for nvimclipse home (configs, plugins)
+                            default /opt/nvimclipse
+ --3rdparty-path=<path>     target directory where 3rdparties are installed
+                            default /opt/nvimclipse_3rdparty
 EOF
 }
 
 opts=`/usr/bin/getopt \
-	-o a,b,c,d:,e,f:,g,h:,j,k:,l \
-	-l help,no-alias,no-ccls,ccls-path:,no-clang,clang-path:,no-neovim,neovim-path:,no-nodejs,nodejs-path:,keep-cache \
+	-o a,b,c,d:,e,f:,g,h:,j,k:,l:,m: \
+	-l help,no-alias,no-ccls,ccls-path:,no-clang,clang-path:,no-neovim,neovim-path:,no-nodejs,nodejs-path:,keep-cache,nvimclipse-home:,3rdparty-home: \
 	-- "$@" \
 `
 
@@ -36,23 +40,23 @@ if [ $? != 0 ]; then
 	exit 1
 fi
 
-default_3rdparty_prefix=/opt/nvimclipse_3rdparty
-
-no_alias=false
-
 no_ccls=false
-ccls_path=$default_3rdparty_prefix
+ccls_path=$thirdparty_path
 
 no_clang=false
-clang_path=$default_3rdparty_prefix
+clang_path=$thirdparty_path
 
 no_neovim=false
-neovim_path=$default_3rdparty_prefix
+neovim_path=$thirdparty_path
 
 no_nodejs=false
-nodejs_path=$default_3rdparty_prefix
+nodejs_path=$thirdparty_path
 
+no_alias=false
 keep_cache=false
+
+nvimclipse_path=/opt/nvimclipse
+thirdparty_path=/opt/nvimclipse_3rdparty
 
 eval set -- "$opts"
 while true; do
@@ -105,6 +109,16 @@ while true; do
 			keep_cache=true
 			shift
 			;;
+		--nvimclipse-path )
+			nvimclipse_path=$2
+			shift
+			shift
+			;;
+		--3rdparty-path)
+			thirdparty_path=$2
+			shift
+			shift
+			;;
 		-- )
 			shift
 			break
@@ -124,7 +138,7 @@ install() {
 
 	folder=`tar -tf temp/$2 --exclude '*/*'`
 	tar -xf temp/$2 -C temp/
-	mv temp/$folder $default_3rdparty_prefix/$3
+	mv temp/$folder $thirdparty_path/$3
 }
 
 install_clang() {
@@ -136,7 +150,7 @@ install_clang() {
 		"http://releases.llvm.org/7.0.1" \
 		"clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
 
-	clang_path="$default_3rdparty_prefix/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04"
+	clang_path="$thirdparty_path/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04"
 }
 
 install_neovim() {
@@ -148,6 +162,8 @@ install_neovim() {
 		"https://github.com/neovim/neovim/releases/download/v0.3.4" \
 		"nvim-linux64.tar.gz" \
 		"nvim-0.3.4"
+
+	neovim_path="$thirdparty_path/nvim-0.3.4"
 }
 
 install_ccls() {
@@ -172,12 +188,14 @@ install_ccls() {
 		-DCMAKE_PREFIX_PATH=$clang_path \
 		-DCMAKE_CXX_COMPILER=$clang_path/bin/clang++
 	eval $cmake_command --build Release
-	mkdir $default_3rdparty_prefix/ccls
-	mkdir $default_3rdparty_prefix/ccls/bin
-	cp Release/ccls $default_3rdparty_prefix/ccls/bin
+	mkdir $thirdparty_path/ccls
+	mkdir $thirdparty_path/ccls/bin
+	cp Release/ccls $thirdparty_path/ccls/bin
 	cd ../..
 	rm -rf temp/ccls
 	rm -rf temp/$cmake_version
+
+	ccls_path="$thirdparty_path/ccls"
 }
 
 install_nodejs() {
@@ -188,18 +206,52 @@ install_nodejs() {
 	install \
 		"https://nodejs.org/dist/v10.15.3" \
 		"node-v10.15.3-linux-x64.tar.xz"
+
+	nodejs_path="$thirdparty_path/nodejs"
 }
 
-create_alias() {
-	echo "\nalias nv='nvim -u ~/.nvimclipse/init.vim'\n" >> ~/.bashrc
+install_nvimclipse() {
+	mkdir $nvimclipse_path/autoload
+	cp vim-plug/plug.vim $nvimclipse_path/autoload/
+
+	cp config/.cfg.*            $nvimclipse_path
+	cp config/.vimrc*           $nvimclipse_path
+	cp config/init.vim          $nvimclipse_path
+	cp config/coc-settings.json $nvimclipse_path
+
+	sed -i "s|%clang_path%|$clang_path|g"           $nvimclipse_path/.cfg.chromatica
+	sed -i "s|%clang_version%|7.0.1|g"              $nvimclipse_path/.cfg.chromatica
+	sed -i "s|%nvimclipse_path%|$nvimclipse_path|g" $nvimclipse_path/.vimrc
+	sed -i "s|%nvimclipse_path%|$nvimclipse_path|g" $nvimclipse_path/.vimrc.plugins
+	sed -i "s|%nvimclipse_path%|$nvimclipse_path|g" $nvimclipse_path/init.vim
+	sed -i "s|%ccls_path%|$ccls_path|g"             $nvimclipse_path/coc-settings.json
+
+	mkdir ~/.config/nvim
+	ln -s $nvimclipse_path/coc-settings.json ~/.config/nvim/coc-settings.json
+
+	PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u ./install.vim \
+	    +PlugInstall \
+	    +UpdateRemotePlugins \
+	    +":call coc#util#install()" \
+	    +qa
 }
 
-mkdir temp
-mkdir /opt/nvimclipse_3rdparty
-mkdir /opt/nvimclipse
+install_alias() {
+	echo "\nalias nv='PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $nvimclipse_path/init.vim'\n" >> ~/.bashrc
+}
 
-install_clang
-install_ccls
-install_neovim
-install_nodejs
+#mkdir temp
+#mkdir $thirdparty_path
+mkdir $nvimclipse_path
 
+clang_path="$thirdparty_path/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04"
+neovim_path="$thirdparty_path/nvim-0.3.4"
+ccls_path="$thirdparty_path/ccls"
+nodejs_path="$thirdparty_path/node-v10.15.3-linux-x64"
+
+#install_clang
+#install_ccls
+#install_neovim
+#install_nodejs
+install_nvimclipse
+install_alias
