@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#source install/helpers.sh
+#source probe/probe_nodejs.sh
+
+#source install/ubuntu_16.sh
+#source install/install_ccls.sh
+#source install/install_nvimclipse.sh
+
 print_help() {
 	cat << EOF
 Options:
@@ -31,8 +38,13 @@ if [ $? != 0 ] ; then
 	exit 1
 fi
 
-nvimclipse_path=/opt/nvimclipse
-thirdparty_path=/opt/nvimclipse_3rdparty
+declare -A config
+config[nvimclipse_path]=/opt/nvimclipse
+config[thirdparty_path]=/opt/nvimclipse_3rdparty
+
+declare -A config_nodejs
+config_nodejs[skip]=false
+config_nodejs[path]=""
 
 skip_nodejs_install=false
 nodejs_path=""
@@ -110,133 +122,29 @@ while true ; do
 	esac
 done
 
-set_text_color() {
-	tput setaf $1
-}
-
-print_info() {
-	set_text_color 3
-	echo $1
-	set_text_color 0
-}
-
-print_success() {
-	set_text_color 2
-	echo $1
-	set_text_color 0
-}
-
-print_fail() {
-	set_text_color 1
-	echo $1
-	set_text_color 0
-}
-
-probe_command() {
-	command -v $1 > /dev/null
-}
-
-probe_mkdir() {
-	mkdir -p $1 > /dev/null
-	if [[ $? -eq 1 ]] ; then
-		print_fail "Unable to create folder $1"
-		prereqs_met=false
-	fi
-}
-
-install() {
-	if [ ! -f temp/$2 ]; then
-		wget -c $1/$2 -P temp/
-	fi
-
-	folder=`tar -tf temp/$2 --exclude '*/*'`
-	tar -xf temp/$2 -C temp/
-	mv temp/$folder $thirdparty_path/$3
-}
-
-prereqs_met=true
-
-probe_mkdir $thirdparty_path
-probe_mkdir $nvimclipse_path
-
-if ( ! $prereqs_met ) ; then
-	print_fail "Unable to create mandatory install directories, see above"
-	exit 1
-fi
-
-probe_binary() {
-	preinstalled_path=$1
-	binary_name=$2
-	relative_path=$3
-
-	p="\$PATH"
-	c=$binary_name
-
-	if [ ! -z $preinstalled_path ] ; then
-		p=$preinstalled_path/$relative_path
-		c=$preinstalled_path/$relative_path/$binary_name
-	fi
-
-	probe_command $c
-	if [[ $? = "1" ]] ; then
-		print_fail "$binary_name not found in $p"
-		prereqs_met=false
-	fi
-}
-
-if ( $skip_nodejs_install ) ; then
-	probe_binary \
-		"$nodejs_path" \
-		"node" \
-		"bin"
-	nodejs_path=""
-else
-	install \
-		"https://nodejs.org/dist/v10.15.3" \
-		"node-v10.15.3-linux-x64.tar.xz"
-	nodejs_path="$thirdparty_path/node-v10.15.3-linux-x64"
-fi
-
-if ( $skip_clang_install ) ; then
-	probe_binary \
-		"$clang_path" \
-		"clang" \
-		"bin"
-	clang_path=""
-else
-	install \
-		"http://releases.llvm.org/7.0.1" \
-		"clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
-	clang_path="$thirdparty_path/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04"
-fi
-
-if ( $skip_neovim_install ) ; then
-	probe_binary \
-		"$neovim_path" \
-		"nvim" \
-		"bin"
-	neovim_path=""
-else
-	install \
-		"https://github.com/neovim/neovim/releases/download/v0.3.4" \
-		"nvim-linux64.tar.gz" \
-		"nvim-0.3.4"
-	neovim_path="$thirdparty_path/nvim-0.3.4"
-fi
-
-if ( $skip_ccls_install ) ; then
-	probe_binary \
-		"$ccls_path" \
-		"ccls" \
-		"bin"
-	ccls_path=""
-else
-
-fi
-
-if ( ! $prereqs_met ) ; then
-	print_fail "Unmet prerequisites, check messages above"
-fi
+probe_nodejs
+install_nodejs
 
 exit 0
+
+#probe_mkdir $thirdparty_path
+#probe_mkdir $nvimclipse_path
+#mkdir -p "temp"
+
+#probe_or_install $skip_nodejs_install \
+#	"$nodejs_path" "node" "bin" \
+#	"$thirdparty_path" "https://nodejs.org/dist/v10.15.3" "$archive_nodejs"
+
+probe_or_install $skip_clang_install \
+	"$clang_path" "clang" "bin" \
+	$thirdparty_path "http://releases.llvm.org/8.0.0" $archive_clang
+$clang_path=$?
+
+#probe_or_install $skip_neovim_install \
+#	"$neovim_path" "nvim" "bin" \
+#	$thirdparty_path "https://github.com/neovim/neovim/releases/download/v0.3.4" $archive_neovim "nvim-0.3.4"
+
+probe_or_install_ccls $skip_ccls_install \
+	"$ccls_path" "ccls" "bin" \
+	"$clang_path" "$thirdparty_path"
 
