@@ -1,34 +1,51 @@
 #!/bin/bash
 
-# set text color in terminal
+# Probes command in $PATH
+#
+# Status is in $?
+#
+# Parameters:
+# - $1: command name
+probe_command() {
+	command -v $1 > /dev/null
+}
+
+# Set text color in terminal
+# 
+# Parameters:
+# - $1: color code
 set_text_color() {
 	tput setaf $1
 }
 
-# print orange message
+# Prints message in orange color
+#
+# Parameters:
+# - $1: message
 print_info() {
 	set_text_color 3
-	echo $1
+	echo " [      ] $1"
 	set_text_color 0
 }
 
-# print green message
+# Prints message in green color
+#
+# Parameters:
+# - $1: message
 print_success() {
 	set_text_color 2
-	echo $1
+	echo " [  ok  ] $1"
 	set_text_color 0
 }
 
-# print red message
+# Print message in red color
+#
+# Parameters:
+# - $1: message
 print_fail() {
 	set_text_color 1
-	echo $1
+	echo " [ fail ] $1"
 	set_text_color 0
-}
-
-# check if command available
-probe_command() {
-	command -v $1 > /dev/null
 }
 
 probe_mkdir() {
@@ -44,25 +61,6 @@ probe_mkdir() {
 	fi
 }
 
-# check if binary can be found in path/PATH
-# returns true if binary is found
-probe_binary() {
-	preinstalled_path=$1
-	binary_name=$2
-	relative_path=$3
-
-	c=$binary_name
-	if [ ! -z $preinstalled_path ] ; then
-		c=$preinstalled_path/$relative_path/$binary_name
-	fi
-
-	probe_command $c
-	if [[ $? -eq 1 ]] ; then
-		return 1
-	fi
-
-	return 0
-}
 
 # $1 target
 # $2 website

@@ -1,20 +1,15 @@
 #!/bin/bash
 
-#source install/helpers.sh
-#source probe/probe_nodejs.sh
-
-#source install/ubuntu_16.sh
-#source install/install_ccls.sh
-#source install/install_nvimclipse.sh
+source install/helpers.sh
+source install/dependency_nodejs.sh
 
 print_help() {
 	cat << EOF
 Options:
  --help                     display help
- --nvimclipse-path=<path>   target directory for nvimclipse home (configs, plugins)
-                            default /opt/nvimclipse
- --3rdparty-path=<path>     target directory for 3rdparties
-                            default /opt/nvimclipse_3rdparty
+ --install-path=<path>      target directory for nvimclipse
+                            default /opt
+                            script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
  --skip-nodejs-install      do not download nodejs, use system-provided instead
  --nodejs-path=<path>       path to system-provided nodejs
                             leave unset to autodetect from \$PATH
@@ -30,7 +25,7 @@ Options:
 EOF
 }
 
-opts=`/usr/bin/getopt -o '' --long help,nvimclipse-path:,3rdparty-path:,skip-nodejs-install,nodejs-path:,skip-clang-install,clang-path:,skip-neovim-install,neovim-path:,skip-ccls-install,-ccls-path: -- "$@"`
+opts=`/usr/bin/getopt -o '' --long help,install-path:,skip-nodejs-install,nodejs-path:,skip-clang-install,clang-path:,skip-neovim-install,neovim-path:,skip-ccls-install,-ccls-path: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "getopt failed"
@@ -38,25 +33,19 @@ if [ $? != 0 ] ; then
 	exit 1
 fi
 
-declare -A config
-config[nvimclipse_path]=/opt/nvimclipse
-config[thirdparty_path]=/opt/nvimclipse_3rdparty
+install_path=/opt
 
-declare -A config_nodejs
-config_nodejs[skip]=false
-config_nodejs[path]=""
-
-skip_nodejs_install=false
+nodejs_skip=false
 nodejs_path=""
 
-skip_clang_install=false
-clang_path=""
+#skip_clang_install=false
+#clang_path=""
 
-skip_neovim_install=false
-neovim_path=""
+#skip_neovim_install=false
+#neovim_path=""
 
-skip_ccls_install=false
-ccls_path=""
+#skip_ccls_install=false
+#ccls_path=""
 
 eval set -- "$opts"
 while true ; do
@@ -65,18 +54,13 @@ while true ; do
 			print_help
 			exit 0
 			;;
-		--nvimclipse-path)
-			nvimclipse_path=$2
-			shift
-			shift
-			;;
-		--3rdparty-path)
-			thirdparty_path=$2
+		--install-path)
+			install_path=$2
 			shift
 			shift
 			;;
 		--skip-nodejs-install)
-			skip_nodejs_install=true
+			nodejs_skip=true
 			shift
 			;;
 		--nodejs-path)
@@ -122,8 +106,7 @@ while true ; do
 	esac
 done
 
-probe_nodejs
-install_nodejs
+probe_nodejs $nodejs_path
 
 exit 0
 
