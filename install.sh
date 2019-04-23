@@ -2,6 +2,7 @@
 
 source install/helpers.sh
 source install/dependency_nodejs.sh
+source install/dependency_clang.sh
 
 print_help() {
 	cat << EOF
@@ -38,8 +39,8 @@ install_path=/opt
 nodejs_skip=false
 nodejs_path=""
 
-#skip_clang_install=false
-#clang_path=""
+clang_skip=false
+clang_path=""
 
 #skip_neovim_install=false
 #neovim_path=""
@@ -69,7 +70,7 @@ while true ; do
 			shift
 			;;
 		--skip-clang-install)
-			skip_clang_install=true
+			clang_skip=true
 			shift
 			;;
 		--clang-path)
@@ -106,7 +107,14 @@ while true ; do
 	esac
 done
 
-probe_nodejs $nodejs_path
+probe_errno=0
+probe_nodejs "$nodejs_path"
+probe_clang "$clang_path"
+
+if [ $probe_errno -eq 1 ] ; then
+	print_fail "at least one of prereqs is unmet"
+	exit 1
+fi
 
 exit 0
 

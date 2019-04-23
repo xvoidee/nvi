@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# Probes binary in:
+# - $PATH
+# - custom path if set
+#
+# Parameters:
+# - $1: binary name
+# - $2: preinstalled path
+# - $3: optional subfolder (/bin for example)
+#
+# Return:
+# - 0 on success
+# - 1 on failure
+probe_binary() {
+	if [ -z $2 ] ; then
+		__p="\$PATH"
+		probe_command $1
+	else
+		__p=$2/$3
+		PATH=$PATH:$2/$3 probe_command $1
+	fi
+
+	if [ $? -eq 0 ]; then
+		print_success "probing $1 in $__p"
+		unset __p
+		return 0
+	else
+		print_fail "probing $1 in $__p"
+		probe_errno=1
+		unset __p
+		return 1
+	fi
+}
+
 # Probes command in $PATH
 #
 # Status is in $?
