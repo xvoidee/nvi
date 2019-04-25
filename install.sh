@@ -1,8 +1,11 @@
 #!/bin/bash
 
+rm -rf /opt/bla/*
+
 source install/helpers.sh
-source install/dependency_nodejs.sh
 source install/dependency_clang.sh
+source install/dependency_nodejs.sh
+source install/dependency_nvim.sh
 
 print_help() {
 	cat << EOF
@@ -34,7 +37,7 @@ if [ $? != 0 ] ; then
 	exit 1
 fi
 
-install_path=/opt
+install_path="/opt"
 
 nodejs_skip=false
 nodejs_path=""
@@ -42,8 +45,8 @@ nodejs_path=""
 clang_skip=false
 clang_path=""
 
-#skip_neovim_install=false
-#neovim_path=""
+nvim_skip=false
+nvim_path=""
 
 #skip_ccls_install=false
 #ccls_path=""
@@ -79,11 +82,11 @@ while true ; do
 			shift
 			;;
 		--skip-neovim-install)
-			skip_neovim_install=true
+			nvim_skip=true
 			shift
 			;;
 		--neovim-path)
-			neovim_path=$2
+			nvim_path=$2
 			shift
 			shift
 			;;
@@ -107,15 +110,27 @@ while true ; do
 	esac
 done
 
-probe_errno=0
-probe_nodejs "$nodejs_path"
-probe_clang "$clang_path"
-
-if [ $probe_errno -eq 1 ] ; then
-	print_fail "at least one of prereqs is unmet"
+errno=0
+probe_nodejs $nodejs_skip "$nodejs_path"
+probe_clang  $clang_skip  "$clang_path"
+probe_nvim   $nvim_skip   "$nvim_path"
+if [ $errno -eq 1 ] ; then
+	print_fail "at least one of prereqs is unmet, setup will exit"
 	exit 1
 fi
 
+errno=0
+probe_mkdir "$install_path/nvimclipse"
+probe_mkdir "$install_path/nvimclipse_3rdparty"
+if [ $errno -eq 1 ] ; then
+	print_fail "at least one required directory was not created, setup will exit"
+	exit 1
+fi
+
+errno=0
+install_nvim   "$install_path/nvimclipse_3rdparty"
+install_nodejs "$install_path/nvimclipse_3rdparty"
+install_clang  "$install_path/nvimclipse_3rdparty"
 exit 0
 
 #probe_mkdir $thirdparty_path
