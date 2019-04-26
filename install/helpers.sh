@@ -171,3 +171,55 @@ install() {
 	print_success "$1 installed"
 }
 
+# Probes package
+#
+# Parameters:
+# - $1: name
+#
+# In case of fail:
+# - sets errno to 1
+probe_package() {
+	dpkg -l $1 > /dev/null
+	if [ $? -eq 1 ] ; then
+		errno=1
+		print_fail "not found: $1"
+		return 1
+	fi
+
+	print_success "found: $1"
+	return 0
+}
+
+# Probes pip3 package
+#
+# Parameters:
+# - $1: name
+#
+# In case of fail:
+# - sets errno to 1
+probe_pip3_package() {
+	pip3 list | grep $1 > /dev/null
+	if [ $? -eq 1 ] ; then
+		errno=1
+		print_fail "not found: pip3 neovim"
+		return 1
+	fi
+
+	print_success "found: pip3 neovim"
+	return 0
+}
+
+# Probes:
+# - python3
+#
+# In case of fail:
+# - sets errno to 1
+probe_prereqs() {
+#	dpkg -l | grep g++-7
+#	cxx7_found=$?
+
+	dpkg -l | grep g++-8
+	cxx8_found=$?
+
+}
+
