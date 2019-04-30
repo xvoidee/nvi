@@ -1,5 +1,15 @@
 #!/bin/bash
 
+a=true
+b=true
+
+if [[ $a == true && $b == true ]] ; then
+	echo "both"
+fi
+
+exit 0
+
+
 rm -rf /opt/bla/*
 
 source install/helpers.sh
@@ -138,5 +148,6 @@ errno=0
 install_nvim   "$install_path/nvimclipse_3rdparty"
 install_nodejs "$install_path/nvimclipse_3rdparty"
 install_clang  "$install_path/nvimclipse_3rdparty"
+install_ccls   "$install_path/nvimclipse_3rdparty"
 exit 0
 
