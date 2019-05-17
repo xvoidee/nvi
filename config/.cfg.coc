@@ -1,6 +1,7 @@
 " Jump to definition/implementation
 nmap <silent> <F3> <Plug>(coc-definition)
 nmap <silent> <F4> <Plug>(coc-implementation)
+nmap <silent> <F5> <Plug>(coc-references)
 
 " coc completion
 inoremap <silent><expr> <c-space> coc#refresh()

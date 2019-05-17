@@ -152,10 +152,6 @@ if [ -d $install_path/nvimclipse_3rdparty ] ; then
 	print_fail "directory $install_path/nvimclipse_3rdparty exists"
 	errno=1
 fi
-if [ -f ~/.config/nvim/coc-settings.json ] ; then
-	print_fail "file ~/.config/nvim/coc-settings.json exists"
-	errno=1
-fi
 if [ $errno -eq 1 ] ; then
 	print_fail "one of the install directories (previous install?) exists, setup will exit"
 	exit 0
