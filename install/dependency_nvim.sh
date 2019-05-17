@@ -22,6 +22,7 @@ probe_nvim() {
 # Parameters:
 # - $1: install path
 install_nvim() {
-	install "nvim" $1 "https://github.com/neovim/neovim/releases/download/v0.3.4" "nvim-linux64.tar.gz" "nvim-0.3.4"
+	install "nvim" $1 $nvim_website $nvim_archive "nvim-$nvim_version"
+	nvim_path=$install_path/nvimclipse_3rdparty/nvim-0.3.5
 }
 

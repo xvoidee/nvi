@@ -1,12 +1,42 @@
 #!/bin/bash
 
+# Prints message in orange color
+#
+# Parameters:
+# - $1: message
+print_info() {
+	tput setaf 3
+	echo " [      ] $1"
+	tput init
+}
+
+# Prints message in green color
+#
+# Parameters:
+# - $1: message
+print_success() {
+	tput setaf 2
+	echo " [  ok  ] $1"
+	tput init
+}
+
+# Print message in red color
+#
+# Parameters:
+# - $1: message
+print_fail() {
+	tput setaf 1
+	echo " [ fail ] $1"
+	tput init
+}
+
 # Probes binary in:
 # - $PATH
 # - custom path if set
 #
 # Parameters:
 # - $1: binary name
-# - $2: preinstalled path
+# - $2: optional preinstalled path ($PATH if empty)
 # - $3: optional subfolder (/bin for example)
 #
 # Return:
@@ -25,11 +55,11 @@ probe_binary() {
 	fi
 
 	if [ $? -eq 0 ]; then
-		print_success "probing $1 in $__p"
+		print_success "executable found: $1 in $__p"
 		unset __p
 		return 0
 	else
-		print_fail "probing $1 in $__p"
+		print_fail "executable not found: $1 in $__p"
 		errno=1
 		unset __p
 		return 1
@@ -48,42 +78,42 @@ probe_command() {
 	command -v $1 > /dev/null
 }
 
-# Set text color in terminal
-# 
-# Parameters:
-# - $1: color code
-set_text_color() {
-	tput setaf $1
-}
-
-# Prints message in orange color
+# Probes package
 #
 # Parameters:
-# - $1: message
-print_info() {
-	set_text_color 3
-	echo " [      ] $1"
-	set_text_color 0
+# - $1: name
+#
+# In case of fail:
+# - sets errno to 1
+probe_package() {
+	dpkg -l $1 > /dev/null
+	if [ $? -eq 1 ] ; then
+		errno=1
+		print_fail "package not found: $1"
+		return 1
+	fi
+
+	print_success "package found: $1"
+	return 0
 }
 
-# Prints message in green color
+# Probes pip3 package
 #
 # Parameters:
-# - $1: message
-print_success() {
-	set_text_color 2
-	echo " [  ok  ] $1"
-	set_text_color 0
-}
+# - $1: name
+#
+# In case of fail:
+# - sets errno to 1
+probe_pip3_package() {
+	pip3 list | grep $1 > /dev/null
+	if [ $? -eq 1 ] ; then
+		errno=1
+		print_fail "pip3 package not found: $1"
+		return 1
+	fi
 
-# Print message in red color
-#
-# Parameters:
-# - $1: message
-print_fail() {
-	set_text_color 1
-	echo " [ fail ] $1"
-	set_text_color 0
+	print_success "pip3 package found: $1"
+	return 0
 }
 
 # Probe mkdir command
@@ -130,8 +160,8 @@ download_and_extract() {
 	print_info "$3 is in ./temp"
 	if [ ! -f temp/$3 ] ; then
 		print_info "$3 is being downloaded"
-#		wget -c $2/$3 -P temp/
-		cp ~/temp/$3 temp/
+		wget -c $2/$3 -P temp/
+#		cp ~/temp/$3 temp/
 
 		if [ ! -f temp/$3 ] ; then
 			print_fail "$3 was not downloaded"
@@ -169,57 +199,5 @@ install() {
 	fi
 
 	print_success "$1 installed"
-}
-
-# Probes package
-#
-# Parameters:
-# - $1: name
-#
-# In case of fail:
-# - sets errno to 1
-probe_package() {
-	dpkg -l $1 > /dev/null
-	if [ $? -eq 1 ] ; then
-		errno=1
-		print_fail "not found: $1"
-		return 1
-	fi
-
-	print_success "found: $1"
-	return 0
-}
-
-# Probes pip3 package
-#
-# Parameters:
-# - $1: name
-#
-# In case of fail:
-# - sets errno to 1
-probe_pip3_package() {
-	pip3 list | grep $1 > /dev/null
-	if [ $? -eq 1 ] ; then
-		errno=1
-		print_fail "not found: pip3 neovim"
-		return 1
-	fi
-
-	print_success "found: pip3 neovim"
-	return 0
-}
-
-# Probes:
-# - python3
-#
-# In case of fail:
-# - sets errno to 1
-probe_prereqs() {
-#	dpkg -l | grep g++-7
-#	cxx7_found=$?
-
-	dpkg -l | grep g++-8
-	cxx8_found=$?
-
 }
 

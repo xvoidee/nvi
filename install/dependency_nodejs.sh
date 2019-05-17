@@ -22,6 +22,7 @@ probe_nodejs() {
 # Parameters:
 # - $1: install path
 install_nodejs() {
-	install "node" $1 "https://nodejs.org/dist/v10.15.3" "node-v10.15.3-linux-x64.tar.xz"
+	install "node" $1 $nodejs_website $nodejs_archive
+	nodejs_path=$install_path/nvimclipse_3rdparty/node-v10.15.3-linux-x64
 }
 

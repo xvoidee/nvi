@@ -22,6 +22,7 @@ probe_clang() {
 # Parameters:
 # - $1: install path
 install_clang() {
-	install "clang" $1 "http://releases.llvm.org/8.0.0" "clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz"
+	install "clang" $1 $clang_website $clang_archive
+	clang_path=$install_path/nvimclipse_3rdparty/clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04
 }
 
