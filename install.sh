@@ -172,8 +172,6 @@ if [[ (-L ~/.config/nvim/coc-settings.json) || (-f ~/.config/nvim/coc-settings.j
 	exit 1
 fi
 
-
-
 nodejs_website="https://nodejs.org/dist/v10.15.3"
 nodejs_archive="node-v10.15.3-linux-x64.tar.xz"
 nodejs_version="10.15.3"
@@ -200,20 +198,19 @@ print_info "  $clang_archive"
 print_info "  $cmake_archive"
 
 download_failed=false
-#download $nodejs_website $nodejs_archive "download_failed"
-#download $neovim_website $neovim_archive "download_failed"
-#download $clang_website  $clang_archive  "download_failed"
-#download $cmake_website  $cmake_archive  "download_failed"
+download $nodejs_website $nodejs_archive "download_failed"
+download $neovim_website $neovim_archive "download_failed"
+download $clang_website  $clang_archive  "download_failed"
+download $cmake_website  $cmake_archive  "download_failed"
 if [ $download_failed == true ] ; then
 	print_fail "Download failed, setup will exit"
 	exit 1
 fi
 
 print_info "Extracting dependencies"
-#extract $nodejs_archive "$install_path/nvimclipse_3rdparty"
-#extract $neovim_archive "$install_path/nvimclipse_3rdparty"
-#extract $clang_archive  "$install_path/nvimclipse_3rdparty"
-cp -r ~/nvimclipse_3rdparty /opt/bla
+extract $nodejs_archive "$install_path/nvimclipse_3rdparty"
+extract $neovim_archive "$install_path/nvimclipse_3rdparty"
+extract $clang_archive  "$install_path/nvimclipse_3rdparty"
 extract $cmake_archive "temp"
 
 print_info "Building ccls C++ language server"
@@ -221,8 +218,7 @@ print_info "Building ccls C++ language server"
 cmake_command="`pwd`/temp/cmake-$cmake_version/bin/cmake"
 cd temp
 if [ ! -d ccls ] ; then
-#	git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-	cp -r ~/ccls ./
+	git clone --depth=1 --recursive https://github.com/MaskRay/ccls
 fi
 cd ccls
 gcc="g++-8"
