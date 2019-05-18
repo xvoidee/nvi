@@ -15,15 +15,22 @@ sudo apt-get install python3-pip zlib1g-dev libtinfo-dev curl
 sudo pip3 install neovim
 ```
 
-Install G++-8 if you do not have it. Add toolchain repository if needed. G++-7 will work also.
+Install G++-7 or G++-8 if you do not have it from any repository.
 
-```sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+```
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
-sudo apt-get install g++-8```
+sudo apt-get install g++-8
+```
 
-Install nvimclipse. It will download clang+cmake+nodejs+nvim, total size is 416MB
+Install nvimclipse. It will download clang+cmake+nodejs+nvim, total size is 416MB.
+For example:
 
-```./install.sh --install-path=~/```
+```
+./install.sh --install-path=/home/yourname/programs
+```
+
+'~' in --install-path is not supported!
 
 3. Throubleshooting.
 
