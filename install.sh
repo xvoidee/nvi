@@ -169,8 +169,10 @@ fi
 
 if [[ (-L ~/.config/nvim/coc-settings.json) || (-f ~/.config/nvim/coc-settings.json) ]] ; then
 	print_fail "~/.config/nvim/coc-settings.json exists, setup will exit"
-	exit 0
+	exit 1
 fi
+
+
 
 nodejs_website="https://nodejs.org/dist/v10.15.3"
 nodejs_archive="node-v10.15.3-linux-x64.tar.xz"
@@ -241,7 +243,7 @@ mkdir -p $install_path/nvimclipse_3rdparty/ccls/bin
 cp Release/ccls $install_path/nvimclipse_3rdparty/ccls/bin
 cd ../..
 rm -rf temp/ccls
-$ccls_path=$install_path/nvimclipse_3rdparty/ccls
+ccls_path=$install_path/nvimclipse_3rdparty/ccls
 
 git submodule init
 git submodule update
@@ -262,6 +264,10 @@ sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse
 sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/init.vim
 sed -i "s|%ccls_path%|$ccls_path/bin/ccls|g"            $install_path/nvimclipse/coc-settings.json
 sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/install.vim
+
+echo "" >> ~/.bashrc
+echo "alias nv=\"PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/init.vim\"" >> ~/.bashrc
+echo "" >> ~/.bashrc
 
 mkdir -p ~/.config/nvim
 ln -sf $install_path/nvimclipse/coc-settings.json ~/.config/nvim/coc-settings.json
