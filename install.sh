@@ -181,17 +181,17 @@ echo "" >> ~/.bashrc
 mkdir -p ~/.config/nvim
 ln -sf $install_path/nvimclipse/coc-settings.json ~/.config/nvim/coc-settings.json
 
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
 		+PlugInstall \
 		+UpdateRemotePlugins \
 		+qa
 
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
-		+":call coc#util#install()" \
-		+qa
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
-		+":call coc#util#build()" \
-		+qa
+#PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+#		+":call coc#util#install()" \
+#		+qa
+#PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+#		+":call coc#util#build()" \
+#		+qa
 
 rm $install_path/nvimclipse/install.vim
 
