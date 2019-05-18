@@ -1,13 +1,13 @@
 " Enable nerdtree by default
 autocmd VimEnter * NERDTree
 
-" Change NERDcons for folders
-let g:NERDTreeDirArrowExpandable  = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
+" Change icons for folders
+let g:NERDTreeDirArrowExpandable  = ' '
+let g:NERDTreeDirArrowCollapsible = ' '
 
 " Show all files and folders
 let NERDTreeShowHidden = 1
+let NERDTreeWinSize    = 50
 
 " Jump to file, not to tree
 autocmd VimEnter * wincmd p
-
