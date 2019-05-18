@@ -167,17 +167,25 @@ if [ $mkdir_failed == true ] ; then
 	print_fail "Folders check failed, setup will exit"
 fi
 
+if [[ (-L ~/.config/nvim/coc-settings.json) || (-f ~/.config/nvim/coc-settings.json) ]] ; then
+	print_fail "~/.config/nvim/coc-settings.json exists, setup will exit"
+	exit 0
+fi
+
 nodejs_website="https://nodejs.org/dist/v10.15.3"
 nodejs_archive="node-v10.15.3-linux-x64.tar.xz"
 nodejs_version="10.15.3"
+nodejs_path="$install_path/nvimclipse_3rdparty/node-v10.15.3-linux-x64"
 
 clang_website="https://github.com/llvm/llvm-project/releases/download/llvmorg-7.1.0"
 clang_archive="clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz"
 clang_version="7.1.0"
+clang_path="$install_path/nvimclipse_3rdparty/clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04"
 
 neovim_website="https://github.com/neovim/neovim/releases/download/stable"
 neovim_archive="nvim-linux64.tar.gz"
 neovim_version="0.3.5"
+neovim_path="$install_path/nvimclipse_3rdparty/nvim-linux64"
 
 cmake_website="https://github.com/Kitware/CMake/releases/download/v3.14.4"
 cmake_archive="cmake-3.14.4-Linux-x86_64.tar.gz"
@@ -190,18 +198,78 @@ print_info "  $clang_archive"
 print_info "  $cmake_archive"
 
 download_failed=false
-download $nodejs_website $nodejs_archive "download_failed"
-download $neovim_website $neovim_archive "download_failed"
-download $clang_website  $clang_archive  "download_failed"
-download $cmake_website  $cmake_archive  "download_failed"
+#download $nodejs_website $nodejs_archive "download_failed"
+#download $neovim_website $neovim_archive "download_failed"
+#download $clang_website  $clang_archive  "download_failed"
+#download $cmake_website  $cmake_archive  "download_failed"
 if [ $download_failed == true ] ; then
 	print_fail "Download failed, setup will exit"
 	exit 1
 fi
 
 print_info "Extracting dependencies"
-extract $nodejs_archive "$install_path/nvimclipse_3rdparty"
-extract $neovim_archive "$install_path/nvimclipse_3rdparty"
-extract $clang_archive  "$install_path/nvimclipse_3rdparty"
-extract $cmake_archive  "$install_path/nvimclipse_3rdparty"
+#extract $nodejs_archive "$install_path/nvimclipse_3rdparty"
+#extract $neovim_archive "$install_path/nvimclipse_3rdparty"
+#extract $clang_archive  "$install_path/nvimclipse_3rdparty"
+cp -r ~/nvimclipse_3rdparty /opt/bla
+extract $cmake_archive "temp"
+
+print_info "Building ccls C++ language server"
+
+cmake_command="`pwd`/temp/cmake-$cmake_version/bin/cmake"
+cd temp
+if [ ! -d ccls ] ; then
+#	git clone --depth=1 --recursive https://github.com/MaskRay/ccls
+	cp -r ~/ccls ./
+fi
+cd ccls
+gcc="g++-8"
+if [ $missing_gnu_cpp8 == true ] ; then
+	gcc="g++-7"
+fi
+eval "$cmake_command -H. -BRelease \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCMAKE_PREFIX_PATH=$install_path/nvimclipse_3rdparty/clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04 \
+	-DCMAKE_CXX_COMPILER=$gcc"
+eval $cmake_command --build Release -j4
+if [ ! -f Release/ccls ] ; then
+	print_fail "Build failed, setup will exit"
+	exit 1
+fi
+mkdir -p $install_path/nvimclipse_3rdparty/ccls
+mkdir -p $install_path/nvimclipse_3rdparty/ccls/bin
+cp Release/ccls $install_path/nvimclipse_3rdparty/ccls/bin
+cd ../..
+rm -rf temp/ccls
+$ccls_path=$install_path/nvimclipse_3rdparty/ccls
+
+git submodule init
+git submodule update
+mkdir $install_path/nvimclipse/autoload
+cp vim-plug/plug.vim $install_path/nvimclipse/autoload/
+
+cp config/.cfg.*            $install_path/nvimclipse
+cp config/.vimrc*           $install_path/nvimclipse
+cp config/init.vim          $install_path/nvimclipse
+cp config/coc-settings.json $install_path/nvimclipse
+
+cp install.vim $install_path/nvimclipse
+
+sed -i "s|%clang_path%|$clang_path|g"                   $install_path/nvimclipse/.cfg.chromatica
+sed -i "s|%clang_version%|$clang_version|g"             $install_path/nvimclipse/.cfg.chromatica
+sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/.vimrc
+sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/.vimrc.plugins
+sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/init.vim
+sed -i "s|%ccls_path%|$ccls_path/bin/ccls|g"            $install_path/nvimclipse/coc-settings.json
+sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/install.vim
+
+mkdir -p ~/.config/nvim
+ln -sf $install_path/nvimclipse/coc-settings.json ~/.config/nvim/coc-settings.json
+
+	PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+		+PlugInstall \
+		+UpdateRemotePlugins \
+		+":call coc#util#install()" \
+		+qa
+rm $install_path/nvimclipse/install.vim
 

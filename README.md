@@ -1,4 +1,6 @@
 sudo apt-get install python3-pip
+sudo apt-get install zlib1g-dev
+sudo apt-get install libtinfo-dev
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
