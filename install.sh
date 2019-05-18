@@ -97,7 +97,7 @@ print_help() {
 	cat << EOF
 Options:
  --help                     display help
- --install-path=<path>      target directory for installation
+ --install-path=<path>      target directory for installation (only absolute pathes accepted)
                             default is /opt
                             script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
 EOF
@@ -111,7 +111,7 @@ if [ $? != 0 ] ; then
 	exit 1
 fi
 
-install_path="/opt/bla"
+install_path="/opt"
 
 eval set -- "$opts"
 while true ; do
@@ -165,6 +165,7 @@ probe_mkdir "$install_path/nvimclipse"          "mkdir_failed"
 probe_mkdir "$install_path/nvimclipse_3rdparty" "mkdir_failed"
 if [ $mkdir_failed == true ] ; then
 	print_fail "Folders check failed, setup will exit"
+	exit 1
 fi
 
 if [[ (-L ~/.config/nvim/coc-settings.json) || (-f ~/.config/nvim/coc-settings.json) ]] ; then
@@ -177,10 +178,10 @@ nodejs_archive="node-v10.15.3-linux-x64.tar.xz"
 nodejs_version="10.15.3"
 nodejs_path="$install_path/nvimclipse_3rdparty/node-v10.15.3-linux-x64"
 
-clang_website="https://github.com/llvm/llvm-project/releases/download/llvmorg-7.1.0"
-clang_archive="clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz"
-clang_version="7.1.0"
-clang_path="$install_path/nvimclipse_3rdparty/clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04"
+clang_website="http://releases.llvm.org/7.0.1/"
+clang_archive="clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04.tar.xz"
+clang_version="7.0.1"
+clang_path="$install_path/nvimclipse_3rdparty/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04"
 
 neovim_website="https://github.com/neovim/neovim/releases/download/stable"
 neovim_archive="nvim-linux64.tar.gz"
@@ -227,7 +228,7 @@ if [ $missing_gnu_cpp8 == true ] ; then
 fi
 eval "$cmake_command -H. -BRelease \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DCMAKE_PREFIX_PATH=$install_path/nvimclipse_3rdparty/clang+llvm-7.1.0-x86_64-linux-gnu-ubuntu-14.04 \
+	-DCMAKE_PREFIX_PATH=$install_path/nvimclipse_3rdparty/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04 \
 	-DCMAKE_CXX_COMPILER=$gcc"
 eval $cmake_command --build Release -j4
 if [ ! -f Release/ccls ] ; then
@@ -262,7 +263,7 @@ sed -i "s|%ccls_path%|$ccls_path/bin/ccls|g"            $install_path/nvimclipse
 sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/install.vim
 
 echo "" >> ~/.bashrc
-echo "alias nv=\"PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/init.vim\"" >> ~/.bashrc
+echo "alias nv='PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/init.vim'" >> ~/.bashrc
 echo "" >> ~/.bashrc
 
 mkdir -p ~/.config/nvim
