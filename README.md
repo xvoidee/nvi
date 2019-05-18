@@ -1,102 +1,29 @@
-1. Install neovim (v.0.4.0)
+1. Prereqs
 
-Download and extract neovim for your platform.
+* basic knowledge of Linux
+* basic knowledge of Vi/Vim/Neovim (at least how to quit)
+* required packages: python3, python3-pip, zlib1g-dev, libtinfo-dev
+* G++-8 to build language server (G++-7 will work as well)
+* custom patched NerdFont for fancy icons
 
-```
-wget -c https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-tar -xf nvim-linux64.tar.gz
-```
+2. Install
 
-Check that executable nvim in nvim-linux64/bin is visible from your $PATH variable. In my case:
+Install dependencies
 
-```
-xvoidee$ cat ~/.profile | grep nvim
-export PATH=$PATH:/opt/nvim-linux64/bin
-```
+```sudo apt-get install python3-pip zlib1g-dev libtinfo-dev```
 
-2. Install clang (7.0.1)
+Install G++-8 if you do not have it. Add toolchain repository if needed.
 
-Download and extract clang for your platform.
+```sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install g++-8```
 
-```
-wget -c http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-tar -xf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz 
-```
+Install nvimclipse. It will download clang+cmake+nodejs+nvim, total size is 416MB
 
-Check that clang is visible from your $PATH variable. In my case:
+```./install.sh --install-path=~/```
 
-```
-xvoidee$ cat ~/.profile | grep clang
-export PATH=$PATH:/opt/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/bin
-```
+3. Throubleshooting.
 
-3. Install nodejs (10.15.3)
+Q: It is stuck during install with various wget-like output.
+A: Sometimes it happens at the end, execute: killall -9 neovim
 
-```
-wget -c https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
-tar -xf node-v10.15.3-linux-x64.tar.xz 
-```
-Check that nodejs is visible from your $PATH variable. In my case:
-
-```
-xvoidee$ cat ~/.profile | grep node
-export PATH=$PATH:/opt/node-v10.15.3-linux-x64/bin
-```
-4. Install yarn
-
-```
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-```
-
-Reboot PC.
-
-5. Finalize coc.nvim setup
-
-Start nvim and execute from command mode:
-
-```
-:call coc#util#build()
-```
-
-6. Build ccls
-
-Prereqs:
-cmake version 3.8+
-g++ version 7.2+ (C++17 support)
-
-```
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-cd ccls
-cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/opt/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04
-cmake --build Release
-mkdir /opt/ccls
-cp Release/ccls /opt/ccls/
-```
-
-Check that your ccls binary is accessible via $PATH.
-
-```
-xvoidee$ cat ~/.profile | grep ccls
-export PATH=$PATH:/opt/ccls
-```
-
-7. Create alias for neovim
-
-```
-xvoidee$ alias | grep nvim
-alias nv='nvim -u ~/.nvimclipse/init.vim'
-```
-8. Export project to language server index
-
-Assumption: CMake used as build system. In this case (and many others) steps will be:
-
-```
-cd your_project
-mkdir build
-cd build
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-cd ..
-ln -s build/compile_commands.json ./
-```
-
-Open neovim via nv (step 7) and start editing C++ files. Plugins will scan whole project using compile database and put sources into index..
