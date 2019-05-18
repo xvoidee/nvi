@@ -1,3 +1,9 @@
+sudo apt-get install python3-pip
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install g++-8
+
 1. Install neovim (v.0.4.0)
 
 Download and extract neovim for your platform.
