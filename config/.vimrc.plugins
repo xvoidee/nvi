@@ -10,7 +10,7 @@ Plug 'mhinz/vim-startify'       ", { 'commit' : '2e5d068' }
 Plug 'airblade/vim-gitgutter'   ", { 'commit' : 'e5936a2' }
 Plug 'junegunn/fzf'             , { 'dir' : '~/.fzf', 'do' : './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim'        , { 'do' : { -> coc#util#install() } }
+Plug 'neoclide/coc.nvim'        , { 'commit' : '8741e93', 'do': 'yarn install --frozen-lockfile' }
 Plug 'arakashic/chromatica.nvim'", { 'commit' : '024cf1e' }
 Plug 'ryanoasis/vim-devicons'   ", { 'commit' : 'cdc08fd' }
 Plug 'mengelbrecht/lightline-bufferline'

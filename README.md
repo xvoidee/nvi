@@ -2,7 +2,7 @@
 
 * basic knowledge of Linux
 * basic knowledge of Vi/Vim/Neovim (at least how to quit)
-* required packages: python3, python3-pip, zlib1g-dev, libtinfo-dev
+* required packages: python3, python3-pip, zlib1g-dev, libtinfo-dev, curl
 * G++-8 to build language server (G++-7 will work as well)
 * custom patched NerdFont for fancy icons
 
@@ -10,9 +10,12 @@
 
 Install dependencies
 
-```sudo apt-get install python3-pip zlib1g-dev libtinfo-dev```
+```
+sudo apt-get install python3-pip zlib1g-dev libtinfo-dev curl
+sudo pip3 install neovim
+```
 
-Install G++-8 if you do not have it. Add toolchain repository if needed.
+Install G++-8 if you do not have it. Add toolchain repository if needed. G++-7 will work also.
 
 ```sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt-get update
