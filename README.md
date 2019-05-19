@@ -1,3 +1,5 @@
+![Poster](/images/poster.png)
+
 # Prereqs
 * basic knowledge of Linux
 * basic knowledge of Vi/Vim/Neovim (if you do not know how to quit, stop reading :))
