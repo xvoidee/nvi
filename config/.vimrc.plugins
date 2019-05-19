@@ -1,18 +1,18 @@
 " Plugins will be downloaded under the specified directory
-call plug#begin('%nvimclipse_path%/plugged')
+call plug#begin('%install_path%/nvimclipse/plugged')
 
 " Declare the list of plugins
-Plug 'ayu-theme/ayu-vim'        ", { 'commit' : '4c418ff' }
-Plug 'itchyny/lightline.vim'    ", { 'commit' : 'bb0b401' }
-Plug 'tpope/vim-fugitive'       ", { 'commit' : '5d99841' }
-Plug 'scrooloose/nerdtree'      ", { 'commit' : '67fa9b3' }
-Plug 'mhinz/vim-startify'       ", { 'commit' : '2e5d068' }
-Plug 'airblade/vim-gitgutter'   ", { 'commit' : 'e5936a2' }
-Plug 'junegunn/fzf'             , { 'dir' : '~/.fzf', 'do' : './install --all' }
+Plug 'ayu-theme/ayu-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'neoclide/coc.nvim'        , { 'commit' : '8741e93', 'do': 'yarn install --frozen-lockfile' }
-Plug 'arakashic/chromatica.nvim'", { 'commit' : '024cf1e' }
-Plug 'ryanoasis/vim-devicons'   ", { 'commit' : 'cdc08fd' }
+Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': './install.sh' }
+Plug 'arakashic/chromatica.nvim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'mengelbrecht/lightline-bufferline'
 
 " List ends here. Plugins become visible to Vim after this call

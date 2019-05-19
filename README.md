@@ -37,3 +37,9 @@ For example:
 Q: It is stuck during install with various wget-like output.
 A: Sometimes it happens at the end, execute: killall -9 neovim
 
+Q: Immediately after startup red line appears at bottom: "client coc abnormal exit with: 1"
+A: Intellisense plugin coc was not installed, build it from source:
+:call coc#util#build()
+
+
+
