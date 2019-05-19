@@ -1,5 +1,5 @@
 " Enable plugins
-source %nvimclipse_path%/.vimrc.plugins
+source %install_path%/nvimclipse/.vimrc.plugins
 
 " Syntax on
 syntax on
@@ -25,10 +25,10 @@ set nu
 set hls
 
 " Source any local vimrc's
-source %nvimclipse_path%/.vimrc.theme
-source %nvimclipse_path%/.cfg.coc
-source %nvimclipse_path%/.cfg.chromatica
-source %nvimclipse_path%/.cfg.lightline
-source %nvimclipse_path%/.cfg.nerdtree
-source %nvimclipse_path%/.cfg.startify
-source %nvimclipse_path%/.vimrc.hotkeys
+source %install_path%/nvimclipse/.vimrc.theme
+source %install_path%/nvimclipse/.cfg.coc
+source %install_path%/nvimclipse/.cfg.chromatica
+source %install_path%/nvimclipse/.cfg.lightline
+source %install_path%/nvimclipse/.cfg.nerdtree
+source %install_path%/nvimclipse/.cfg.startify
+source %install_path%/nvimclipse/.vimrc.hotkeys

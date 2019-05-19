@@ -166,13 +166,13 @@ cp config/coc-settings.json $install_path/nvimclipse
 
 cp install.vim $install_path/nvimclipse
 
-sed -i "s|%clang_path%|$clang_path|g"                   $install_path/nvimclipse/.cfg.chromatica
-sed -i "s|%clang_version%|$clang_version|g"             $install_path/nvimclipse/.cfg.chromatica
-sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/.vimrc
-sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/.vimrc.plugins
-sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/init.vim
-sed -i "s|%ccls_path%|$ccls_path/bin/ccls|g"            $install_path/nvimclipse/coc-settings.json
-sed -i "s|%nvimclipse_path%|$install_path/nvimclipse|g" $install_path/nvimclipse/install.vim
+sed -i "s|%clang_path%|$clang_path|g"       $install_path/nvimclipse/.cfg.chromatica
+sed -i "s|%clang_version%|$clang_version|g" $install_path/nvimclipse/.cfg.chromatica
+sed -i "s|%install_path%|$install_path|g"   $install_path/nvimclipse/.vimrc
+sed -i "s|%install_path%|$install_path|g"   $install_path/nvimclipse/.vimrc.plugins
+sed -i "s|%install_path%|$install_path|g"   $install_path/nvimclipse/init.vim
+sed -i "s|%ccls_path%|$ccls_path|g"         $install_path/nvimclipse/coc-settings.json
+sed -i "s|%install_path%|$install_path|g"   $install_path/nvimclipse/install.vim
 
 echo "" >> ~/.bashrc
 echo "alias nv=\"PATH=$PATH:$nodejs_path/bin:$HOME/.yarn/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/init.vim\"" >> ~/.bashrc
@@ -181,17 +181,16 @@ echo "" >> ~/.bashrc
 mkdir -p ~/.config/nvim
 ln -sf $install_path/nvimclipse/coc-settings.json ~/.config/nvim/coc-settings.json
 
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
 		+PlugInstall \
 		+UpdateRemotePlugins \
-		+qa
-
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
-		+":call coc#util#install()" \
-		+qa
-PATH=$PATH:$nodejs_pathe/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
 		+":call coc#util#build()" \
 		+qa
+#PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+#		+":call coc#util#install()" \
+#		+qa
+#PATH=$PATH:$nodejs_path/bin $neovim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+#		+qa
 
 rm $install_path/nvimclipse/install.vim
 

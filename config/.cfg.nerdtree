@@ -11,3 +11,10 @@ let NERDTreeWinSize    = 50
 
 " Jump to file, not to tree
 autocmd VimEnter * wincmd p
+
+" Enable fancy icons
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
