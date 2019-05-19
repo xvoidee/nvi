@@ -51,3 +51,19 @@ Select section "Font" on left pane and then select your monospace font on the ri
 #### Bold fonts are messing color experience
 Disable bold fonts in your terminal. If not possible (under Ubuntu 18.04), use another terminal, like terminator
 
+# Thanks to these plugins used in nvimclipse
+
+* https://github.com/ayu-theme/ayu-vim
+* https://github.com/itchyny/lightline.vim
+* https://github.com/tpope/vim-fugitive
+* https://github.com/scrooloose/nerdtree
+* https://github.com/mhinz/vim-startify
+* https://github.com/airblade/vim-gitgutter
+* https://github.com/junegunn/fzf
+* https://github.com/junegunn/fzf.vim
+* https://github.com/junegunn/vim-plug
+* https://github.com/neoclide/coc.nvim
+* https://github.com/arakashic/chromatica.nvim
+* https://github.com/ryanoasis/vim-devicons
+* https://github.com/mengelbrecht/lightline-bufferline
+
