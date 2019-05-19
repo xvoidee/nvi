@@ -53,17 +53,21 @@ Disable bold fonts in your terminal. If not possible (under Ubuntu 18.04), use a
 
 # Thanks to these plugins used in nvimclipse
 
-* https://github.com/ayu-theme/ayu-vim
-* https://github.com/itchyny/lightline.vim
-* https://github.com/tpope/vim-fugitive
-* https://github.com/scrooloose/nerdtree
-* https://github.com/mhinz/vim-startify
-* https://github.com/airblade/vim-gitgutter
-* https://github.com/junegunn/fzf
-* https://github.com/junegunn/fzf.vim
-* https://github.com/junegunn/vim-plug
-* https://github.com/neoclide/coc.nvim
-* https://github.com/arakashic/chromatica.nvim
-* https://github.com/ryanoasis/vim-devicons
-* https://github.com/mengelbrecht/lightline-bufferline
+* Light and eye-friendly color scheme: https://github.com/ayu-theme/ayu-vim
+* Highly configurable status line: https://github.com/itchyny/lightline.vim
+* Git extensions: https://github.com/tpope/vim-fugitive
+* Tree file-explorer: https://github.com/scrooloose/nerdtree
+* Start-up page: https://github.com/mhinz/vim-startify
+* Git status for active buffer: https://github.com/airblade/vim-gitgutter
+* Fuzzy search: https://github.com/junegunn/fzf and https://github.com/junegunn/fzf.vim
+* Plugin manager: https://github.com/junegunn/vim-plug
+* Intellisense engine with LSP support: https://github.com/neoclide/coc.nvim
+* Semantic highlight for C++: https://github.com/arakashic/chromatica.nvim
+* Fancy icons: https://github.com/ryanoasis/vim-devicons
+* Fancy buffers-bar: https://github.com/mengelbrecht/lightline-bufferline
+
+# Not vim plugins, but deserve personal thanksgiving
+
+* Patched monospaced fonts (with fancy icons) for programmers: https://github.com/ryanoasis/nerd-fonts
+* Language server for C++: https://github.com/MaskRay/ccls/wiki/Build
 
