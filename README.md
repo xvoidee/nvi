@@ -1,4 +1,4 @@
-![Poster](/images/poster.png)
+![Poster](/screenshots/poster.png)
 
 # Prereqs
 * basic knowledge of Linux
