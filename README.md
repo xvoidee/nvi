@@ -25,7 +25,7 @@ sudo apt-get install g++-8
 ```
 ./install.sh --install-path=/home/yourname/programs
 ```
-Script will download clang+cmake+nodejs+nvim, total size is roughly 16MB. **'~' in --install-path is not supported!**
+Script will download clang+cmake+nodejs+nvim, total size is roughly 450MB. **'~' in --install-path is not supported!**
 
 # Throubleshooting
 This section comes before first steps as most probably you will run into minor issues.
