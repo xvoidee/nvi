@@ -1,5 +1,0 @@
-" setup chromatica highlight for c++
-let g:chromatica#enable_at_startup = 1
-let g:chromatica#libclang_path     = '%clang_path%/lib/libclang.so'
-let g:chromatica#use_pch           = 0
-let g:chromatica#global_args       = ['-isystem%clang_path%/lib/clang/%clang_version%/include']

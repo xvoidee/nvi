@@ -1,9 +1,9 @@
-" Jump to definition/implementation
+" Jump to...
 nmap <silent> <F3> <Plug>(coc-definition)
 nmap <silent> <F4> <Plug>(coc-implementation)
 nmap <silent> <F5> <Plug>(coc-references)
 
-" coc completion
+" Auto complete
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Close coc preview window after completion is done

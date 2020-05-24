@@ -62,7 +62,7 @@ Disable bold fonts in your terminal. If not possible (under Ubuntu 18.04), use a
 * Fuzzy search: https://github.com/junegunn/fzf and https://github.com/junegunn/fzf.vim
 * Plugin manager: https://github.com/junegunn/vim-plug
 * Intellisense engine with LSP support: https://github.com/neoclide/coc.nvim
-* Semantic highlight for C++: https://github.com/arakashic/chromatica.nvim
+* Semantic highlight for C++: https://github.com/jackguo380/vim-lsp-cxx-highlight
 * Fancy icons: https://github.com/ryanoasis/vim-devicons
 * Fancy buffers-bar: https://github.com/mengelbrecht/lightline-bufferline
 

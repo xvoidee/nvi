@@ -6,7 +6,10 @@
 					"c", "h", "cpp", "hpp"
 				],
 			"initializationOptions" : {
-				"cacheDirectory" : "%ccls_path%/cache"
+				"cacheDirectory" : "%ccls_path%/cache",
+				"highlight" : {
+					"lsRanges" : true
+				}
 			}
 		}
 	},

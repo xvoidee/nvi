@@ -11,9 +11,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir' : '~/.fzf', 'do' : './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'tag': '*', 'do': './install.sh' }
-Plug 'arakashic/chromatica.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " List ends here. Plugins become visible to Vim after this call
 call plug#end()

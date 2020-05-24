@@ -27,7 +27,6 @@ set hls
 " Source any local vimrc's
 source %install_path%/nvimclipse/.vimrc.theme
 source %install_path%/nvimclipse/.cfg.coc
-source %install_path%/nvimclipse/.cfg.chromatica
 source %install_path%/nvimclipse/.cfg.lightline
 source %install_path%/nvimclipse/.cfg.nerdtree
 source %install_path%/nvimclipse/.cfg.startify
