@@ -12,7 +12,12 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Do not show preview for autocomplete
 set completeopt-=preview
 
-" Colorize underline for errors
-hi CocUnderline        gui=undercurl  term=undercurl
-hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
-hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl
+" Colorize error messages
+if g:nvimclipse_mode=='termgui'
+  hi CocUnderline        gui=undercurl  term=undercurl
+  hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
+  hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl
+else
+  hi CocErrorHighlight ctermfg=129
+  hi CocErrorFloat     ctermfg=129
+endif

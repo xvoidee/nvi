@@ -1,19 +1,19 @@
 {
-	"languageserver": {
-		"ccls" : {
-			"command"   : "%ccls_path%/bin/ccls",
-				"filetypes" : [
-					"c", "h", "cpp", "hpp"
-				],
-			"initializationOptions" : {
-				"cacheDirectory" : "%ccls_path%/cache",
-				"highlight" : {
-					"lsRanges" : true
-				}
-			}
-		}
-	},
-	"coc.preferences.timeout"     : 1000,
-	"coc.preferences.autoTrigger" : "none"
+  "languageserver": {
+    "ccls" : {
+      "command"   : "%ccls_path%/bin/ccls",
+      "filetypes" : [
+        "c", "h", "cpp", "hpp"
+      ],
+      "initializationOptions" : {
+        "cacheDirectory" : "%ccls_path%/cache",
+        "highlight" : {
+          "lsRanges" : true
+        }
+      }
+    }
+  },
+  "coc.preferences.timeout"     : 1000,
+  "coc.preferences.autoTrigger" : "none"
 }
 

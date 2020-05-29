@@ -1,0 +1,6 @@
+" By default nvimclipse is set up to run in command line (without X11)
+" To enable all fancy features change 'term' to 'termgui'
+let g:nvimclipse_mode='term'
+
+" By default NERD fonts are disabled
+let g:nvimclipse_nerd='off'

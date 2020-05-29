@@ -1,3 +1,18 @@
+" Set separator characters depending if NERD enabled or not
+if g:nvimclipse_nerd == 'on'
+  let s:lightline_separator_left  = ''
+  let s:lightline_separator_right = ''
+
+  let s:lightline_subseparator_left  = ''
+  let s:lightline_subseparator_right = ''
+else
+  let s:lightline_separator_left  = '>'
+  let s:lightline_separator_right = '<'
+
+  let s:lightline_subseparator_left  = '>'
+  let s:lightline_subseparator_right = '<'
+endif
+
 " Configure lightline
 let g:lightline = {
   \ 'colorscheme': 'one',
@@ -16,21 +31,34 @@ let g:lightline = {
   \ 'component_expand' : {'buffers': 'lightline#bufferline#buffers'},
   \ 'component_type'   : {'buffers': 'tabsel'},
   \ 'separator' : {
-  \   'left': '', 'right': ''
+  \   'left'  : s:lightline_separator_left,
+  \   'right' : s:lightline_separator_right
   \ },
   \ 'subseparator' : {
-  \   'left': '', 'right': ''
+  \   'left'  : s:lightline_subseparator_left,
+  \   'right' : s:lightline_subseparator_right
   \ }
 \ }
 
-let g:lightline#bufferline#enable_devicons = 1
+" Stylize light line using NERD or not
+if g:nvimclipse_nerd == 'on'
+  let g:lightline#bufferline#enable_devicons = 1
 
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
+  function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  endfunction
 
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+  function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  endfunction
+else
+  function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' : 'no ft') : ''
+  endfunction
+
+  function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ') : ''
+  endfunction
+endif
 
 set showtabline=2
