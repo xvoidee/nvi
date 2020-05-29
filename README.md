@@ -4,6 +4,13 @@
 * required packages: python3, python3-pip
 * :q! - this does not scare you
 # Install
+## Clone
+```
+git clone https://github.com/xvoidee/nvimclipse.git
+cd nvimclipse
+git submodule init
+git submodule update
+```
 ## Install dependencies
 ```
 sudo apt-get install python3-pip
