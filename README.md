@@ -6,10 +6,7 @@
 # Install
 ## Clone
 ```
-git clone https://github.com/xvoidee/nvimclipse.git
-cd nvimclipse
-git submodule init
-git submodule update
+git clone --recursive https://github.com/xvoidee/nvimclipse.git
 ```
 ## Install dependencies
 ```
