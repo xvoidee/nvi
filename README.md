@@ -1,17 +1,11 @@
 ![Poster](/assets/poster.png)
 # Prereqs
 * Ubuntu (tested on Ubuntu 16.04 and 18.04)
-* required packages: python3, python3-pip
 * :q! - this does not scare you
 # Install
 ## Clone
 ```
 git clone --recursive https://github.com/xvoidee/nvimclipse.git
-```
-## Install dependencies
-```
-sudo apt-get install python3-pip
-pip3 install neovim
 ```
 ## Install nvimclipse
 ```
