@@ -70,18 +70,6 @@ if [ $no_previous_installation_found == false ] ; then
 	exit 1
 fi
 
-print_info "Check for dependencies"
-no_missing_packages=true
-check_executable_exists "python3" "no_missing_packages"
-check_executable_exists "pip3"    "no_missing_packages"
-
-if [ $no_missing_packages == false ] ; then
-	print_fail "Dependencies check failed, setup will exit"
-	exit 1
-fi
-
-no_missing_packages=true
-check_pip3_package_exists "nvim" "no_missing_packages" "pip3 nvim"
 if [ $no_missing_packages == false ] ; then
 	print_fail "Dependencies check failed, setup will exit"
 	exit 1
