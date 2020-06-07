@@ -1,17 +1,9 @@
-" Apply theme only for termgui mode
+" vi:syntax=vim
+
 if g:nvimclipse_mode == 'termgui'
-  " Color scheme
   set termguicolors
-  let ayucolor="light"
-  colorscheme ayu
-
-  " Make status line nice
-  hi StatusLine   ctermbg=0 ctermfg=15
-  hi StatusLineNC ctermbg=0 ctermfg=7
-
-  " Tune members highlight
-  hi Member       guifg=DarkCyan
-  hi EnumConstant guifg=SeaGreen
+  let g:dracula_italic=0
+  colo dracula
 
   " Set block cursor
   set guicursor =
@@ -26,3 +18,4 @@ hi StatusLineNC ctermbg=0 ctermfg=7
 " Tune members highlight
 hi Member       guifg=DarkCyan
 hi EnumConstant guifg=SeaGreen
+

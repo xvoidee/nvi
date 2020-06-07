@@ -1,21 +1,23 @@
-" NERDTree disabled by default
-" autocmd VimEnter * NERDTree
+" vi:syntax=vim
 
-" Change icons for folders
+if g:nvimclipse_mode == 'termgui'
+  " NERDTree enabled by default only in termgui (does not fit into screen in term mode)
+  autocmd VimEnter * NERDTree
+endif
+
 let g:NERDTreeDirArrowExpandable  = ' '
 let g:NERDTreeDirArrowCollapsible = ' '
 
-" Show all files and folders
 let NERDTreeShowHidden = 1
 let NERDTreeWinSize    = 50
 
-" Jump to file, not to tree
+" When file selected - jump to file, not to tree
 autocmd VimEnter * wincmd p
 
-" Enable fancy icons when Nerd fonts are enabled
 if g:nvimclipse_nerd=='on'
   let g:webdevicons_conceal_nerdtree_brackets = 1
   let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-  let g:WebDevIconsUnicodeDecorateFileNodes = 1
-  let g:DevIconsEnableFoldersOpenClose = 1
+  let g:WebDevIconsUnicodeDecorateFileNodes   = 1
+  let g:DevIconsEnableFoldersOpenClose        = 1
 endif
+

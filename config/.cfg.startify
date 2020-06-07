@@ -1,2 +1,5 @@
+" vi:syntax=vim
+
 " Do not change vim pwd when open bookmark in startify
 let g:startify_change_to_dir = 0
+

@@ -1,3 +1,5 @@
+" vi:syntax=vim
+
 " Toggle tree
 nnoremap <C-T> :NERDTreeToggle<CR>
 
@@ -13,7 +15,7 @@ nnoremap <C-K> <C-W><C-J>| " down
 " Save active buffer, keep opened
 nnoremap <F2> :wa<CR>
 
-" Try to active close buffer
+" Try to close active buffer
 nnoremap <F8> :bp<bar>sp<bar>bn<bar>bd<CR>
 
 " Ignore changes and quit
@@ -22,14 +24,22 @@ nnoremap <F10> :qa!<CR>
 " Save changes and quit
 nnoremap <F12> :wqa<CR>
 
-" Navigate through opened buffers
+" Sequential navigate through opened buffers
 nnoremap <S-Right> :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 
 " Jump to begin/end of file
-nnoremap <C-Up> gg
+nnoremap <C-Up>   gg
 nnoremap <C-Down> G
 
-" Delete single line instead of dd
+" Delete single line (like dd does)
 nnoremap <leader>d dd
+
+" Jump to...
+nmap <silent> <F3> <Plug>(coc-definition)
+nmap <silent> <F4> <Plug>(coc-implementation)
+nmap <silent> <F5> <Plug>(coc-references)
+
+" Auto complete
+inoremap <silent><expr> <c-space> coc#refresh()
 
