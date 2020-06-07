@@ -1,7 +1,7 @@
-" Plugins will be downloaded under the specified directory
+" vi:syntax=vim
+
 call plug#begin('%install_path%/nvimclipse/plugged')
 
-" Declare the list of plugins
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
@@ -12,17 +12,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'psliwka/vim-smoothie'
+Plug 'liuchengxu/vista.vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'lifepillar/vim-solarized8'
+Plug 'dracula/vim'
 
-" Colors/icons plugins are selected based on term/termgui mode
-if g:nvimclipse_mode == 'termgui'
-  Plug 'ayu-theme/ayu-vim'
-
-  " Enable NERD fonts
-  if g:nvimclipse_nerd == 'on'
-    Plug 'ryanoasis/vim-devicons'
-  endif
+if g:nvimclipse_nerd == 'on'
+  Plug 'ryanoasis/vim-devicons'
 endif
 
-" List ends here. Plugins become visible to Vim after this call
 call plug#end()
+

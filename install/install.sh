@@ -3,17 +3,18 @@
 print_help() {
 	cat << EOF
 Options:
- --help                   display help
- --install-path=<path>    target directory for installation, default is /opt
-                          script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
- --install-alias=<alias>  use alias in .bashrc, default is nv
+ --help                     display help
+ --install-path=<path>      target directory for installation, default is /opt
+                            script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
+ --install-alias=<alias>    install alias to your shell rc, default is nv
+ --install-alias-to=<alias> name of rc where alias will be installed, default is .bashrc
 EOF
 }
 
 source install/install_helpers.sh
 source install/install_packages.sh
 
-opts=`/usr/bin/getopt -o '' --long help,install-path:,install-alias: -- "$@"`
+opts=`/usr/bin/getopt -o '' --long help,install-path:,install-alias:,install-alias-to: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "getopt failed"
@@ -23,6 +24,7 @@ fi
 
 install_path="/opt"
 install_alias="nv"
+install_alias_to=".bashrc"
 
 eval set -- "$opts"
 while true ; do
@@ -38,6 +40,11 @@ while true ; do
 			;;
 		--install-alias)
 			install_alias=$2
+			shift
+			shift
+			;;
+		--install-alias-to)
+			install_alias_to=$2
 			shift
 			shift
 			;;
@@ -116,20 +123,22 @@ mkdir $install_path/nvimclipse
 
 mkdir $install_path/nvimclipse/autoload
 cp vim-plug/plug.vim   $install_path/nvimclipse/autoload/
-cp config/.*           $install_path/nvimclipse
+cp config/.alias       $install_path/nvimclipse
+cp config/.cfg*        $install_path/nvimclipse
+cp config/.nvimclipse* $install_path/nvimclipse
 cp config/*            $install_path/nvimclipse
 cp install/install.vim $install_path/nvimclipse
 
-sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/.bashrc
-sed -i "s|%node_path%|$node_path|g"       $install_path/nvimclipse/.bashrc
-sed -i "s|%nvim_path%|$nvim_path|g"       $install_path/nvimclipse/.bashrc
+sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/.alias
+sed -i "s|%node_path%|$node_path|g"       $install_path/nvimclipse/.alias
+sed -i "s|%nvim_path%|$nvim_path|g"       $install_path/nvimclipse/.alias
 sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/.nvimclipse.vimrc
 sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/.nvimclipse.plugins
 sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/init.vim
 sed -i "s|%ccls_path%|$ccls_path|g"       $install_path/nvimclipse/coc-settings.json
 sed -i "s|%install_path%|$install_path|g" $install_path/nvimclipse/install.vim
 
-echo "source $install_path/nvimclipse/.bashrc" >> ~/.bashrc
+echo "source $install_path/nvimclipse/.alias" >> ~/$install_alias_to
 
 mkdir -p ~/.config/nvim
 ln -sf $install_path/nvimclipse/coc-settings.json ~/.config/nvim/coc-settings.json

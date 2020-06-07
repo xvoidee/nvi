@@ -1,10 +1,4 @@
-" Jump to...
-nmap <silent> <F3> <Plug>(coc-definition)
-nmap <silent> <F4> <Plug>(coc-implementation)
-nmap <silent> <F5> <Plug>(coc-references)
-
-" Auto complete
-inoremap <silent><expr> <c-space> coc#refresh()
+" vi:syntax=vim
 
 " Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -21,3 +15,4 @@ else
   hi CocErrorHighlight ctermfg=129
   hi CocErrorFloat     ctermfg=129
 endif
+

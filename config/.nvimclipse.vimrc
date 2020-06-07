@@ -1,8 +1,6 @@
-" Source main config file BEFORE plugins
-" to control which of them needs to be loaded
-source %install_path%/nvimclipse/.nvimclipse
+" vi:syntax=vim
 
-" Enable plugins
+source %install_path%/nvimclipse/.nvimclipse
 source %install_path%/nvimclipse/.nvimclipse.plugins
 
 " Syntax on
@@ -33,5 +31,7 @@ source %install_path%/nvimclipse/.nvimclipse.theme
 source %install_path%/nvimclipse/.nvimclipse.hotkeys
 source %install_path%/nvimclipse/.cfg.coc
 source %install_path%/nvimclipse/.cfg.lightline
+source %install_path%/nvimclipse/.cfg.bufferline
 source %install_path%/nvimclipse/.cfg.nerdtree
 source %install_path%/nvimclipse/.cfg.startify
+source %install_path%/nvimclipse/.cfg.smoothie
