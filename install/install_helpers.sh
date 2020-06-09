@@ -57,7 +57,7 @@ probe_mkdir() {
 download() {
 	mkdir -p temp
 	print_info "Download $2 from $1"
-	wget -c $1/$2 -P temp/
+	wget -4 -c $1/$2 -P temp/
 
 	if [ ! -f temp/$2 ] ; then
 		print_fail "Download $2 - was not downloaded, try yourself:"

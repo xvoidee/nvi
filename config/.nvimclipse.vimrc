@@ -35,3 +35,4 @@ source %install_path%/nvimclipse/.cfg.bufferline
 source %install_path%/nvimclipse/.cfg.nerdtree
 source %install_path%/nvimclipse/.cfg.startify
 source %install_path%/nvimclipse/.cfg.smoothie
+source %install_path%/nvimclipse/.cfg.vista
