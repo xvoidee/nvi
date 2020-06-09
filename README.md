@@ -2,37 +2,79 @@
 # Prereqs
 * Ubuntu (tested on Ubuntu 16.04 and 18.04)
 * :q! - this does not scare you
+
 # Install
-## Clone
+Installer is bundled with precompiled ccls language server, 2 other dependencies will be downloaded from internet (nodejs ~14.7Mb and neovim ~10.5Mb).
 ```
-git clone --recursive https://github.com/xvoidee/nvimclipse.git
+$ git clone --recursive https://github.com/xvoidee/nvimclipse.git
+$ cd ~
+$ mkdir Programs
+$ ./install_linux.sh --install-path=$HOME --install-alias=nv --install-alias-to=.bashrc
 ```
-## Install nvimclipse
-```
-./install.sh --install-path=/home/yourname/programs
-```
-Script will download nodejs (~14.7Mb) and nvim (~10.5Mb) and proceed with install.
-## Finish installation
-Log out or source ~/.bashrc to use newly added alias "nv" (short of nvimclipse).
-# Use
+Installation will:
+* create 2 directories ~/nvimclipse (configuration files) and ~/nvimclipse_3rdparty (dependencies)
+* alias "nv" to your bash shell. If you use other shell pass your rc file (.zshrc for example)
+When installation is finished - log out or source ~/.bashrc (or your shell rc) to use newly added alias "nv" (short of nvimclipse).
+# How to use
 ## C++
-Typical build of any project with cmake is:
+To build any C/C++ project 2 files are needed: compilation database (compile_commands.json) and hints for compiler (.ccls).
+Compilation database can be obtained from cmake:
 ```
-cd project
-mkdir build
-cd build
-cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-make
-cd ..
-ln -s build/compile_commands.json ./
+$ cd project
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+$ cd ..
+$ ln -s build/compile_commands.json ./
 ```
-Simply saying LSP backend (ccls) and intellisense (coc.nvim) need only up-to-date compile database: compile_commands.json file. The easiest way to get it - generate by cmake. For other tools (gnu make for example) more complex tooling is needed (like bear transforming Makefile to compile_commands.json). Start "nv" from same directory where compilation database is located and once any source file is opened - indexer will start over the whole sources which relate to this build.
+Final step is to teach intellisense and indexer how to find default headers (like stddef). Pathes to these headers are not being exported into compilation database. So you need to obtain list of these directories by your own and put them into special hints file named .ccls:
+```
+$ echo "%compile_commands.json" > .ccls
+$ echo | gcc -Wp,-v -x c++ - -fsyntax-only |& grep " /usr" | sed "s/ \/usr/-I\/usr/g" >> .ccls
+```
+Contents of .ccls file will be similar to:
+```
+$ cat .ccls
+%compile_commands.json
+-I/usr/include/c++/5
+-I/usr/include/x86_64-linux-gnu/c++/5
+-I/usr/include/c++/5/backward
+-I/usr/lib/gcc/x86_64-linux-gnu/5/include
+-I/usr/local/include
+-I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
+-I/usr/include/x86_64-linux-gnu
+-I/usr/include
+```
+Now start nv, pickup any source file. In process monitor you will see new entry ccls (amount of threads will match amount of your CPUs). For few minutes it will run on 100% load and index sources into folder named .ccls-cache.
+## Hotkeys
+nvimclipse is equipped with basic (because plugins provide huuuge amount of functionality) set of predefined hotkeys:
+Key | Action | Mode
+----| ------ | ----
+Ctrl-T|Toggle NERDTree (file-explorer) on/off|NORMAL
+Ctrl-J|Jump to split one more left|NORMAL
+Ctrl-L|Jump to split one more right|NORMAL
+Ctrl-I|Jump to split one more up|NORMAL
+Ctrl-K|Jump to split one more down|NORMAL
+F2|Save contents of buffer (equals to :w)|NORMAL
+F3|Jump to definition|NORMAL
+F4|Jump to implementation|NORMAL
+F5|Find all references|NORMAL
+F7|Open fuzzy search by filename|NORMAL
+F8|Close buffer only if changes are saved|NORMAL
+F10|Skip all changes and close editor|NORMAL
+F12|Save all changes and close editor|NORMAL
+Shift-Left|Open previous buffer only if changes are saved|NORMAL
+Shift-Right|Open next buffer only if changes are saved|NORMAL
+Ctrl-Space|Auto-complete, opens drop-down list with suggestions|INSERT
 # Throubleshooting
-This section comes before first steps as most probably you will run into minor issues.
-#### I cannot quit from nvimclipse with F10 key!
-Disable menu (F10) accelerator key in preferences for your gnome-terminal
-#### Bold fonts are messing color experience
-Disable bold fonts in your terminal. If not possible (under Ubuntu 18.04), use another terminal, like terminator
+## I use command line (no X11) and colors are like from 1990s
+Unfortunately tty has 8-colors palette and it is not possible to use whole set of colors. Available solutions are: use fbterm, connect to machine using PuTTy/KiTTy, connect to machine using any X11 terminal (gnome terminal, terminator, etc).
+## I use PuTTy and modifier keys (shift/ctrl/etc) are not working
+Use KiTTy.
+## I use PuTTy/KiTTy and home/end keys are not working
+Change terminal type to linux under Connection/Data menu in session setup (field Terminal-type string).
+## I use command line (no X11) and fuzzy search (fzf) crashing
+This is know issue and no fix/workaround at the moment.
 # Thanks to these plugins used in nvimclipse
 * Highly configurable status line: https://github.com/itchyny/lightline.vim
 * Git extensions: https://github.com/tpope/vim-fugitive
