@@ -6,11 +6,13 @@
 # Install
 Installer is bundled with precompiled ccls language server, 2 other dependencies will be downloaded from internet (nodejs ~14.7Mb and neovim ~10.5Mb).
 ```
+$ mkdir ~/Programs
+$ cd ~/Downloads
 $ git clone --recursive https://github.com/xvoidee/nvimclipse.git
-$ cd ~
-$ mkdir Programs
+$ cd nvimclipse
 $ ./install_linux.sh --install-path=$HOME --install-alias=nv --install-alias-to=.bashrc
 ```
+Change parameters according to your setup and environment. For example shell rc file could be .zshrc (default on MacOS).
 Installation will:
 * create 2 directories ~/nvimclipse (configuration files) and ~/nvimclipse_3rdparty (dependencies)
 * alias "nv" to your bash shell. If you use other shell pass your rc file (.zshrc for example)
