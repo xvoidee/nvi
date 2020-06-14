@@ -67,7 +67,7 @@ F2|Save contents of buffer (equals to :w)|NORMAL|
 F3|Jump to definition|NORMAL|
 F4|Jump to implementation|NORMAL|
 F5|Find all references|NORMAL|
-F7|Open fuzzy search by filename|NORMAL|May ask to download fzf binary - press y
+F7|Open fuzzy search by filename|NORMAL|May ask to download fzf executable - agree by pressing "y"
 F8|Close buffer only if changes are saved|NORMAL|
 F10|Skip all changes and close editor|NORMAL|
 F12|Save all changes and close editor|NORMAL|
