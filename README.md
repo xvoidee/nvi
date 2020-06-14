@@ -38,7 +38,7 @@ $ g++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,
 $ echo "%compile_commands.json" > .ccls
 $ /Library/Developer/CommandLineTools/usr/bin/c++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
 ```
-Contents of .ccls file should be similar to (actual pathes may differ depending on your OS/Compiler):
+Contents of .ccls file should be similar to (actual pathes may differ depending on your OS/Compiler, check your project settings):
 ```
 $ cat .ccls
 %compile_commands.json

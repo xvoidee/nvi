@@ -4,7 +4,7 @@ print_help() {
 	cat << EOF
 Options:
  --help                     display help
- --install-path=<path>      target directory for installation, default is /opt
+ --install-path=<path>      target directory for installation, default is $HOME
                             script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
  --install-alias=<alias>    install alias to your shell rc, default is nv
  --install-alias-to=<alias> name of rc where alias will be installed, default is .bashrc
@@ -93,11 +93,6 @@ extract() {
 # $2 - value to be replaced
 # $3 - value to be written instead of $1
 portable_sed() {
-	echo $1
-	echo $2
-	echo $3
-	cat $1
-	echo "---"
 	sed "s|$2|$3|g" "$1" > "$1"e ; mv "$1"e "$1"
 }
 

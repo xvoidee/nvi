@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_path="/opt"
+install_path="$HOME"
 install_alias="nv"
 install_alias_to=".bashrc"
 
