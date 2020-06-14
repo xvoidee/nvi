@@ -6,11 +6,13 @@
 # Install
 Installer is bundled with precompiled ccls language server, 2 other dependencies will be downloaded from internet (nodejs ~14.7Mb and neovim ~10.5Mb).
 ```
+$ mkdir ~/Programs
+$ cd ~/Downloads
 $ git clone --recursive https://github.com/xvoidee/nvimclipse.git
-$ cd ~
-$ mkdir Programs
+$ cd nvimclipse
 $ ./install_linux.sh --install-path=$HOME --install-alias=nv --install-alias-to=.bashrc
 ```
+Change parameters according to your setup and environment. For example shell rc file could be .zshrc (default on MacOS).
 Installation will:
 * create 2 directories ~/nvimclipse (configuration files) and ~/nvimclipse_3rdparty (dependencies)
 * alias "nv" to your bash shell. If you use other shell pass your rc file (.zshrc for example)
@@ -28,11 +30,17 @@ $ cd ..
 $ ln -s build/compile_commands.json ./
 ```
 Final step is to teach intellisense and indexer how to find default headers (like stddef). Pathes to these headers are not being exported into compilation database. So you need to obtain list of these directories by your own and put them into special hints file named .ccls:
+### Linux
 ```
 $ echo "%compile_commands.json" > .ccls
-$ echo | gcc -Wp,-v -x c++ - -fsyntax-only |& grep " /usr" | sed "s/ \/usr/-I\/usr/g" >> .ccls
+$ g++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
 ```
-Contents of .ccls file will be similar to:
+### MacOS
+```
+$ echo "%compile_commands.json" > .ccls
+$ /Library/Developer/CommandLineTools/usr/bin/c++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
+```
+Contents of .ccls file should be similar to (actual pathes may differ depending on your OS/Compiler, check your project settings):
 ```
 $ cat .ccls
 %compile_commands.json
@@ -75,6 +83,8 @@ Use KiTTy.
 Change terminal type to linux under Connection/Data menu in session setup (field Terminal-type string).
 ## I use command line (no X11) and fuzzy search (fzf) crashing
 This is know issue and no fix/workaround at the moment.
+## I am MacOS user and my colors are messed up in terminal
+Use another terminal with 256-color support, iterm2 is one of possible alternatives..
 # Thanks to these plugins used in nvimclipse
 * Highly configurable status line: https://github.com/itchyny/lightline.vim
 * Git extensions: https://github.com/tpope/vim-fugitive
