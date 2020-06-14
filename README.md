@@ -28,11 +28,17 @@ $ cd ..
 $ ln -s build/compile_commands.json ./
 ```
 Final step is to teach intellisense and indexer how to find default headers (like stddef). Pathes to these headers are not being exported into compilation database. So you need to obtain list of these directories by your own and put them into special hints file named .ccls:
+### Linux
 ```
 $ echo "%compile_commands.json" > .ccls
-$ echo | gcc -Wp,-v -x c++ - -fsyntax-only |& grep " /usr" | sed "s/ \/usr/-I\/usr/g" >> .ccls
+$ g++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
 ```
-Contents of .ccls file will be similar to:
+### MacOS
+```
+$ echo "%compile_commands.json" > .ccls
+$ /Library/Developer/CommandLineTools/usr/bin/c++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
+```
+Contents of .ccls file should be similar to (actual pathes may differ depending on your OS/Compiler):
 ```
 $ cat .ccls
 %compile_commands.json
