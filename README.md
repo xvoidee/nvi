@@ -1,8 +1,15 @@
 ![Poster](/assets/poster.png)
 # Prereqs
-* Ubuntu (tested on Ubuntu 16.04 and 18.04)
+* Supported OS: Ubuntu (tested on Ubuntu 16.04 and 18.04), MacOS
 * :q! - this does not scare you
-
+* wget available in $PATH (used to download nodejs and neovim binaries)
+# About
+Minimalistic setup for Neovim which I use in C/C++ development. Focus of this is on
+* usability
+* speed and small runtime
+* lightweight and out-of-the-box install
+* but still try to keep setup feature-rich
+Supports only C/C++ at the moment, but not limited to. Other languages/plugins will be added in future.
 # Install
 Installer is bundled with precompiled ccls language server, 2 other dependencies will be downloaded from internet (nodejs ~14.7Mb and neovim ~10.5Mb).
 ```
