@@ -56,24 +56,24 @@ $ cat .ccls
 Now start nv, pickup any source file. In process monitor you will see new entry ccls (amount of threads will match amount of your CPUs). For few minutes it will run on 100% load and index sources into folder named .ccls-cache.
 ## Hotkeys
 nvimclipse is equipped with basic (because plugins provide huuuge amount of functionality) set of predefined hotkeys:
-Key | Action | Mode
-----| ------ | ----
-Ctrl-T|Toggle NERDTree (file-explorer) on/off|NORMAL
-Ctrl-J|Jump to split one more left|NORMAL
-Ctrl-L|Jump to split one more right|NORMAL
-Ctrl-I|Jump to split one more up|NORMAL
-Ctrl-K|Jump to split one more down|NORMAL
-F2|Save contents of buffer (equals to :w)|NORMAL
-F3|Jump to definition|NORMAL
-F4|Jump to implementation|NORMAL
-F5|Find all references|NORMAL
-F7|Open fuzzy search by filename|NORMAL
-F8|Close buffer only if changes are saved|NORMAL
-F10|Skip all changes and close editor|NORMAL
-F12|Save all changes and close editor|NORMAL
-Shift-Left|Open previous buffer only if changes are saved|NORMAL
-Shift-Right|Open next buffer only if changes are saved|NORMAL
-Ctrl-Space|Auto-complete, opens drop-down list with suggestions|INSERT
+Key | Action | Editor mode | Comments
+----| ------ | ----------- | --------
+Ctrl-T|Toggle NERDTree (file-explorer) on/off|NORMAL|
+Ctrl-J|Jump to split one more left|NORMAL|
+Ctrl-L|Jump to split one more right|NORMAL|
+Ctrl-I|Jump to split one more up|NORMAL|
+Ctrl-K|Jump to split one more down|NORMAL|
+F2|Save contents of buffer (equals to :w)|NORMAL|
+F3|Jump to definition|NORMAL|
+F4|Jump to implementation|NORMAL|
+F5|Find all references|NORMAL|
+F7|Open fuzzy search by filename|NORMAL|May ask to download fzf executable - agree by pressing "y"
+F8|Close buffer only if changes are saved|NORMAL|
+F10|Skip all changes and close editor|NORMAL|
+F12|Save all changes and close editor|NORMAL|
+Shift-Left|Open previous buffer only if changes are saved|NORMAL|
+Shift-Right|Open next buffer only if changes are saved|NORMAL|
+Ctrl-Space|Auto-complete, opens drop-down list with suggestions|INSERT|May conflict with language switch
 # Throubleshooting
 ## I use command line (no X11) and colors are like from 1990s
 Unfortunately tty has 8-colors palette and it is not possible to use whole set of colors. Available solutions are: use fbterm, connect to machine using PuTTy/KiTTy, connect to machine using any X11 terminal (gnome terminal, terminator, etc).
