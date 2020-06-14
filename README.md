@@ -83,6 +83,8 @@ Use KiTTy.
 Change terminal type to linux under Connection/Data menu in session setup (field Terminal-type string).
 ## I use command line (no X11) and fuzzy search (fzf) crashing
 This is know issue and no fix/workaround at the moment.
+## I am MacOS user and my colors are messed up in terminal
+Use another terminal with 256-color support, iterm2 is one of possible alternatives..
 # Thanks to these plugins used in nvimclipse
 * Highly configurable status line: https://github.com/itchyny/lightline.vim
 * Git extensions: https://github.com/tpope/vim-fugitive
