@@ -62,14 +62,15 @@ cp config/.nvimclipse* "$install_path/nvimclipse"
 cp config/*            "$install_path/nvimclipse"
 cp install/install.vim "$install_path/nvimclipse"
 
-portable_sed "$install_path/nvimclipse/.alias"              "%install_path%" "$install_path"
-portable_sed "$install_path/nvimclipse/.alias"              "%node_path%"    "$node_path"
-portable_sed "$install_path/nvimclipse/.alias"              "%nvim_path%"    "$nvim_path"
-portable_sed "$install_path/nvimclipse/.nvimclipse.vimrc"   "%install_path%" "$install_path"
-portable_sed "$install_path/nvimclipse/.nvimclipse.plugins" "%install_path%" "$install_path"
-portable_sed "$install_path/nvimclipse/init.vim"            "%install_path%" "$install_path"
-portable_sed "$install_path/nvimclipse/coc-settings.json"   "%ccls_path%"    "$ccls_path"
-portable_sed "$install_path/nvimclipse/install.vim"         "%install_path%" "$install_path"
+portable_sed "$install_path/nvimclipse/.alias"              "%install_path%"  "$install_path"
+portable_sed "$install_path/nvimclipse/.alias"              "%install_alias%" "$install_alias"
+portable_sed "$install_path/nvimclipse/.alias"              "%node_path%"     "$node_path"
+portable_sed "$install_path/nvimclipse/.alias"              "%nvim_path%"     "$nvim_path"
+portable_sed "$install_path/nvimclipse/.nvimclipse.vimrc"   "%install_path%"  "$install_path"
+portable_sed "$install_path/nvimclipse/.nvimclipse.plugins" "%install_path%"  "$install_path"
+portable_sed "$install_path/nvimclipse/init.vim"            "%install_path%"  "$install_path"
+portable_sed "$install_path/nvimclipse/coc-settings.json"   "%ccls_path%"     "$ccls_path"
+portable_sed "$install_path/nvimclipse/install.vim"         "%install_path%"  "$install_path"
 
 echo "source $install_path/nvimclipse/.alias" >> ~/$install_alias_to
 
