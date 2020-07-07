@@ -1,7 +1,7 @@
 " vi:syntax=vim
 
-set runtimepath^=%install_path%/nvimclipse
-set runtimepath+=%install_path%/nvimclipse/vim-plug
+set runtimepath^=./
+set runtimepath+=./autoload
 let &packpath = &runtimepath
-source %install_path%/nvimclipse/.nvimclipse.vimrc
+source config/.nvimclipse.vimrc
 

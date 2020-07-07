@@ -48,6 +48,19 @@ check_directory_not_exists() {
 }
 
 # $1 - path
+# $2 - receives false if file not exists, otherwise not changed
+check_file_not_exists() {
+	print_info "Check for file $1"
+	if [ ! -f $1 ] ; then
+		print_success "Check for file $1 - not exists, we'll create it"
+		return 1
+	fi
+	eval "$2=false"
+	print_fail "Check for file $1 - exists"
+	return 0
+}
+
+# $1 - path
 # $2 - receives false if not created, otherwise not changed
 probe_mkdir() {
 	print_info "Create directory $1"

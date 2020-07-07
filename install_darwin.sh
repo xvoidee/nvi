@@ -1,8 +1,7 @@
 #!/bin/bash
 
-install_path="$HOME"
+install_path=`pwd`
 install_alias="nv"
-install_alias_to=".zshrc"
 
 source install/helpers.sh
 source install/packages_darwin.sh

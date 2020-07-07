@@ -1,23 +1,17 @@
 " vi:syntax=vim
 
-if g:nvimclipse_mode == 'termgui'
-  " NERDTree enabled by default only in termgui (does not fit into screen in term mode)
-  autocmd VimEnter * NERDTree
-endif
+" NERDTree enabled by default only in termgui (does not fit into screen in term mode)
+autocmd VimEnter * NERDTree
 
+" Folder icons
 let g:NERDTreeDirArrowExpandable  = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
+" Show hidden items
 let NERDTreeShowHidden = 1
-let NERDTreeWinSize    = 40
+
+" Split width is 40 characters
+let NERDTreeWinSize = 40
 
 " When file selected - jump to file, not to tree
 autocmd VimEnter * wincmd p
-
-if g:nvimclipse_nerd=='on'
-  let g:webdevicons_conceal_nerdtree_brackets = 1
-  let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-  let g:WebDevIconsUnicodeDecorateFileNodes   = 1
-  let g:DevIconsEnableFoldersOpenClose        = 1
-endif
-

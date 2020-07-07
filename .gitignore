@@ -1,0 +1,14 @@
+3rdparty/ccls
+3rdparty/ccls-c5acf62-linux-x64
+3rdparty/node*
+3rdparty/nvim*
+3rdparty/coc
+3rdparty/fzf
+config/.user.hotkeys
+config/.user.plugins
+config/.user.theme
+config/.user.vimrc
+temp
+autoload
+plugged
+

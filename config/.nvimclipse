@@ -1,7 +1,0 @@
-" vi:syntax=vim
-
-" Set to 'term' (ssh/tty mode) or 'termgui' (for use in gnome-terminal for example)
-let g:nvimclipse_mode='termgui'
-
-" By default nerd fonts are disabled
-let g:nvimclipse_nerd='off'
