@@ -1,5 +1,12 @@
 " vi:syntax=vim
 
+" coc home directories
+let g:coc_config_home = 'config'
+let g:coc_data_home = '3rdparty/coc'
+
+" Use our node
+let g:coc_node_path = '3rdparty/node/bin/node'
+
 " Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -7,12 +14,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 set completeopt-=preview
 
 " Colorize error messages
-if g:nvimclipse_mode=='termgui'
-  hi CocUnderline        gui=undercurl  term=undercurl
-  hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
-  hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl
-else
-  hi CocErrorHighlight ctermfg=129
-  hi CocErrorFloat     ctermfg=129
-endif
-
+hi CocUnderline        gui=undercurl  term=undercurl
+hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
+hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl

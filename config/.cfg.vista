@@ -1,6 +1,11 @@
 " vi:syntax=vim
 
+" Disable icons
 let g:vista#renderer#enable_icon = 0
+
+" Get tags for coc
 let g:vista_default_executive = 'coc'
+
+" Vista split width
 let g:vista_sidebar_width = 40
 

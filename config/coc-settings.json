@@ -1,12 +1,14 @@
 {
   "languageserver": {
     "ccls" : {
-      "command"   : "%ccls_path%/bin/ccls",
+      "command"   : "3rdparty/ccls/bin/ccls",
       "filetypes" : [
         "c", "h", "cpp", "hpp"
       ],
       "initializationOptions" : {
-        "cacheDirectory" : "%ccls_path%/cache",
+        "cache" : {
+          "directory" : "3rdparty/ccls/cache"
+        },
         "highlight" : {
           "lsRanges" : true
         }
@@ -16,4 +18,3 @@
   "coc.preferences.timeout"     : 1000,
   "coc.preferences.autoTrigger" : "none"
 }
-

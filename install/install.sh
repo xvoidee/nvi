@@ -2,32 +2,23 @@
 
 print_info "Check for previous installation"
 no_previous_installation_found=true
-check_directory_not_exists  "$install_path/nvimclipse"          "no_previous_installation_found"
-check_directory_not_exists  "$install_path/nvimclipse_3rdparty" "no_previous_installation_found"
 
-# TODO check for coc-settings?
-#check_directory_not_exists "$HOME/.config/nvim/coc-settings.json"  "found_previous_install"
+check_directory_not_exists "$install_path/3rdparty/ccls"          "no_previous_installation_found"
+check_directory_not_exists "$install_path/3rdparty/$ccls_runtime" "no_previous_installation_found"
+check_directory_not_exists "$install_path/3rdparty/nvim"          "no_previous_installation_found"
+check_directory_not_exists "$install_path/3rdparty/$nvim_runtime" "no_previous_installation_found"
+check_directory_not_exists "$install_path/3rdparty/node"          "no_previous_installation_found"
+check_directory_not_exists "$install_path/3rdparty/$node_runtime" "no_previous_installation_found"
 
-# TODO check for coc-settings?
 if [ $no_previous_installation_found == false ] ; then
-	print_fail "Found complete/partial nvimclipse installation, setup will exit."
-	print_fail "Check and/or clean following files/folders:"
-	print_fail "  ~/.config/nvim/coc-settings.json"
-	print_fail "  $install_path/nvimclipse"
-	print_fail "  $install_path/nvimclipse_3rdparty"
-	exit 1
-fi
-
-mkdir_succeeded=true
-print_info "Create folders"
-probe_mkdir "$install_path/nvimclipse"          "mkdir_succeeded"
-probe_mkdir "$install_path/nvimclipse_3rdparty" "mkdir_succeeded"
-if [ $mkdir_succeeded == false ] ; then
-	print_fail "Some folders were not created, setup will exit"
-	print_info "rm -rf \"$install_path/nvimclipse\""
-	print_info "rm -rf \"$install_path/nvimclipse_3rdparty\""
-	rm -rf "$install_path/nvimclipse"
-	rm -rf "$install_path/nvimclipse_3rdparty"
+	print_info "Found complete/partial nvimclipse installation, setup will exit."
+	print_info "Check and/or clean following files/folders:"
+	print_info "  $install_path/3rdparty/ccls"
+	print_info "  $install_path/3rdparty/$ccls_runtime"
+	print_info "  $install_path/3rdparty/nvim"
+	print_info "  $install_path/3rdparty/$nvim_runtime"
+	print_info "  $install_path/3rdparty/node"
+	print_info "  $install_path/3rdparty/$node_runtime"
 	exit 1
 fi
 
@@ -41,45 +32,40 @@ if [ $download_succeeded == false ] ; then
 fi
 
 print_info "Extract dependencies"
+extract "temp/$node_archive"     "$install_path/3rdparty"
+extract "temp/$nvim_archive"     "$install_path/3rdparty"
+extract "3rdparty/$ccls_archive" "$install_path/3rdparty"
 
-extract temp/$node_archive     "$install_path/nvimclipse_3rdparty"
-extract temp/$nvim_archive     "$install_path/nvimclipse_3rdparty"
-extract 3rdparty/$ccls_archive "$install_path/nvimclipse_3rdparty"
+ln -sf "$install_path/3rdparty/$node_runtime" "$install_path/3rdparty/node"
+ln -sf "$install_path/3rdparty/$nvim_runtime" "$install_path/3rdparty/nvim"
+ln -sf "$install_path/3rdparty/$ccls_runtime" "$install_path/3rdparty/ccls"
 
-ln -sf "$install_path/nvimclipse_3rdparty/$node_runtime" "$install_path/nvimclipse_3rdparty/node"
-ln -sf "$install_path/nvimclipse_3rdparty/$nvim_runtime" "$install_path/nvimclipse_3rdparty/nvim"
-ln -sf "$install_path/nvimclipse_3rdparty/$ccls_runtime" "$install_path/nvimclipse_3rdparty/ccls"
+node_path="$install_path/3rdparty/node"
+nvim_path="$install_path/3rdparty/nvim"
+ccls_path="$install_path/3rdparty/ccls"
 
-node_path="$install_path/nvimclipse_3rdparty/node"
-nvim_path="$install_path/nvimclipse_3rdparty/nvim"
-ccls_path="$install_path/nvimclipse_3rdparty/ccls"
+echo "\" vi:syntax=vim
+\" This config file is not managed by repository and can be edited
+" > config/.user.hotkeys
 
-mkdir -p "$install_path/nvimclipse/autoload"
-cp vim-plug/plug.vim   "$install_path/nvimclipse/autoload/"
-cp config/.alias       "$install_path/nvimclipse"
-cp config/.cfg*        "$install_path/nvimclipse"
-cp config/.nvimclipse* "$install_path/nvimclipse"
-cp config/*            "$install_path/nvimclipse"
-cp install/install.vim "$install_path/nvimclipse"
+echo "\" vi:syntax=vim
+\" This config file is not managed by repository and can be edited
+" > config/.user.plugins
 
-portable_sed "$install_path/nvimclipse/.alias"              "%install_path%"  "$install_path"
-portable_sed "$install_path/nvimclipse/.alias"              "%install_alias%" "$install_alias"
-portable_sed "$install_path/nvimclipse/.alias"              "%node_path%"     "$node_path"
-portable_sed "$install_path/nvimclipse/.alias"              "%nvim_path%"     "$nvim_path"
-portable_sed "$install_path/nvimclipse/.nvimclipse.vimrc"   "%install_path%"  "$install_path"
-portable_sed "$install_path/nvimclipse/.nvimclipse.plugins" "%install_path%"  "$install_path"
-portable_sed "$install_path/nvimclipse/init.vim"            "%install_path%"  "$install_path"
-portable_sed "$install_path/nvimclipse/coc-settings.json"   "%ccls_path%"     "$ccls_path"
-portable_sed "$install_path/nvimclipse/install.vim"         "%install_path%"  "$install_path"
+echo "\" vi:syntax=vim
+\" This config file is not managed by repository and can be edited
+" > config/.user.vimrc
 
-echo "source $install_path/nvimclipse/.alias" >> ~/$install_alias_to
+echo "\" vi:syntax=vim
+\" This config file is not managed by repository and can be edited
 
-mkdir -p ~/.config/nvim
-ln -sf "$install_path/nvimclipse/coc-settings.json" ~/.config/nvim/coc-settings.json
+\" Default theme is tender
+colo tender
+let g:lightline.colorscheme = 'tender'" > config/.user.theme
 
-PATH=$PATH:$node_path/bin $nvim_path/bin/nvim -u $install_path/nvimclipse/install.vim \
+mkdir -p "autoload"
+ln -rsf "vim-plug/plug.vim" "$install_path/autoload/plug.vim"
+
+$nvim_path/bin/nvim -u install/install.vim \
 		+PlugInstall \
-		+UpdateRemotePlugins \
 		+qa
-
-rm $install_path/nvimclipse/install.vim

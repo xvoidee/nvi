@@ -1,3 +1,0 @@
-#!/bin/bash
-
-alias %install_alias%='PATH=$PATH:%node_path%/bin %nvim_path%/bin/nvim -u %install_path%/nvimclipse/init.vim'

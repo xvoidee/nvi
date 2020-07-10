@@ -1,15 +1,10 @@
 " vi:syntax=vim
 
-if g:nvimclipse_mode == 'termgui'
-  set termguicolors
-  let g:dracula_italic=0
-  colo dracula
+" Set to 256 colors
+set termguicolors
 
-  " Set block cursor
-  set guicursor =
-else
-  colo solarized8
-endif
+" Set block cursor
+set guicursor =
 
 " Make status line nice
 hi StatusLine   ctermbg=0 ctermfg=15
@@ -18,4 +13,3 @@ hi StatusLineNC ctermbg=0 ctermfg=7
 " Tune members highlight
 hi Member       guifg=DarkCyan
 hi EnumConstant guifg=SeaGreen
-
