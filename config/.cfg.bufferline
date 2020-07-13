@@ -5,4 +5,3 @@ set showtabline=2
 
 " Cut full path to filename
 let g:lightline#bufferline#filename_modifier = ':t'
-

@@ -1,11 +1,5 @@
 " vi:syntax=vim
 
-" Default ascii separators
-let s:lightline_separator_left  = '░'
-let s:lightline_separator_right = '░'
-let s:lightline_subseparator_left  = '░'
-let s:lightline_subseparator_right = '░'
-
 let g:lightline = {
   \ 'active': {
   \   'left': [
@@ -15,27 +9,28 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'gitbranch'  : 'fugitive#head',
-  \   'filename'   : 'NvimclipseFilename',
-  \   'filetype'   : 'NvimclipseFiletype',
-  \   'fileformat' : 'NvimclipseFileformat'
+  \   'filename'   : 'NviFilename',
+  \   'filetype'   : 'NviFiletype',
+  \   'fileformat' : 'NviFileformat'
   \ },
   \ 'tabline' : {
   \   'left'  : [ [ 'buffers' ] ],
-  \   'right' : [ [ 'close' ] ]
+  \   'right' : [ [ ] ]
   \ },
   \ 'component_expand' : { 'buffers' : 'lightline#bufferline#buffers' },
   \ 'component_type'   : { 'buffers' : 'tabsel' },
   \ 'separator' : {
-  \   'left'  : s:lightline_separator_left,
-  \   'right' : s:lightline_separator_right
+  \   'left'  : g:nvi_lightline_separator_left,
+  \   'right' : g:nvi_lightline_separator_right
   \ },
   \ 'subseparator' : {
-  \   'left'  : s:lightline_subseparator_left,
-  \   'right' : s:lightline_subseparator_right
+  \   'left'  : g:nvi_lightline_subseparator_left,
+  \   'right' : g:nvi_lightline_subseparator_right
   \ }
 \ }
 
-function! NvimclipseFilename()
+" Make file name relative to project root (.git)
+function! NviFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
   let path = expand('%:p')
   if path[:len(root)-1] ==# root
@@ -44,10 +39,23 @@ function! NvimclipseFilename()
   return expand('%')
 endfunction
 
-function! NvimclipseFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' : 'no ft') : ''
-endfunction
+" Nerdify status line (add icons)
+if g:nvi_nerd_fonts == 1
+  let g:lightline#bufferline#enable_devicons = 1
 
-function! NvimclipseFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ') : ''
-endfunction
+  function! NviFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  endfunction
+
+  function! NviFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  endfunction
+else
+  function! NviFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' : 'no ft') : ''
+  endfunction
+
+  function! NviFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ') : ''
+  endfunction
+endif

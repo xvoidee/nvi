@@ -1,11 +1,8 @@
 " vi:syntax=vim
 
-" NERDTree enabled by default only in termgui (does not fit into screen in term mode)
-autocmd VimEnter * NERDTree
-
 " Folder icons
-let g:NERDTreeDirArrowExpandable  = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowExpandable  = ' '
+let g:NERDTreeDirArrowCollapsible = ' '
 
 " Show hidden items
 let NERDTreeShowHidden = 1
@@ -13,5 +10,20 @@ let NERDTreeShowHidden = 1
 " Split width is 40 characters
 let NERDTreeWinSize = 40
 
+" Hide help hint
+let g:NERDTreeMinimalUI = 1
+
+" Close tree once file is opened
+let NERDTreeQuitOnOpen = 1
+
 " When file selected - jump to file, not to tree
 autocmd VimEnter * wincmd p
+
+" Hide all square brackets
+augroup nerdtreeconcealbrackets
+  autocmd!
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL cchar= 
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+  autocmd FileType nerdtree setlocal conceallevel=2
+  autocmd FileType nerdtree setlocal concealcursor=nvic
+augroup END

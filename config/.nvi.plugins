@@ -1,0 +1,33 @@
+" vi:syntax=vim
+
+" plug begins here
+call plug#begin('plugged')
+
+" Load base set of plugins
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify/'
+Plug 'preservim/nerdtree'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim', { 'do': './install --all' }
+Plug 'psliwka/vim-smoothie'
+Plug 'jacoborus/tender.vim'
+Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'liuchengxu/vista.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'embear/vim-localvimrc'
+
+" Load nerd fonts only if user enabled them
+if g:nvi_nerd_fonts == 1
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+endif
+
+" Load user's plugins
+source config/.user.plugins
+
+" plug ends here
+call plug#end()

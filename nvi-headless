@@ -1,3 +1,0 @@
-#!/bin/bash
-
-nvi --listen 127.0.0.1:7777 --headless
