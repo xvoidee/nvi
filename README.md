@@ -14,13 +14,12 @@ Supports only C/C++ at the moment. Other languages/plugins will be added in futu
 # Install
 Installer is bundled with precompiled ccls language server, other dependencies will be downloaded from the internet (nodejs and neovim).
 ```
-$ mkdir ~/Programs
 $ cd ~/Downloads
 $ git clone --recursive https://github.com/xvoidee/nvi.git
 $ cd nvi
-$ ./install_linux.sh
+$ ./install_linux-x64.sh (or ./install_darwin.sh)
 ```
-Optional: add you nvi folder to your PATH variable (to directly call nvi executable script).
+Optional: add you nvi folder to your PATH variable (to directly call nvi executable script). Otherwise execute by running ~/Downloads/nvi/bin/nvi (assume that you have cloned repository to your Downloads folder)
 # How to use
 ## C++
 To build any C/C++ project 2 files are needed: compilation database (compile_commands.json) and hints for indexer (.ccls).
