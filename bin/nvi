@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pwd=`pwd`
+cd `dirname $0`/..
+./3rdparty/nvim/bin/nvim -u config/init.vim +"cd $pwd" $@

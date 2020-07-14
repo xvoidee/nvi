@@ -3,5 +3,4 @@
 set runtimepath^=./
 set runtimepath+=./autoload
 let &packpath = &runtimepath
-source config/.nvimclipse.vimrc
-
+source config/.nvi.vimrc

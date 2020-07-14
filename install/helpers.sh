@@ -1,16 +1,5 @@
 #!/bin/bash
 
-print_help() {
-	cat << EOF
-Options:
- --help                     display help
- --install-path=<path>      target directory for installation, default is \$HOME
-                            script will create 2 sub folders: nvimclipse, nvimclipse_3rdparty
- --install-alias=<alias>    install alias to your shell rc, default is $install_alias
- --install-alias-to=<alias> name of rc where alias will be installed, default is $install_alias_to
-EOF
-}
-
 # $1 - text
 # $2 - color
 print() {

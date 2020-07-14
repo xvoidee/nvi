@@ -1,5 +1,7 @@
 #!/bin/bash
 
+install_path=`pwd`
+
 print_info "Check for previous installation"
 no_previous_installation_found=true
 
@@ -11,7 +13,7 @@ check_directory_not_exists "$install_path/3rdparty/node"          "no_previous_i
 check_directory_not_exists "$install_path/3rdparty/$node_runtime" "no_previous_installation_found"
 
 if [ $no_previous_installation_found == false ] ; then
-	print_info "Found complete/partial nvimclipse installation, setup will exit."
+	print_info "Found complete/partial nvi installation, setup will exit."
 	print_info "Check and/or clean following files/folders:"
 	print_info "  $install_path/3rdparty/ccls"
 	print_info "  $install_path/3rdparty/$ccls_runtime"
@@ -36,6 +38,9 @@ extract "temp/$node_archive"     "$install_path/3rdparty"
 extract "temp/$nvim_archive"     "$install_path/3rdparty"
 extract "3rdparty/$ccls_archive" "$install_path/3rdparty"
 
+mv "$install_path/3rdparty/$nvim_runtime" "$install_path/3rdparty/nvim-$nvim_version"
+nvim_runtime="nvim-$nvim_version"
+
 ln -sf "$install_path/3rdparty/$node_runtime" "$install_path/3rdparty/node"
 ln -sf "$install_path/3rdparty/$nvim_runtime" "$install_path/3rdparty/nvim"
 ln -sf "$install_path/3rdparty/$ccls_runtime" "$install_path/3rdparty/ccls"
@@ -44,27 +49,67 @@ node_path="$install_path/3rdparty/node"
 nvim_path="$install_path/3rdparty/nvim"
 ccls_path="$install_path/3rdparty/ccls"
 
+if [ ! -f config/.user.nvi.vimrc ] ; then
+echo "\" vi:syntax=vim
+\" This config file is not managed by repository and can be edited
+
+\" Modify this path if nvi directory was copied/moved
+let g:nvi_install_path=\"$install_path\"
+
+\" Nerd fonts disabled by default
+let g:nvi_nerd_fonts = 0
+
+\" Separators look and feel depend on nerd setting
+if g:nvi_nerd_fonts == 1
+  let g:nvi_lightline_separator_left  = \"\\uE0B8\"
+  let g:nvi_lightline_separator_right = \"\\uE0BA\"
+
+  let g:nvi_lightline_subseparator_left  = \"\\uE0B9\"
+  let g:nvi_lightline_subseparator_right = \"\\uE0BB\"
+else
+  let g:nvi_lightline_separator_left  = '░'
+  let g:nvi_lightline_separator_right = '░'
+
+  let g:nvi_lightline_subseparator_left  = '░'
+  let g:nvi_lightline_subseparator_right = '░'
+endif
+" > config/.user.nvi.vimrc
+fi
+
+if [ ! -f config/.user.hotkeys ] ; then
 echo "\" vi:syntax=vim
 \" This config file is not managed by repository and can be edited
 " > config/.user.hotkeys
+fi
 
+if [ ! -f config/.user.plugins ] ; then
 echo "\" vi:syntax=vim
 \" This config file is not managed by repository and can be edited
 " > config/.user.plugins
+fi
 
+if [ ! -f config/.user.vimrc ] ; then
 echo "\" vi:syntax=vim
 \" This config file is not managed by repository and can be edited
 " > config/.user.vimrc
+fi
 
+if [ ! -f config/.user.theme ] ; then
 echo "\" vi:syntax=vim
 \" This config file is not managed by repository and can be edited
 
 \" Default theme is tender
 colo tender
-let g:lightline.colorscheme = 'tender'" > config/.user.theme
+let g:lightline.colorscheme = 'tender'
+" > config/.user.theme
+fi
 
-mkdir -p "autoload"
-ln -rsf "vim-plug/plug.vim" "$install_path/autoload/plug.vim"
+if [ ! -f "$install_path/autoload/plug.vim" ] ; then
+	mkdir -p autoload
+	cd autoload
+	ln -s ../vim-plug/plug.vim ./
+	cd ..
+fi
 
 $nvim_path/bin/nvim -u install/install.vim \
 		+PlugInstall \

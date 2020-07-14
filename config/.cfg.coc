@@ -2,10 +2,10 @@
 
 " coc home directories
 let g:coc_config_home = 'config'
-let g:coc_data_home = '3rdparty/coc'
+let g:coc_data_home = g:nvi_install_path . '/3rdparty/coc'
 
 " Use our node
-let g:coc_node_path = '3rdparty/node/bin/node'
+let g:coc_node_path = g:nvi_install_path . '/3rdparty/node/bin/node'
 
 " Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -17,3 +17,23 @@ set completeopt-=preview
 hi CocUnderline        gui=undercurl  term=undercurl
 hi CocErrorHighlight   ctermfg=red    guifg=#c4384b gui=undercurl term=undercurl
 hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=undercurl term=undercurl
+
+" Configure coc and catch install directory from .user.vimrc
+call coc#config('languageserver', {
+  \   'ccls': {
+  \     'command'   : g:nvi_install_path . '/3rdparty/ccls/bin/ccls',
+  \     'filetypes' : [
+  \       'c', 'h', 'cpp', 'hpp'
+  \     ],
+  \     'initializationOptions' : {
+  \       'cache' : {
+  \         'directory' : './.ccls-cache'
+  \       },
+  \       'highlight' : {
+  \         'lsRanges' : v:true
+  \       }
+  \     }
+  \   }
+  \ }
+\)
+
