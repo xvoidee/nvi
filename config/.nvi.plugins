@@ -19,6 +19,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'liuchengxu/vista.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'embear/vim-localvimrc'
+Plug 'ayu-theme/ayu-vim'
 
 " Load nerd fonts only if user enabled them
 if g:nvi_nerd_fonts == 1
