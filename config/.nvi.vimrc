@@ -39,6 +39,9 @@ set cursorline
 " Do not touch end of view port
 set scrolloff=3
 
+" Enable mouse interaction
+set mouse=a
+
 " Source nvi settings
 source config/.user.nvi.vimrc
 
