@@ -1,8 +1,8 @@
 #!/bin/bash
 
-node_website="https://nodejs.org/dist/v12.18.0/"
-node_archive="node-v12.18.0-darwin-x64.tar.gz"
-node_runtime="node-v12.18.0-darwin-x64"
+node_website="https://nodejs.org/dist/v14.15.2/"
+node_archive="node-v14.15.2-darwin-x64.tar.gz"
+node_runtime="node-v14.15.2-darwin-x64"
 
 nvim_website="https://github.com/neovim/neovim/releases/download/nightly/"
 nvim_archive="nvim-macos.tar.gz"
