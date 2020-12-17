@@ -49,6 +49,7 @@ source config/.nvi.hotkeys
 source config/.cfg.bufferline
 source config/.cfg.coc
 source config/.cfg.lightline
+source config/.cfg.localvimrc
 source config/.cfg.nerdtree
 source config/.cfg.smoothie
 source config/.cfg.startify

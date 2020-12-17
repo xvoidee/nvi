@@ -1,0 +1,3 @@
+" vi:syntax=vim
+
+let g:localvimrc_ask=0
