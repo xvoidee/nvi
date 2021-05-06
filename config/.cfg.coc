@@ -25,6 +25,9 @@ call coc#config('languageserver', {
   \     'filetypes' : [
   \       'c', 'h', 'cpp', 'hpp'
   \     ],
+  \     'rootPatterns' : [
+  \       '.ccls', 'compile_commands.json'
+  \     ],
   \     'initializationOptions' : {
   \       'cache' : {
   \         'directory' : './.ccls-cache'
