@@ -9,5 +9,5 @@ nvim_archive="nvim-linux64.tar.gz"
 nvim_runtime="nvim-linux64"
 nvim_version="0.5.0-nightly"
 
-ccls_archive="ccls-2ad71f1-linux-x64.tar.gz"
-ccls_runtime="ccls-2ad71f1-linux-x64"
+ccls_archive="ccls-c6686be-linux-x64.tar.gz"
+ccls_runtime="ccls-c6686be-linux-x64"
