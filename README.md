@@ -9,6 +9,7 @@ Minimalistic setup of Neovim. I use it to develop programs in C/C++. Key feature
 * supported OS: Ubuntu (tested on Ubuntu 16.04 and 18.04), MacOS
 * wget
 * you know how to run :q!
+* tinfo5 library
 # Install
 ```
 $ cd ~/Downloads
@@ -49,9 +50,9 @@ $ g++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,
 $ echo "%compile_commands.json" > .ccls
 $ /Library/Developer/CommandLineTools/usr/bin/c++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
 ```
-Or just call generate_ccls_PLATFORM.sh from scripts subfolder from nvi distribution. Contents of .ccls file should be similar to (actual pathes may differ depending on your OS/Compiler). Here is an example:
+Or call generate_ccls_PLATFORM.sh from scripts subfolder from nvi distribution and pass your compiler as parameter:
 ```
-$ ~/Downloads/nvi/scripts/generate_ccls_linux-x64.sh
+$ ~/Downloads/nvi/scripts/generate_ccls_linux-x64.sh c++
 $ cat .ccls
 %compile_commands.json
 -I/usr/include/c++/5
