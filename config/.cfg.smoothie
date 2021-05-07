@@ -1,4 +1,0 @@
-" vi:syntax=vim
-
-" Disable annoying ease-out animation for scroll
-let g:smoothie_base_speed = 1000

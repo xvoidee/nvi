@@ -36,7 +36,7 @@ set title
 " Highlight cursor line
 set cursorline
 
-" Do not touch end of view port
+" Do not touch end of viewport when scroll
 set scrolloff=3
 
 " Enable mouse interaction
@@ -54,7 +54,6 @@ source config/.cfg.coc
 source config/.cfg.lightline
 source config/.cfg.localvimrc
 source config/.cfg.nerdtree
-source config/.cfg.smoothie
 source config/.cfg.startify
 source config/.cfg.vista
 

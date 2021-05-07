@@ -12,7 +12,6 @@ Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim', { 'do': './install --all' }
-Plug 'psliwka/vim-smoothie'
 Plug 'jacoborus/tender.vim'
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 Plug 'jackguo380/vim-lsp-cxx-highlight'
