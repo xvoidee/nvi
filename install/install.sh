@@ -132,14 +132,15 @@ echo "\
 #!/bin/bash
 # This script is not managed by repository and can be edited
 
-export NVI_HOME=/home/xvoidee/nvi
-$NVI_HOME/3rdparty/nvim/bin/nvim -u $NVI_HOME/config/init.vim $@
+export NVI_HOME=$install_path
+\$NVI_HOME/3rdparty/nvim/bin/nvim -u \$NVI_HOME/config/init.vim $@
 unset NVI_HOME
 " > bin/nvi
 chmod +x bin/nvi
 fi
 
+export NVI_HOME=$install_path
 $nvim_path/bin/nvim -u install/install.vim \
 		+PlugInstall \
 		+qa
-
+unset NVI_HOME

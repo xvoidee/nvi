@@ -1,7 +1,7 @@
 " vi:syntax=vim
 
 " plug begins here
-call plug#begin(g:nvi_install_path . '/plugged')
+call plug#begin($NVI_HOME . '/plugged')
 
 " Load base set of plugins
 Plug 'itchyny/lightline.vim'
@@ -12,8 +12,7 @@ Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim', { 'do': './install --all' }
-" Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 " Plug 'liuchengxu/vista.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'ayu-theme/ayu-vim'
@@ -26,7 +25,7 @@ if g:nvi_nerd_fonts == 1
 endif
 
 " Load user's plugins
-exec 'source' g:nvi_install_path . '/config/.user.plugins'
+exec 'source' $NVI_HOME . '/config/.user.plugins'
 
 " plug ends here
 call plug#end()

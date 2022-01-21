@@ -11,6 +11,7 @@ config/.user.nvi.vimrc
 config/.user.plugins
 config/.user.theme
 config/.user.vimrc
+config/init.vim
 temp
 autoload
 plugged
