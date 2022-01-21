@@ -106,6 +106,13 @@ echo "\
 \" Default theme is tender
 colo tender
 let g:lightline.colorscheme = 'tender'
+
+hi CocSem_class     guifg=#FF9F4B
+hi CocSem_enum      guifg=#FFDC4B
+hi CocSem_member    guifg=#B3EFC2
+hi CocSem_namespace guifg=#A7A7A7
+hi CocSem_property  guifg=#B3EFC2
+hi CocSem_variable  guifg=#F0F0F0
 " > config/.user.theme
 fi
 
