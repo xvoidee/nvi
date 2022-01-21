@@ -13,3 +13,4 @@ hi StatusLineNC ctermbg=0 ctermfg=7
 " Tune members highlight
 hi Member       guifg=DarkCyan
 hi EnumConstant guifg=SeaGreen
+

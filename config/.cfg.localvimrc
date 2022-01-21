@@ -1,3 +1,5 @@
 " vi:syntax=vim
 
+" Do not ask load/ignore .lvimrc
 let g:localvimrc_ask=0
+

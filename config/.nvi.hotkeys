@@ -1,9 +1,9 @@
 " vi:syntax=vim
 
-" Toggle tree
+" Toggle file explorer
 nnoremap <C-T> :NERDTreeToggle<CR>
 
-" Fuzzy search by filename
+" Fuzzy search
 nnoremap <F7> :FZF<CR>
 
 " Navigation between splits
@@ -24,7 +24,7 @@ nnoremap <F10> :qa!<CR>
 " Save changes and quit
 nnoremap <F12> :wqa<CR>
 
-" Sequential navigate through opened buffers
+" Cycle through opened buffers
 nnoremap <S-Right> :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 
@@ -35,3 +35,4 @@ nmap <silent> <F5> <Plug>(coc-references)
 
 " Auto complete
 inoremap <silent><expr> <c-space> coc#refresh()
+

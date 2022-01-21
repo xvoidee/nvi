@@ -5,6 +5,7 @@
 3rdparty/nvim*
 3rdparty/coc
 3rdparty/fzf
+bin/nvi
 config/.user.hotkeys
 config/.user.nvi.vimrc
 config/.user.plugins
