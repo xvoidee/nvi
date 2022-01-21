@@ -47,8 +47,11 @@ set scrolloff=3
 " Enable mouse interaction
 set mouse=a
 
+echo $NVI_HOME
+sleep 5
+
 " Source user settings first!
-source /home/xvoidee/nvi/config/.user.nvi.vimrc
+source $NVI_HOME . /config/.user.nvi.vimrc
 
 " Source all other configs
 exec 'source' g:nvi_install_path . '/config/.nvi.plugins'
