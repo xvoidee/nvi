@@ -25,6 +25,11 @@ Or add path to nvi executable into your PATH enrivonment (below is an example on
 ```
 export PATH=$PATH:~/Downloads/nvi/bin
 ```
+On first file opened in nvi complete setup by installing clangd server:
+```
+:CocInstall coc-clangd
+:CocCommand clangd.install
+```
 # How to use
 ## C++
 To build any C/C++ project 2 files are needed
@@ -64,7 +69,7 @@ $ cat .ccls
 -I/usr/include/x86_64-linux-gnu
 -I/usr/include
 ```
-Start nvi, cd to project directory and open any source file. In process monitor you will see new entry ccls (amount of threads will match amount of your CPUs) - indexer works.
+Start nvi, cd to project directory and open any source file. In process monitor you will see new entry clangd - indexer works.
 ## Hotkeys
 nvi is equipped with basic (because plugins provide huuuge amount of functionality) set of predefined hotkeys:
 Key | Action | Editor mode | Comments

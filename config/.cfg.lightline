@@ -1,5 +1,6 @@
 " vi:syntax=vim
 
+" Configure lightline
 let g:lightline = {
   \ 'active': {
   \   'left': [
@@ -59,3 +60,4 @@ else
     return winwidth(0) > 70 ? (&fileformat . ' ') : ''
   endfunction
 endif
+

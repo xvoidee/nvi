@@ -1,7 +1,8 @@
 " vi:syntax=vim
 
-" Show bufferline
+" Always show tab page labels
 set showtabline=2
 
-" Cut full path to filename
-let g:lightline#bufferline#filename_modifier = ':t'
+" Show only name of file without full path
+let g:lightline#bufferline#filename_modifier = ':t' 
+

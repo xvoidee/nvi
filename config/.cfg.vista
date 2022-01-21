@@ -1,14 +1,15 @@
 " vi:syntax=vim
 
-" Icons depend on nvi nerd settings
+" Check nerd icons setting
 if g:nvi_nerd_fonts == 1
   let g:vista#renderer#enable_icon = 1
 else
   let g:vista#renderer#enable_icon = 0
 endif
 
-" Get tags for coc
+" Get tags from coc
 let g:vista_default_executive = 'coc'
 
 " Vista split width
 let g:vista_sidebar_width = 40
+
