@@ -17,6 +17,7 @@ Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 Plug 'embear/vim-localvimrc'
 Plug 'ayu-theme/ayu-vim'
 Plug 'jacoborus/tender.vim'
+Plug 'rhysd/vim-clang-format'
 
 " Load nerd fonts
 if g:nvi_nerd_fonts == 1
