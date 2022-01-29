@@ -107,12 +107,12 @@ echo "\
 colo tender
 let g:lightline.colorscheme = 'tender'
 
-hi CocSem_class     guifg=#FF9F4B
-hi CocSem_enum      guifg=#FFDC4B
-hi CocSem_member    guifg=#B3EFC2
-hi CocSem_namespace guifg=#A7A7A7
-hi CocSem_property  guifg=#B3EFC2
-hi CocSem_variable  guifg=#F0F0F0
+hi CocSemClass     guifg=#FF9F4B
+hi CocSemEnum      guifg=#FFDC4B
+hi CocSemNamespace guifg=#A7A7A7
+hi CocSemParameter guifg=#EEEFB3
+hi CocSemProperty  guifg=#B3EFC2
+hi CocSemVariable  guifg=#F0F0F0
 " > config/.user.theme
 fi
 
@@ -140,8 +140,10 @@ echo "\
 # This script is not managed by repository and can be edited
 
 export NVI_HOME=$install_path
+export XDG_DATA_HOME=./nvim_data
 \$NVI_HOME/3rdparty/nvim/bin/nvim -u \$NVI_HOME/config/init.vim $@
 unset NVI_HOME
+unset XDG_DATA_HOME
 " > bin/nvi
 chmod +x bin/nvi
 fi
