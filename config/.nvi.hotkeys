@@ -40,3 +40,4 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Auto save on switch to command mode
 inoremap <silent> <ESC> <ESC>:wa<CR>
+

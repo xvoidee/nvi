@@ -53,24 +53,32 @@ To get clangd indexer - open any .cpp file in nvi and run these commands:
 Download takes time and once it finished clangd process will start and index your project.
 ## Hotkeys
 nvi is equipped with basic (because plugins provide huuuge amount of functionality) set of predefined hotkeys:
-Key | Action | Editor mode | Comments
-----| ------ | ----------- | --------
-Ctrl-T|Toggle NERDTree (file-explorer) on/off|NORMAL|
-Ctrl-J|Jump to split one more left|NORMAL|
-Ctrl-L|Jump to split one more right|NORMAL|
-Ctrl-I|Jump to split one more up|NORMAL|
-Ctrl-K|Jump to split one more down|NORMAL|
-F2|Save contents of buffer (equals to :w)|NORMAL|
-F3|Jump to definition|NORMAL|
-F4|Jump to implementation|NORMAL|
-F5|Find all references|NORMAL|
-F7|Open fuzzy search by filename|NORMAL|May ask to download fzf executable - agree by pressing "y"
-F8|Close buffer only if changes are saved|NORMAL|
-F10|Skip all changes and close editor|NORMAL|
-F12|Save all changes and close editor|NORMAL|
-Shift-Left|Open previous buffer only if changes are saved|NORMAL|
-Shift-Right|Open next buffer only if changes are saved|NORMAL|
-Ctrl-Space|Auto-complete, opens drop-down list with suggestions|INSERT|May conflict with language switch
+Key         | Alternate | Action                                       | Editor mode
+------------|-----------|----------------------------------------------|-------------
+Ctrl-T      |           | Toggle file-explorer on/off                  | NORMAL
+Ctrl-J      |           | Jump to split to the left                    | NORMAL
+Ctrl-L      |           | Jump to split to the right                   | NORMAL
+Ctrl-I      |           | Jump to split to the up                      | NORMAL
+Ctrl-K      |           | Jump to split to the down                    | NORMAL
+F2          |           | Save contents of the buffer (equals to :w)   | NORMAL
+F3          |           | Jump to definition                           | NORMAL
+F4          |           | Jump to implementation                       | NORMAL
+F5          |           | Find all references                          | NORMAL
+F7          |           | Open the fuzzy search [1]                    | NORMAL
+F8          |           | Close the buffer only if changes are saved   | NORMAL
+F10         |           | Skip all changes and close the editor        | NORMAL
+F12         |           | Save all changes and close the editor        | NORMAL
+Shift-Left  | ,         | To the previous buffer [2]                   | NORMAL
+Shift-Right | .         | To the next buffer [2]                       | NORMAL
+Ctrl-Space  |           | Open the drop-down list with suggestions [3] | INSERT
+
+Remarks:
+1. May ask to download fzf executable - agree by pressing "y"
+
+2. Will not change buffer if unsaved
+
+3. May conflict with language switch
+
 # Throubleshooting
 ## I use command line (no X11) and colors are like from 1990s
 Unfortunately tty has 8-colors palette and it is not possible to use whole set of colors. Available solutions are: use fbterm, connect to machine using PuTTy/KiTTy, connect to machine using any X11 terminal (gnome terminal, terminator, etc), use headless mode of nvi and connect gui client to it.
