@@ -13,7 +13,7 @@ Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim', { 'do': './install --all' }
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-" Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'ayu-theme/ayu-vim'
 Plug 'jacoborus/tender.vim'
