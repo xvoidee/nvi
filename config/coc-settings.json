@@ -1,12 +1,12 @@
 {
-   "semanticTokens.filetypes"                 : [ "hpp", "cpp" ],
+   "semanticTokens.filetypes"                 : [ "hpp", "cpp", "h", "c" ],
    "suggest.autoTrigger"                      : "none",
+   "inlayHint.enable"                         : false,
    "clangd.enabled"                           : true,
-   "clangd.arguments"                         : [ "-j=8", "--background-index" ],
+   "clangd.arguments"                         : [ "-j=2", "--background-index" ],
    "clangd.fallbackFlags"                     : [ "-std=c++17" ],
    "clangd.compilationDatabasePath"           : "./",
    "clangd.semanticHighlighting"              : true,
    "coc.preferences.colorSupport"             : true,
-   "coc.preferences.semanticTokensHighlights" : true,
-   "clangd.path"                              : "~/nvi/3rdparty/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+   "coc.preferences.semanticTokensHighlights" : true
 }
