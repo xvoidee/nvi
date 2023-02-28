@@ -25,6 +25,8 @@ nnoremap <F10> :qa!<CR>
 nnoremap <F12> :wqa<CR>
 
 " Cycle through opened buffers
+nnoremap . :bnext<CR>
+nnoremap , :bprev<CR>
 nnoremap <S-Right> :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 
@@ -36,3 +38,5 @@ nmap <silent> <F5> <Plug>(coc-references)
 " Auto complete
 inoremap <silent><expr> <c-space> coc#refresh()
 
+" Auto save on switch to command mode
+inoremap <silent> <ESC> <ESC>:wa<CR>
