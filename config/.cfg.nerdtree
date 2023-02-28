@@ -8,13 +8,16 @@ let g:NERDTreeDirArrowCollapsible = ' '
 let NERDTreeShowHidden = 1
 
 " Split width is 40 characters
-let NERDTreeWinSize = 35
+let NERDTreeWinSize = 45
 
 " Hide help hint
 let g:NERDTreeMinimalUI = 1
 
 " Close tree once file is opened
 let NERDTreeQuitOnOpen = 0
+
+" Case sensitive sort
+let NERDTreeCaseSensitiveSort = 1
 
 " Once file is selected - jump to buffer
 autocmd VimEnter * NERDTree
