@@ -9,6 +9,3 @@ nvim_archive="nvim-linux64.tar.gz"
 nvim_runtime="nvim-linux64"
 nvim_version="v0.7.0-dev+908-g431915fe6"
 
-#ccls_archive="ccls-c6686be-linux-x64.tar.gz"
-#ccls_runtime="ccls-c6686be-linux-x64"
-

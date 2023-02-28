@@ -29,7 +29,6 @@ export PATH=$PATH:~/Downloads/nvi/bin
 ## C++
 To build any C/C++ project 2 files are needed
 * compilation database compile_commands.json
-* indexer configuration .ccls (only for ccls)
 Example below shows how to generate database using cmake:
 ```
 $ cd project
@@ -39,37 +38,11 @@ $ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 $ cd ..
 $ ln -s build/compile_commands.json ./
 ```
-Add coc config to the project (make symlink to template to share between projects or create your own file):
+Add coc-config.json to the project (make symlink to template to share between projects or create your own file):
 ```
 $ mkdir config
 $ cd config
 $ ln -s /path/to/nvi/config/coc-settings.json ./
-```
-### ccls setup (disabled at the moment)
-To configure ccls indexer create file with system headers (like stddef). Pathes to these headers are not being exported into compilation database. So you need to get list of these directories by your own and store them in file named .ccls:
-#### Linux
-```
-$ echo "%compile_commands.json" > .ccls
-$ g++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
-```
-#### MacOS
-```
-$ echo "%compile_commands.json" > .ccls
-$ /Library/Developer/CommandLineTools/usr/bin/c++ -Wp,-v -x c++ - -fsyntax-only < /dev/null 2>&1 | sed -n '/#include <...>/,/End/p' | egrep -v '#include|End' | sed 's/ \//-I\//g' | sed 's/ (framework directory)//g' >> .ccls
-```
-Or call generate_ccls_PLATFORM.sh from scripts subfolder from nvi distribution and pass your compiler as parameter:
-```
-$ ~/Downloads/nvi/scripts/generate_ccls_linux-x64.sh c++
-$ cat .ccls
-%compile_commands.json
--I/usr/include/c++/5
--I/usr/include/x86_64-linux-gnu/c++/5
--I/usr/include/c++/5/backward
--I/usr/lib/gcc/x86_64-linux-gnu/5/include
--I/usr/local/include
--I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed
--I/usr/include/x86_64-linux-gnu
--I/usr/include
 ```
 ### clangd setup
 To get clangd indexer - open any .cpp file in nvi and run these commands:

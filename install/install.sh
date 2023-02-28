@@ -5,8 +5,6 @@ install_path=`pwd`
 print_info "Check for previous installation"
 no_previous_installation_found=true
 
-#check_directory_not_exists "$install_path/3rdparty/ccls"          "no_previous_installation_found"
-#check_directory_not_exists "$install_path/3rdparty/$ccls_runtime" "no_previous_installation_found"
 check_directory_not_exists "$install_path/3rdparty/nvim"          "no_previous_installation_found"
 check_directory_not_exists "$install_path/3rdparty/$nvim_runtime" "no_previous_installation_found"
 check_directory_not_exists "$install_path/3rdparty/node"          "no_previous_installation_found"
@@ -15,8 +13,6 @@ check_directory_not_exists "$install_path/3rdparty/$node_runtime" "no_previous_i
 if [ $no_previous_installation_found == false ] ; then
 	print_info "Found complete/partial nvi installation, setup will exit."
 	print_info "Check and/or clean following files/folders:"
-#	print_info "  $install_path/3rdparty/ccls"
-#	print_info "  $install_path/3rdparty/$ccls_runtime"
 	print_info "  $install_path/3rdparty/nvim"
 	print_info "  $install_path/3rdparty/$nvim_runtime"
 	print_info "  $install_path/3rdparty/node"
@@ -34,20 +30,17 @@ if [ $download_succeeded == false ] ; then
 fi
 
 print_info "Extract dependencies"
-extract "temp/$node_archive"     "$install_path/3rdparty"
-extract "temp/$nvim_archive"     "$install_path/3rdparty"
-#extract "3rdparty/$ccls_archive" "$install_path/3rdparty"
+extract "temp/$node_archive" "$install_path/3rdparty"
+extract "temp/$nvim_archive" "$install_path/3rdparty"
 
 mv "$install_path/3rdparty/$nvim_runtime" "$install_path/3rdparty/nvim-$nvim_version"
 nvim_runtime="nvim-$nvim_version"
 
 ln -sf "$install_path/3rdparty/$node_runtime" "$install_path/3rdparty/node"
 ln -sf "$install_path/3rdparty/$nvim_runtime" "$install_path/3rdparty/nvim"
-#ln -sf "$install_path/3rdparty/$ccls_runtime" "$install_path/3rdparty/ccls"
 
 node_path="$install_path/3rdparty/node"
 nvim_path="$install_path/3rdparty/nvim"
-#ccls_path="$install_path/3rdparty/ccls"
 
 if [ ! -f config/.user.nvi.vimrc ] ; then
 echo "\

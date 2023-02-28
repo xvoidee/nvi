@@ -9,5 +9,3 @@ nvim_archive="nvim-macos.tar.gz"
 nvim_runtime="nvim-osx64"
 nvim_version="0.5.0-nightly"
 
-ccls_archive="ccls-99f0b40-darwin.tar.gz"
-ccls_runtime="ccls-99f0b40-darwin"

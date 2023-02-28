@@ -1,6 +1,3 @@
-3rdparty/ccls
-3rdparty/ccls-2ad71f1-linux-x64
-3rdparty/ccls-99f0b40-darwin
 3rdparty/node*
 3rdparty/nvim*
 3rdparty/coc
