@@ -30,6 +30,7 @@ if [ $download_succeeded == false ] ; then
 fi
 
 print_info "Extract dependencies"
+mkdir -p $install_path/3rdparty
 extract "temp/$node_archive" "$install_path/3rdparty"
 extract "temp/$nvim_archive" "$install_path/3rdparty"
 
