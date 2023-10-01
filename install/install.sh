@@ -11,13 +11,13 @@ check_directory_not_exists "$install_path/3rdparty/node"          "no_previous_i
 check_directory_not_exists "$install_path/3rdparty/$node_runtime" "no_previous_installation_found"
 
 if [ $no_previous_installation_found == false ] ; then
-	print_info "Found complete/partial nvi installation, setup will exit."
-	print_info "Check and/or clean following files/folders:"
-	print_info "  $install_path/3rdparty/nvim"
-	print_info "  $install_path/3rdparty/$nvim_runtime"
-	print_info "  $install_path/3rdparty/node"
-	print_info "  $install_path/3rdparty/$node_runtime"
-	exit 1
+  print_info "Found complete/partial nvi installation, setup will exit."
+  print_info "Check and/or clean following files/folders:"
+  print_info "  $install_path/3rdparty/nvim"
+  print_info "  $install_path/3rdparty/$nvim_runtime"
+  print_info "  $install_path/3rdparty/node"
+  print_info "  $install_path/3rdparty/$node_runtime"
+  exit 1
 fi
 
 print_info "Download standalone dependencies"
@@ -25,11 +25,12 @@ download_succeeded=true
 download $node_website $node_archive "download_succeeded"
 download $nvim_website $nvim_archive "download_succeeded"
 if [ $download_succeeded == false ] ; then
-	print_fail "Download failed, setup will exit"
-	exit 1
+  print_fail "Download failed, setup will exit"
+  exit 1
 fi
 
 print_info "Extract dependencies"
+mkdir -p $install_path/3rdparty
 extract "temp/$node_archive" "$install_path/3rdparty"
 extract "temp/$nvim_archive" "$install_path/3rdparty"
 
@@ -121,10 +122,10 @@ source $install_path/config/.nvi.vimrc
 fi
 
 if [ ! -f autoload/plug.vim ] ; then
-	mkdir -p autoload
-	cd autoload
-	ln -s ../vim-plug/plug.vim ./
-	cd ..
+  mkdir -p autoload
+  cd autoload
+  ln -s ../vim-plug/plug.vim ./
+  cd ..
 fi
 
 if [ ! -f bin/nvi ] ; then
@@ -133,7 +134,7 @@ echo "\
 # This script is not managed by repository and can be edited
 
 export NVI_HOME=$install_path
-export XDG_DATA_HOME=./nvim_data
+export XDG_DATA_HOME=./.nvi
 \$NVI_HOME/3rdparty/nvim/bin/nvim -u \$NVI_HOME/config/init.vim $@
 unset NVI_HOME
 unset XDG_DATA_HOME
@@ -143,6 +144,6 @@ fi
 
 export NVI_HOME=$install_path
 $nvim_path/bin/nvim -u install/install.vim \
-		+PlugInstall \
-		+qa
+  +PlugInstall \
+  +qa
 unset NVI_HOME
