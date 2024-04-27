@@ -3,3 +3,18 @@
 " Do not change vim pwd when startify is loaded
 let g:startify_change_to_dir = 0
 
+" Set the order of items in startify
+let g:startify_lists = [
+\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+\ { 'type': 'files',     'header': ['   MRU']            },
+\ { 'type': 'sessions',  'header': ['   Sessions']       },
+\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+\ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
+
+" Set the width of the file column
+let g:startify_file_number = 10
+
+" Set the width of the header column
+" let g:startify_custom_header = '   Files'
+

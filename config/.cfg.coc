@@ -10,6 +10,11 @@ let g:coc_node_path = g:nvi_install_path . '/3rdparty/node/bin/node'
 " Semantic highlight
 let g:coc_default_semantic_highlight_groups = 1
 
+let g:coc_config = {
+\ "popups.borderchars": ['┌', '─', '┐', '│', '┘', '─', '└', '│'],
+\ "popups.borderhighlight": 'PopupBorder',
+\ }
+
 " Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
