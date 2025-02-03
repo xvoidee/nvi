@@ -1,8 +1,8 @@
 " vi:syntax=vim
 
 " Folder icons
-let g:NERDTreeDirArrowExpandable  = ' '
-let g:NERDTreeDirArrowCollapsible = ' '
+let g:NERDTreeDirArrowExpandable  = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 
 " Show hidden items
 let NERDTreeShowHidden = 1
@@ -20,7 +20,6 @@ let NERDTreeQuitOnOpen = 0
 let NERDTreeCaseSensitiveSort = 1
 
 " Once file is selected - jump to buffer
-autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Hide all square brackets
