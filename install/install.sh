@@ -99,14 +99,17 @@ echo "\
 
 \" Default theme is tender
 colo tender
-let g:lightline.colorscheme = 'tender'
-
-hi CocSemClass     guifg=#FF9F4B
-hi CocSemEnum      guifg=#FFDC4B
-hi CocSemNamespace guifg=#A7A7A7
-hi CocSemParameter guifg=#EEEFB3
-hi CocSemProperty  guifg=#B3EFC2
-hi CocSemVariable  guifg=#F0F0F0
+let g:lightline.colorscheme = 'tenderplus'
+hi CocSemTypeClass      guifg=#FF9F4B
+hi CocSemTypeEnum       guifg=#EEC000
+hi CocSemTypeEnumMember guifg=#EEEFB3
+hi CocSemTypeFunction   guifg=#EFB3B3
+hi CocSemTypeNamespace  guifg=#A7A7A7
+hi CocSemTypeParameter  guifg=#D4A4EF
+hi CocSemTypeProperty   guifg=#A4EFD5
+hi CocSemTypeVariable   guifg=#D4A4EF
+hi Search               guifg=#000000 guibg=#FFFFFF gui=none
+hi IncSearch            guifg=#000000 guibg=#FFFFFF gui=none
 " > config/.user.theme
 fi
 
