@@ -1,5 +1,7 @@
 " vi:syntax=vim
 
 " Do not ask load/ignore .lvimrc
-let g:localvimrc_ask=0
+let g:localvimrc_ask = 0
 
+" Load as it is without sandbox
+let g:localvimrc_sandbox = 0

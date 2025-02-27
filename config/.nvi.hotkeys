@@ -3,14 +3,20 @@
 " Toggle file explorer
 nnoremap <C-T> :NERDTreeToggle<CR>
 
-" Fuzzy search
-nnoremap <F7> :FZF<CR>
+" FZF mappings
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
+nnoremap <leader>h :History<CR>
+
+" Diffview commands
+nnoremap <leader>dvo :DiffviewOpen<CR>
+nnoremap <leader>dvc :DiffviewClose<CR>
 
 " Navigation between splits
-nnoremap <C-J> <C-W><C-H>| " left
+nnoremap <C-H> <C-W><C-H>| " left
+nnoremap <C-J> <C-W><C-J>| " down
+nnoremap <C-K> <C-W><C-K>| " up
 nnoremap <C-L> <C-W><C-L>| " right
-nnoremap <C-I> <C-W><C-K>| " up
-nnoremap <C-K> <C-W><C-J>| " down
 
 " Save active buffer, keep opened
 nnoremap <F2> :wa<CR>
@@ -25,19 +31,51 @@ nnoremap <F10> :qa!<CR>
 nnoremap <F12> :wqa<CR>
 
 " Cycle through opened buffers
-nnoremap . :bnext<CR>
-nnoremap , :bprev<CR>
-nnoremap <S-Right> :bnext<CR>
+nnoremap <S-h>     :bprev<CR>
+nnoremap <S-l>     :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
+nnoremap <S-Right> :bnext<CR>
+nnoremap ,         :bprev<CR>
+nnoremap .         :bnext<CR>
 
-" Jump to...
+" coc mappings
 nmap <silent> <F3> <Plug>(coc-definition)
 nmap <silent> <F4> <Plug>(coc-implementation)
 nmap <silent> <F5> <Plug>(coc-references)
+nmap <leader>rn    <Plug>(coc-rename)
+nmap <leader>rf    <Plug>(coc-refactor)
+nmap <leader>st    :call CocAction('showSubTypes') <CR>
 
 " Auto complete
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Auto save on switch to command mode
 inoremap <silent> <ESC> <ESC>:wa<CR>
+
+" Full-text search
+nnoremap <leader>ag :Ag<CR>
+nnoremap <leader>ar :AgRaw<Space>
+nnoremap <leader>aw :AgRaw <C-r><C-w><CR>
+xnoremap <leader>as :<C-u>AgRaw <C-r>=GetVisualSelection()<CR><CR>
+
+function! GetVisualSelection()
+  let l:save_reg     = getreg('"')
+  let l:save_regtype = getregtype('"')
+  let l:save_cursor  = getpos(".")
+  let l:save_visual  = getpos("v")
+
+  silent! normal! gv"zy
+
+  let l:selection = substitute(getreg("z"), '\\', '\\\\', 'g')
+  let l:selection = substitute(l:selection, '"', '\\"', 'g')
+
+  call setreg('"', l:save_reg, l:save_regtype)
+  call setpos(".", l:save_cursor)
+
+  if mode() ==# 'v'
+    call setpos("v", l:save_visual)
+  endif
+
+  return l:selection
+endfunction
 
