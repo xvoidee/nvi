@@ -1,0 +1,30 @@
+" vi:syntax=vim
+" This config file is not managed by repository and can be edited
+
+" Set to 256 colors
+set termguicolors
+
+" Set block cursor
+set guicursor =
+
+" Make status line nice
+hi StatusLine   ctermbg=0 ctermfg=15
+hi StatusLineNC ctermbg=0 ctermfg=7
+
+" Tune members highlight
+hi Member       guifg=DarkCyan
+hi EnumConstant guifg=SeaGreen
+
+" Default theme is tender
+colo tender
+let g:lightline.colorscheme = 'tenderplus'
+hi CocSemTypeClass      guifg=#FF9F4B
+hi CocSemTypeEnum       guifg=#EEC000
+hi CocSemTypeEnumMember guifg=#EEEFB3
+hi CocSemTypeFunction   guifg=#EFB3B3
+hi CocSemTypeNamespace  guifg=#A7A7A7
+hi CocSemTypeParameter  guifg=#D4A4EF
+hi CocSemTypeProperty   guifg=#A4EFD5
+hi CocSemTypeVariable   guifg=#D4A4EF
+hi Search               guifg=#000000 guibg=#FFFFFF gui=none
+hi IncSearch            guifg=#000000 guibg=#FFFFFF gui=none

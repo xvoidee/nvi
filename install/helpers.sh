@@ -70,7 +70,7 @@ probe_mkdir() {
 download() {
 	mkdir -p temp
 	print_info "Download $2 from $1"
-	wget -4 -c $1/$2 -P temp/
+	wget -4 -c -q --show-progress $1/$2 -P temp/
 
 	if [ ! -f temp/$2 ] ; then
 		print_fail "Download $2 - was not downloaded, try yourself:"
@@ -81,6 +81,13 @@ download() {
 
 	print_success "Download $2"
 	return 0
+}
+
+# $1 - source
+# $2 - destination
+copy_if_not_exists() {
+  print_info "Copying $1 to $2"
+	cp $1 $2
 }
 
 # $1 - archive
