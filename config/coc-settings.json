@@ -11,5 +11,9 @@
   "clangd.path"                              : "~/_portable/nvi/3rdparty/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd",
   "clangd.disableDiagnostics"                : false,
   "coc.preferences.colorSupport"             : true,
-  "coc.preferences.semanticTokensHighlights" : true
+  "coc.preferences.semanticTokensHighlights" : true,
+  "snippets.ultisnips.directories"           : [
+    "/path/to/folder1",
+    "/path/to/folder2"
+  ]
 }
