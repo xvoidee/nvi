@@ -1,0 +1,11 @@
+#!/bin/bash
+
+NVI_BIN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
+
+export NVI_RTP_DIR="$(dirname "$NVI_BIN_DIR")"
+export XDG_DATA_HOME=./.nvi
+
+PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim 
+
+unset XDG_DATA_HOME
+unset NVI_RTP_DIR

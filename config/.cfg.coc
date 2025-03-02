@@ -2,10 +2,10 @@
 
 " Home directories
 let g:coc_config_home = 'config'
-let g:coc_data_home   = g:nvi_install_path . '/3rdparty/coc'
+let g:coc_data_home   = g:nvi_rtp_dir . '/3rdparty/coc'
 
 " Path to node
-let g:coc_node_path = g:nvi_install_path . '/3rdparty/node/bin/node'
+let g:coc_node_path = g:nvi_rtp_dir . '/3rdparty/node/bin/node'
 
 " Semantic highlight
 let g:coc_default_semantic_highlight_groups = 1

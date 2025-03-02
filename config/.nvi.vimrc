@@ -47,23 +47,36 @@ set scrolloff=3
 " Enable mouse interaction
 set mouse=a
 
-" Source user settings first!
-exec 'source' $NVI_HOME . '/config/.user.nvi.vimrc'
+" Set nerd fonts
+let g:nvi_nerd_fonts = 0
+
+" Setup lighline separators
+if g:nvi_nerd_fonts == 1
+  let g:nvi_lightline_separator_left  = \"\\uE0B8\"
+  let g:nvi_lightline_separator_right = \"\\uE0BA\"
+
+  let g:nvi_lightline_subseparator_left  = \"\\uE0B9\"
+  let g:nvi_lightline_subseparator_right = \"\\uE0BB\"
+else
+  let g:nvi_lightline_separator_left  = '░'
+  let g:nvi_lightline_separator_right = '░'
+
+  let g:nvi_lightline_subseparator_left  = '░'
+  let g:nvi_lightline_subseparator_right = '░'
+endif
 
 " Source all other configs
-exec 'source' g:nvi_install_path . '/config/.nvi.plugins'
-exec 'source' g:nvi_install_path . '/config/.nvi.theme'
-exec 'source' g:nvi_install_path . '/config/.nvi.hotkeys'
-exec 'source' g:nvi_install_path . '/config/.cfg.bufferline'
-exec 'source' g:nvi_install_path . '/config/.cfg.coc'
-exec 'source' g:nvi_install_path . '/config/.cfg.lightline'
-exec 'source' g:nvi_install_path . '/config/.cfg.localvimrc'
-exec 'source' g:nvi_install_path . '/config/.cfg.nerdtree'
-exec 'source' g:nvi_install_path . '/config/.cfg.startify'
-exec 'source' g:nvi_install_path . '/config/.cfg.vista'
+exec 'source' g:nvi_rtp_dir . '/config/.nvi.plugins'
+exec 'source' g:nvi_rtp_dir . '/config/.nvi.hotkeys'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.bufferline'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.coc'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.lightline'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.localvimrc'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.nerdtree'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.startify'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.vista'
 
 " Source user configs
-exec 'source' g:nvi_install_path . '/config/.user.vimrc'
-exec 'source' g:nvi_install_path . '/config/.user.theme'
-exec 'source' g:nvi_install_path . '/config/.user.hotkeys'
-
+exec 'source' g:nvi_rtp_dir . '/config/.user.vimrc'
+exec 'source' g:nvi_rtp_dir . '/config/.user.theme'
+exec 'source' g:nvi_rtp_dir . '/config/.user.hotkeys'

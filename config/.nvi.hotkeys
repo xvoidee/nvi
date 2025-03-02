@@ -12,6 +12,9 @@ nnoremap <leader>h :History<CR>
 nnoremap <leader>dvo :DiffviewOpen<CR>
 nnoremap <leader>dvc :DiffviewClose<CR>
 
+" Useful mappins
+nnoremap <leader>vs :set hls!<CR>
+
 " Navigation between splits
 nnoremap <C-H> <C-W><C-H>| " left
 nnoremap <C-J> <C-W><C-J>| " down
@@ -30,6 +33,9 @@ nnoremap <F10> :qa!<CR>
 " Save changes and quit
 nnoremap <F12> :wqa<CR>
 
+" Auto save on switch to command mode
+inoremap <silent> <ESC> <ESC>:wa<CR>
+
 " Cycle through opened buffers
 nnoremap <S-h>     :bprev<CR>
 nnoremap <S-l>     :bnext<CR>
@@ -39,18 +45,14 @@ nnoremap ,         :bprev<CR>
 nnoremap .         :bnext<CR>
 
 " coc mappings
-nmap <silent> <F3> <Plug>(coc-definition)
-nmap <silent> <F4> <Plug>(coc-implementation)
-nmap <silent> <F5> <Plug>(coc-references)
-nmap <leader>rn    <Plug>(coc-rename)
-nmap <leader>rf    <Plug>(coc-refactor)
-nmap <leader>st    :call CocAction('showSubTypes') <CR>
-
-" Auto complete
+nmap <silent> <F3>               <Plug>(coc-definition)
+nmap <silent> <F4>               <Plug>(coc-implementation)
+nmap <silent> <F5>               <Plug>(coc-references)
+nmap <leader>rn                  <Plug>(coc-rename)
+nmap <leader>rf                  <Plug>(coc-refactor)
+nmap <leader>st                  :call CocAction('showSubTypes') <CR>
+imap <C-l>                       <Plug>(coc-snippets-expand)
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Auto save on switch to command mode
-inoremap <silent> <ESC> <ESC>:wa<CR>
 
 " Full-text search
 nnoremap <leader>ag :Ag<CR>

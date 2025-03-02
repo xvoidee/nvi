@@ -1,7 +1,7 @@
 " vi:syntax=vim
 
 " plug begins here
-call plug#begin($NVI_HOME . '/plugged')
+call plug#begin(g:nvi_rtp_dir . '/plugged')
 
 " Load base set of plugins
 Plug 'itchyny/lightline.vim'
@@ -28,8 +28,7 @@ if g:nvi_nerd_fonts == 1
 endif
 
 " Load user's plugins
-exec 'source' $NVI_HOME . '/config/.user.plugins'
+exec 'source' g:nvi_rtp_dir . '/config/.user.plugins'
 
 " plug ends here
 call plug#end()
-
