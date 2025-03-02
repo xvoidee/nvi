@@ -1,0 +1,164 @@
+## **********************************************
+## STL/STD numeric types
+## **********************************************
+
+# all int/uint "fundamental types"
+snippet ft_int8_t
+std::int8_t
+
+snippet ft_int16_t
+std::int16_t
+
+snippet ft_int32_t
+std::int32_t
+
+snippet ft_int64_t
+std::int64_t
+
+snippet ft_uint8_t
+std::uint8_t
+
+snippet ft_uint16_t
+std::uint16_t
+
+snippet ft_uint32_t
+std::uint32_t
+
+snippet ft_uint64_t
+std::uint64_t
+
+snippet ft_sizet
+std::size_t
+
+## **********************************************
+## Class/struct/namespace
+## **********************************************
+
+# class
+snippet class
+class ${1:name} {
+public:
+};
+
+# struct
+snippet struct
+struct ${1:name} {
+
+};
+
+# namespace
+snippet namespace
+namespace ${1:name} {
+} // namespace ${1}
+
+## **********************************************
+## Control flow
+## **********************************************
+
+# if
+snippet if
+if () {
+}
+
+# if-else
+snippet ifel
+if () {
+} else {
+}
+
+# switch without default
+snippet swnd
+switch () {
+case :
+  break;
+}
+
+# switch with default
+snippet swd
+switch () {
+case :
+  break;
+default :
+  break;
+}
+
+# fori vector
+snippet for
+for (;;) {
+
+}
+
+# foreach vector
+snippet foreach
+for (const auto& ${1:v}: ${2:c}) {
+}
+
+# foreach key, value
+snippet forkv
+for (const auto& [${1:k}, ${2:v}]: ) {
+}
+
+## **********************************************
+## STL/STD Containers
+## **********************************************
+
+# map
+snippet map
+std::map<${1:k}, ${2:v}> ${3:n};
+
+# unordered_map
+snippet unordered_map
+std::unordered_map<${1:v}> ${2:n};
+
+# pair
+snippet pair
+std::pair<${1:f}, ${2:s}> ${3:n};
+
+# set
+snippet set
+std::set<${1:v}> #{2:n};
+
+# sort
+snippet sort
+std::sort(${1:container}.begin(), ${1}.end());
+
+# lambda sort
+snippet sort_lambda
+std::sort(${1:container}.begin(), ${1}.end(),
+  [] (const ${2:type}& element) {
+  }
+);
+
+# unordered_set
+snippet unordered_set
+std::unordered_set<${1:v}> ${2:n};
+
+# vector
+snippet vector
+std::vector<${1:v}> ${2:n};
+
+## **********************************************
+## Google Test
+## **********************************************
+
+# Fixture
+snippet gt_fixture
+class ${1:fixture_name} : public testing::Test {
+public:
+
+private:
+};
+
+TEST_F(${1:fixture_name}, )
+{
+
+}
+
+# TEST
+snippet gt_test
+TEST(, )
+{
+
+}
+
+
