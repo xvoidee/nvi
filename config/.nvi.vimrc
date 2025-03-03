@@ -48,15 +48,15 @@ set scrolloff=3
 set mouse=a
 
 " Set nerd fonts
-let g:nvi_nerd_fonts = 0
+let g:nvi_nerd_fonts = 1
 
 " Setup lighline separators
 if g:nvi_nerd_fonts == 1
-  let g:nvi_lightline_separator_left  = \"\\uE0B8\"
-  let g:nvi_lightline_separator_right = \"\\uE0BA\"
+  let g:nvi_lightline_separator_left  = "\uE0B8"
+  let g:nvi_lightline_separator_right = "\uE0BA"
 
-  let g:nvi_lightline_subseparator_left  = \"\\uE0B9\"
-  let g:nvi_lightline_subseparator_right = \"\\uE0BB\"
+  let g:nvi_lightline_subseparator_left  = "\uE0B9"
+  let g:nvi_lightline_subseparator_right = "\uE0BB"
 else
   let g:nvi_lightline_separator_left  = '░'
   let g:nvi_lightline_separator_right = '░'
