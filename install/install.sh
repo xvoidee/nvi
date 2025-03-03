@@ -76,6 +76,11 @@ if [ ! -L autoload/plug.vim ] ; then
   cd ..
 fi
 
+if [ ! -e autoload/plug.vim ] ; then
+  print_fail "autoload/plug.vim does not exists, did you run git submodule init & update?"
+  exit 1
+fi
+
 export NVI_RTP_DIR=$install_path
 $dependencies_path/nvim/bin/nvim -u install/install.vim \
   +PlugInstall \
