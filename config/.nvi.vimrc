@@ -48,7 +48,7 @@ set scrolloff=3
 set mouse=a
 
 " Set nerd fonts
-let g:nvi_nerd_fonts = 1
+let g:nvi_nerd_fonts = 0
 
 " Setup lighline separators
 if g:nvi_nerd_fonts == 1
