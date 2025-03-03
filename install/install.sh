@@ -69,7 +69,7 @@ copy_if_not_exists "install/.user.plugins"   "config"
 copy_if_not_exists "install/.user.vimrc"     "config"
 copy_if_not_exists "install/.user.theme"     "config"
 
-if [ ! -f autoload/plug.vim ] ; then
+if [ ! -s autoload/plug.vim ] ; then
   mkdir -p autoload
   cd autoload
   ln -s ../vim-plug/plug.vim ./
