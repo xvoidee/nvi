@@ -25,7 +25,7 @@ else
     mv "$dependencies_path/$nvim_runtime" "$dependencies_path/nvim-$nvim_version"
   fi
 
-  if [ -s $dependencies_path/nvim ] ; then
+  if [ -L $dependencies_path/nvim ] ; then
     print_info "Found active neovim symlink: $dependencies_path/nvim"
     print_info "Overwriting it"
 
@@ -53,7 +53,7 @@ else
     extract temp/$node_archive $dependencies_path
   fi
 
-  if [ -s $dependencies_path/node ] ; then
+  if [ -L $dependencies_path/node ] ; then
     print_info "Found active nodejs symlink: $dependencies_path/node"
     print_info "Overwriting it"
 
@@ -69,7 +69,7 @@ copy_if_not_exists "install/.user.plugins"   "config"
 copy_if_not_exists "install/.user.vimrc"     "config"
 copy_if_not_exists "install/.user.theme"     "config"
 
-if [ ! -s autoload/plug.vim ] ; then
+if [ ! -L autoload/plug.vim ] ; then
   mkdir -p autoload
   cd autoload
   ln -s ../vim-plug/plug.vim ./
