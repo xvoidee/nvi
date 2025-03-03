@@ -1,0 +1,6 @@
+" vi:syntax=vim
+
+let g:fzf_vim = {}
+let g:fzf_vim.preview_window = ['up,75%']
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 1.0, 'border': 'none' }}
+

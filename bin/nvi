@@ -5,6 +5,30 @@ NVI_BIN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 export NVI_RTP_DIR="$(dirname "$NVI_BIN_DIR")"
 export XDG_DATA_HOME=./.nvi
 
+source $NVI_RTP_DIR/install/helpers.sh
+
+failed=false
+
+if [ ! -e $NVI_RTP_DIR/3rdparty/node ] ; then
+  print_fail "Incomplete install, missing nodejs in $NVI_RTP_DIR/3rdparty"
+  failed=true
+fi
+
+if [ ! -e $NVI_RTP_DIR/3rdparty/nvim ] ; then
+  print_fail "Incomplete install, missing neovim in $NVI_RTP_DIR/3rdparty"
+  failed=true
+fi
+
+if [ ! -e $NVI_RTP_DIR/autoload/plug.vim ] ; then
+  print_fail "Incomplete install, missing vim-plug in $NVI_RTP_DIR/autoload"
+  failed=true
+fi
+
+if [ $failed == true ] ; then
+  print_fail "Cannot start due to error(s) above"
+  exit 1
+fi
+
 PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim 
 
 unset XDG_DATA_HOME

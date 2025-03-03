@@ -28,3 +28,7 @@ hi CocSemTypeProperty   guifg=#A4EFD5
 hi CocSemTypeVariable   guifg=#D4A4EF
 hi Search               guifg=#000000 guibg=#FFFFFF gui=none
 hi IncSearch            guifg=#000000 guibg=#FFFFFF gui=none
+
+"hi DiffAdd              guibg=#1C2819
+"hi DiffChange           guibg=#0A2828
+"hi DiffDelete           guibg=#281B19
