@@ -13,23 +13,23 @@ nnoremap <leader>dvo :DiffviewOpen<CR>
 nnoremap <leader>dvc :DiffviewClose<CR>
 
 " Useful mappins
-nnoremap <leader>vs :set hls!<CR>                      | " Toggle highlight on/off
+nnoremap <leader>vs :set hls!<CR>|                       " Toggle highlight on/off
 
 " Moving around
-nnoremap <leader>\ :lua require("flash")["jump"]()<CR> | " Open fast jump
+nnoremap <Tab> :lua require("flash")["jump"]()<CR>|      " Open fast jump
 
 " Navigation between splits
-nnoremap <C-H> <C-W><C-H>                              | " left
-nnoremap <C-J> <C-W><C-J>                              | " down
-nnoremap <C-K> <C-W><C-K>                              | " up
-nnoremap <C-L> <C-W><C-L>                              | " right
+nnoremap <C-H> <C-W><C-H>|                               " left
+nnoremap <C-J> <C-W><C-J>|                               " down
+nnoremap <C-K> <C-W><C-K>|                               " up
+nnoremap <C-L> <C-W><C-L>|                               " right
 
 " Working with buffers
-nnoremap <F2> :wa<CR>                                  | " Save active buffer, keep opened
-nnoremap <F8> :bp<bar>sp<bar>bn<bar>bd<CR>             | " Try to close active buffer
-nnoremap <F10> :qa!<CR>                                | " Ignore changes and quit
-nnoremap <F12> :wqa<CR>                                | " Save changes and quit
-inoremap <silent> <ESC> <ESC>:wa<CR>                   | " Auto save on switch to command mode
+nnoremap <F2> :wa<CR>|                                   " Save active buffer, keep opened
+nnoremap <F8> :bp<bar>sp<bar>bn<bar>bd<CR>|              " Try to close active buffer
+nnoremap <F10> :qa!<CR>|                                 " Ignore changes and quit
+nnoremap <F12> :wqa<CR>|                                 " Save changes and quit
+inoremap <silent> <ESC> <ESC>:wa<CR>|                    " Auto save on switch to command mode
 
 " Cycle through opened buffers
 nnoremap <S-h>     :bprev<CR>
