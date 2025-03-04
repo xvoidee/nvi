@@ -20,6 +20,10 @@ Plug 'rhysd/vim-clang-format'
 Plug 'TaDaa/vimade'
 Plug 'jesseleite/vim-agriculture'
 Plug 'sindrets/diffview.nvim'
+Plug 'folke/flash.nvim'
+Plug 'mg979/vim-visual-multi'
+Plug 'matze/vim-move'
+Plug 'numToStr/Comment.nvim'
 
 " Load nerd fonts
 if g:nvi_nerd_fonts == 1
@@ -32,3 +36,5 @@ exec 'source' g:nvi_rtp_dir . '/config/.user.plugins'
 
 " plug ends here
 call plug#end()
+
+lua require('Comment').setup()

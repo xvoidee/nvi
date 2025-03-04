@@ -29,7 +29,12 @@ if [ $failed == true ] ; then
   exit 1
 fi
 
-PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim 
+sandbox="firejail --net=none"
+if [ $1 == "--unsafe" ] ; then
+  sandbox=""
+fi
+
+PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $sandbox $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim 
 
 unset XDG_DATA_HOME
 unset NVI_RTP_DIR
