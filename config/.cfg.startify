@@ -18,3 +18,5 @@ let g:startify_file_number = 10
 " Set the width of the header column
 " let g:startify_custom_header = '   Files'
 
+let g:startify_custom_header = readfile(expand(g:nvi_rtp_dir . '/config/doge.txt'))
+
