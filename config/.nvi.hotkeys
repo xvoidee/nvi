@@ -7,6 +7,7 @@ nnoremap <C-T> :NERDTreeToggle<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>h :History<CR>
+nnoremap <leader>m :Marks<CR>
 
 " Diffview commands
 nnoremap <leader>dvo :DiffviewOpen<CR>
