@@ -30,7 +30,7 @@ if [ $failed == true ] ; then
 fi
 
 sandbox="firejail --net=none"
-if [ $1 == "--unsafe" ] ; then
+if [[ $1 == "--unsafe" ]] ; then
   sandbox=""
 fi
 
