@@ -1,4 +1,4 @@
 " vi:syntax=vim
 
-let g:move_key_modifier_visualmode = 'S'
-let g:move_key_modifier = 'C'
+let g:move_key_modifier_visualmode = 'C'
+let g:move_key_modifier            = 'C'
