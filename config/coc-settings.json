@@ -8,7 +8,7 @@
   "clangd.fallbackFlags"                     : [ "-std=c++17" ],
   "clangd.compilationDatabasePath"           : "./",
   "clangd.semanticHighlighting"              : true,
-  "clangd.path"                              : "~/_portable/nvi/3rdparty/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd",
+  "clangd.path"                              : "~/_portable/nvi/3rdparty/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
   "clangd.disableDiagnostics"                : false,
   "coc.preferences.colorSupport"             : true,
   "coc.preferences.semanticTokensHighlights" : true,
