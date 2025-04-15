@@ -37,8 +37,8 @@ nnoremap <S-h>     :bprev<CR>
 nnoremap <S-l>     :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 nnoremap <S-Right> :bnext<CR>
-nnoremap ,         :bprev<CR>
-nnoremap .         :bnext<CR>
+"nnoremap ,         :bprev<CR>
+"nnoremap .         :bnext<CR>
 
 " coc mappings
 nmap <silent> <F3>               <Plug>(coc-definition)
@@ -55,14 +55,6 @@ nnoremap <leader>ag :Ag<CR>
 nnoremap <leader>ar :AgRaw<Space>
 nnoremap <leader>aw :AgRaw <C-r><C-w><CR>
 xnoremap <leader>as :<C-u>AgRaw <C-r>=GetVisualSelection()<CR><CR>
-
-"nnoremap <leader>ag :Ag<CR>
-"-nnoremap <leader>ar :AgRaw<Space>
-"-nnoremap <leader>aw :AgRaw <C-r><C-w><CR>
-"-xnoremap <leader>as :<C-u>AgRaw <C-r>=GetVisualSelection()<CR><CR>
-"+"nnoremap <leader>ar :AgRaw<Space>
-"+nnoremap <leader>aw :Ag <C-r><C-w><CR>
-"+xnoremap <leader>as :<C-u>Ag <C-r>=GetVisualSelection()<CR><CR>
 
 function! GetVisualSelection()
   let l:save_reg     = getreg('"')
