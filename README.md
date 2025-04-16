@@ -6,10 +6,9 @@ Minimalistic setup of Neovim. I use it to develop programs in C/C++. Key feature
 * lightweight and out-of-the-box install
 * but still capable to do many useful things
 # Prereqs
-* supported OS: Ubuntu (tested on Ubuntu 16.04 and 18.04), MacOS
+* supported OS: Ubuntu (tested on Ubuntu 24.04.2)
 * wget
-* you know how to run :q!
-* tinfo5 library
+* you know what is behind :q!
 # Install
 ```
 $ cd ~/Downloads
@@ -50,7 +49,16 @@ To get clangd indexer - open any .cpp file in nvi and run these commands:
 :CocInstall coc-clangd
 :CocCommand clangd.install
 ```
-Download takes time and once it finished clangd process will start and index your project.
+Download takes time and once it finished clangd process will start and index your project. Or if you already have clang installed on your machine you can just do this:
+```
+:CocInstall coc-clangd
+```
+and update config/coc-settings.json file, here is an example from my configuration (I use custom built llvm):
+```
+...
+"clangd.path" : "~/_portable/llvm-20.1.3/bin/clangd",
+...
+```
 ## Hotkeys
 nvi is equipped with basic (because plugins provide huuuge amount of functionality) set of predefined hotkeys:
 Key         | Alternate | Action                                       | Editor mode
