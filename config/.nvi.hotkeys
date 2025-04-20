@@ -49,7 +49,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Full-text search
 nnoremap <leader>ag :Ag<CR>
 nnoremap <leader>ar :AgRaw<Space>
-nnoremap <leader>aw :AgRaw <C-r><C-w><CR>
+nnoremap <leader>aW :AgRaw <C-r><C-w><CR>
+nnoremap <leader>aw :AgRaw "\\b<C-r><C-w>\\b"<CR>
 xnoremap <leader>as :<C-u>AgRaw <C-r>=GetVisualSelection()<CR><CR>
 
 function! GetVisualSelection()
