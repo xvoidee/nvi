@@ -19,11 +19,9 @@ nnoremap <leader>vs :set hls!<CR>|                       " Toggle highlight on/o
 " Moving around
 nnoremap <Tab> :lua require("flash")["jump"]()<CR>|      " Open fast jump
 
-" Navigation between splits
-nnoremap <C-H> <C-W><C-H>|                               " left
-nnoremap <C-J> <C-W><C-J>|                               " down
-nnoremap <C-K> <C-W><C-K>|                               " up
-nnoremap <C-L> <C-W><C-L>|                               " right
+" Cycle through splits
+nnoremap <leader>w <C-w>w|                               " Forward
+nnoremap <leader>W <C-w>W|                               " Backward
 
 " Working with buffers
 nnoremap <F2> :wa<CR>|                                   " Save active buffer, keep opened
@@ -37,8 +35,6 @@ nnoremap <S-h>     :bprev<CR>
 nnoremap <S-l>     :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 nnoremap <S-Right> :bnext<CR>
-"nnoremap ,         :bprev<CR>
-"nnoremap .         :bnext<CR>
 
 " coc mappings
 nmap <silent> <F3>               <Plug>(coc-definition)
