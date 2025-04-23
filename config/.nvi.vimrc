@@ -38,8 +38,8 @@ set autowrite
 " Display filename in window title
 set title
 
-" Highlight cursor line
-set cursorline
+" Do not highlight cursor line
+set nocursorline
 
 " Leave 3 lines on top and bottom of buffer on scroll
 set scrolloff=3
@@ -70,6 +70,7 @@ exec 'source' g:nvi_rtp_dir . '/config/.nvi.plugins'
 exec 'source' g:nvi_rtp_dir . '/config/.nvi.hotkeys'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.bufferline'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.coc'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.diffview'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.flash'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.fzf'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.lightline'
