@@ -5,6 +5,7 @@ nnoremap <C-T> :NERDTreeToggle<CR>
 
 " FZF mappings
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>c :Commands<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>m :Marks<CR>
