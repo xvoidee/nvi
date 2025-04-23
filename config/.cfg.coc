@@ -15,6 +15,11 @@ let g:coc_config = {
 \ "popups.borderhighlight": 'PopupBorder',
 \ }
 
+let g:coc_user_config = {
+\ 'suggest.autoTrigger': 'none',
+\ 'suggest.enablePreselect': v:false
+\ }
+
 " Close coc preview window after completion is done
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
