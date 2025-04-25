@@ -1,5 +1,8 @@
 " vi:syntax=vim
 
+let mapleader = '/'
+nnoremap . /
+
 " Toggle file explorer
 nnoremap <C-T> :NERDTreeToggle<CR>
 
@@ -7,6 +10,7 @@ nnoremap <C-T> :NERDTreeToggle<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>c :Commands<CR>
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>j :Jumps<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>m :Marks<CR>
 
