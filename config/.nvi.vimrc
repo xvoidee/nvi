@@ -13,7 +13,7 @@ set signcolumn=yes
 set autoindent
 set shiftwidth=0
 set tabstop=2
-set noexpandtab
+set expandtab
 
 " Auto indent
 set nocindent
@@ -52,14 +52,14 @@ let g:nvi_nerd_fonts = 0
 
 " Setup lighline separators
 if g:nvi_nerd_fonts == 1
-  let g:nvi_lightline_separator_left  = "\uE0B8"
-  let g:nvi_lightline_separator_right = "\uE0BA"
+  let g:nvi_lightline_separator_left     = "\uE0B8"
+  let g:nvi_lightline_separator_right    = "\uE0BA"
 
   let g:nvi_lightline_subseparator_left  = "\uE0B9"
   let g:nvi_lightline_subseparator_right = "\uE0BB"
 else
-  let g:nvi_lightline_separator_left  = '░'
-  let g:nvi_lightline_separator_right = '░'
+  let g:nvi_lightline_separator_left     = '░'
+  let g:nvi_lightline_separator_right    = '░'
 
   let g:nvi_lightline_subseparator_left  = '░'
   let g:nvi_lightline_subseparator_right = '░'
