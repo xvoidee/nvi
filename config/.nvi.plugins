@@ -10,8 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim', { 'do': './install --all' }
+Plug 'ibhagwan/fzf-lua'
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
 Plug 'liuchengxu/vista.vim'
 Plug 'embear/vim-localvimrc'
