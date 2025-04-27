@@ -1,10 +1,7 @@
 " vi:syntax=vim
 
 " Set leader key
-let mapleader = '/'
-
-" Map search to .
-nnoremap . /
+let mapleader = "."
 
 " Toggle file explorer
 nnoremap <C-T> :NERDTreeToggle<CR>
@@ -65,6 +62,11 @@ nnoremap <leader>aw :lua require('fzf-lua').live_grep({
 " Substring match
 nnoremap <leader>aW :lua require('fzf-lua').live_grep({
   \ search = vim.fn.expand('<cword>'),
+  \ rg_opts = '-F ' .. require('fzf-lua').defaults.grep.rg_opts
+  \ })<CR>
+" Search selection
+vnoremap <leader>as "0y :<C-u>lua require('fzf-lua').live_grep({
+  \ search = vim.fn.getreg('0'),
   \ rg_opts = '-F ' .. require('fzf-lua').defaults.grep.rg_opts
   \ })<CR>
 
