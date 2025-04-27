@@ -3,7 +3,6 @@ local fzf_lua = require('fzf-lua')
 fzf_lua.setup({
   keymap = {
     fzf = {
-      -- use cltr-q to select all items and convert to quickfix list
       ["ctrl-q"] = "select-all+accept",
     },
   },
@@ -15,5 +14,4 @@ fzf_lua.setup({
   },
 })
 
--- use `fzf-lua` for replace vim.ui.select 
 fzf_lua.register_ui_select()
