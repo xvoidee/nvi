@@ -1,7 +1,0 @@
-" vi:syntax=vim
-
-let g:fzf_vim = {}
-let g:fzf_vim.preview_window = ['up,75%']
-let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 1.0, 'border': 'none' } }
-
-command! -nargs=* Ag call fzf#vim#ag(<q-args>, '--path-to-ignore .agignore', fzf#vim#with_preview(), <bang>0)

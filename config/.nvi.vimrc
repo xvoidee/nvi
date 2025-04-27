@@ -70,12 +70,11 @@ exec 'source' g:nvi_rtp_dir . '/config/.nvi.plugins'
 exec 'source' g:nvi_rtp_dir . '/config/.nvi.hotkeys'
 
 " Source plugins configs
-exec 'source' g:nvi_rtp_dir . '/config/.cfg.agriculture'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.bufferline'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.coc'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.diffview'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.flash'
-exec 'source' g:nvi_rtp_dir . '/config/.cfg.fzf'
+exec 'source' g:nvi_rtp_dir . '/config/.cfg.fzf.lua'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.lightline'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.localvimrc'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.nerdtree'

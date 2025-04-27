@@ -1,3 +1,0 @@
-" vi:syntax=vim
-
-let g:agriculture#ag_options = '--path-to-ignore .agignore'
