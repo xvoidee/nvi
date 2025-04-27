@@ -70,7 +70,6 @@ exec 'source' g:nvi_rtp_dir . '/config/.nvi.plugins'
 exec 'source' g:nvi_rtp_dir . '/config/.nvi.hotkeys'
 
 " Source plugins configs
-exec 'source' g:nvi_rtp_dir . '/config/.cfg.agriculture'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.bufferline'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.coc'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.diffview'
