@@ -12,9 +12,11 @@ nnoremap <leader>f :FzfLua files<CR>
 nnoremap <leader>j :FzfLua jumps<CR>
 nnoremap <leader>m :FzfLua marks<CR>
 
-" Access to quickfix list
+" Work with quickfix list
 nnoremap <leader>co :copen<CR>
 nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>cp :cprev<CR>
+nnoremap <leader>cn :cnext<CR>
 
 " Diffview commands
 nnoremap <leader>dvo :DiffviewOpen<CR>
@@ -70,3 +72,5 @@ vnoremap <leader>as "0y :<C-u>lua require('fzf-lua').live_grep({
   \ rg_opts = '-F ' .. require('fzf-lua').defaults.grep.rg_opts
   \ })<CR>
 
+" If ESC pressed during search, confirm it instead of cancelling
+cnoremap <expr> <ESC> getcmdtype() == '/' ? "\<CR>:noh\<CR>" : "\<C-c>"

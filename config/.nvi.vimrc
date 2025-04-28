@@ -26,9 +26,6 @@ set number
 " All other line numbers are relative
 set relativenumber
 
-" Highlight search
-set hlsearch
-
 " Do not display mode in command line
 set noshowmode 
 
