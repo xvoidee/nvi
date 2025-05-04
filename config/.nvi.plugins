@@ -22,6 +22,7 @@ Plug 'folke/flash.nvim'
 Plug 'matze/vim-move'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon', { 'branch' : 'harpoon2' }
+Plug 'catgoose/nvim-colorizer.lua'
 Plug 'max397574/better-escape.nvim'
 
 " Load nerd fonts
