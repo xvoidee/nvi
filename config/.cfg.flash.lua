@@ -1,9 +1,5 @@
-" vi:syntax=vim
-
-lua << EOF
 require("flash").setup({
   label = {
     uppercase = false,
   },
 })
-EOF
