@@ -3,6 +3,9 @@
 " Syntax on
 syntax on
 
+" Set to 256 colors
+set termguicolors
+
 " Make vertical split more nice
 hi VertSplit cterm=none
 
