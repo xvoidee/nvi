@@ -18,6 +18,15 @@ nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>cp :cprev<CR>
 nnoremap <leader>cn :cnext<CR>
 
+" Work with harpoon
+nnoremap <leader>a :lua require('harpoon'):list():add()<CR>
+nnoremap <leader>s :lua require('harpoon').ui:toggle_quick_menu(require("harpoon"):list())<CR>
+nnoremap <leader>1 :lua require('harpoon'):list():select(1)<CR>
+nnoremap <leader>2 :lua require('harpoon'):list():select(2)<CR>
+nnoremap <leader>3 :lua require('harpoon'):list():select(3)<CR>
+nnoremap <leader>4 :lua require('harpoon'):list():select(4)<CR>
+nnoremap <leader>5 :lua require('harpoon'):list():select(5)<CR>
+
 " Diffview commands
 nnoremap <leader>dvo :DiffviewOpen<CR>
 nnoremap <leader>dvc :DiffviewClose<CR>
@@ -50,9 +59,9 @@ nnoremap <S-Right> :bnext<CR>
 nmap <silent> <F3>               <Plug>(coc-definition)
 nmap <silent> <F4>               <Plug>(coc-implementation)
 nmap <silent> <F5>               <Plug>(coc-references)
-nmap <leader>rn                  <Plug>(coc-rename)
-nmap <leader>rf                  <Plug>(coc-refactor)
-nmap <leader>st                  :call CocAction('showSubTypes') <CR>
+nmap <silent> <F6>               <Plug>(coc-rename)
+nmap <silent> <F7>               <Plug>(coc-refactor)
+nmap <silent> <F11>              :call CocAction('showSubTypes') <CR>
 imap <C-l>                       <Plug>(coc-snippets-expand)
 inoremap <silent><expr> <c-space> coc#refresh()
 
