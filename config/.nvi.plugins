@@ -21,6 +21,7 @@ Plug 'sindrets/diffview.nvim'
 Plug 'folke/flash.nvim'
 Plug 'matze/vim-move'
 Plug 'RRethy/nvim-align'
+Plug 'shortcuts/no-neck-pain.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon', { 'branch' : 'harpoon2' }
 Plug 'catgoose/nvim-colorizer.lua'

@@ -24,6 +24,7 @@ nnoremap <leader>dvc :DiffviewClose<CR>
 
 " Useful mappins
 nnoremap <leader>vs :set hls!<CR>|                       " Toggle highlight on/off
+nnoremap <leader>nnp :NoNeckPain<CR>|                    " Center active buffer on the screen
 
 " Moving around
 nnoremap <Tab> :lua require("flash")["jump"]()<CR>|      " Open fast jump
