@@ -20,6 +20,7 @@ Plug 'TaDaa/vimade'
 Plug 'sindrets/diffview.nvim'
 Plug 'folke/flash.nvim'
 Plug 'matze/vim-move'
+Plug 'RRethy/nvim-align'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon', { 'branch' : 'harpoon2' }
 Plug 'catgoose/nvim-colorizer.lua'
