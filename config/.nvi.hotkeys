@@ -4,7 +4,7 @@
 let mapleader = "."
 
 " Toggle file explorer
-nnoremap <C-T> :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " fzf-lua mappings
 nnoremap <leader>b :FzfLua buffers<CR>
