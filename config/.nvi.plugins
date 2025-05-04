@@ -20,6 +20,8 @@ Plug 'TaDaa/vimade'
 Plug 'sindrets/diffview.nvim'
 Plug 'folke/flash.nvim'
 Plug 'matze/vim-move'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon', { 'branch' : 'harpoon2' }
 Plug 'max397574/better-escape.nvim'
 
 " Load nerd fonts
