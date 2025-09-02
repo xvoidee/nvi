@@ -100,3 +100,18 @@ This is know issue and no fix/workaround at the moment.
 Use another terminal with 256-color support, iterm2 is one of possible alternatives...
 ## I installed nvi and do not see fancy characters in tabline/statusline
 Install Gohu font from https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Gohu. Version uni-11 would fit with size set to 12 in your terminal. Then enable nerd fonts in config/.user.nvi.vimrc by setting g:nvi_nerd_fonts to 1.
+sudo apt install silversearcher-ag
+
+```mermaid
+architecture-beta
+    group api(logos:aws-lambda)[API]
+
+    service db(logos:aws-aurora)[Database] in api
+    service disk1(logos:aws-glacier)[Storage] in api
+    service disk2(logos:aws-s3)[Storage] in api
+    service server(logos:aws-ec2)[Server] in api
+
+    db:L -- R:server
+    disk1:T -- B:server
+    disk2:T -- B:db
+```
