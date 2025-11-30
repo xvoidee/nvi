@@ -23,6 +23,10 @@ set nocindent
 set nosmartindent
 set formatoptions+=cro
 
+" Don't move 1 character back from insert mode
+autocmd InsertLeave * :normal! `^
+set virtualedit=onemore
+
 " Current line number is absolute
 set number
 
