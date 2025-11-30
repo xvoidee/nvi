@@ -32,6 +32,7 @@ nnoremap <leader>dvo :DiffviewOpen<CR>
 nnoremap <leader>dvc :DiffviewClose<CR>
 
 " Useful mappins
+nnoremap I ciw|                                          " Remove word under cursor and enter edit mode
 nnoremap <leader>vs :set hls!<CR>|                       " Toggle highlight on/off
 nnoremap <leader>nnp :NoNeckPain<CR>|                    " Center active buffer on the screen
 
@@ -43,6 +44,7 @@ nnoremap <leader>w <C-w>w|                               " Forward
 nnoremap <leader>W <C-w>W|                               " Backward
 
 " Working with buffers
+" nnoremap <F2> :ClangFormat<CR>:wa<CR>|                   " Save active buffer, keep opened
 nnoremap <F2> :wa<CR>|                                   " Save active buffer, keep opened
 nnoremap <F8> :bp<bar>sp<bar>bn<bar>bd<CR>|              " Try to close active buffer
 nnoremap <F10> :qa!<CR>|                                 " Ignore changes and quit
@@ -62,25 +64,31 @@ nmap <silent> <F5>               <Plug>(coc-references)
 nmap <silent> <F6>               <Plug>(coc-rename)
 nmap <silent> <F7>               <Plug>(coc-refactor)
 nmap <silent> <F11>              :call CocAction('showSubTypes') <CR>
-imap <C-l>                       <Plug>(coc-snippets-expand)
+imap <C-O>                       <Plug>(coc-snippets-expand)
 inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"| " Enter confirms selection
+inoremap <silent><expr> ' coc#pum#visible() ? coc#pum#prev(1) : "'"|      " Previous suggestion (up)
+inoremap <silent><expr> ; coc#pum#visible() ? coc#pum#next(1) : ';'|      " Next suggestion (down)
 
 " Full-text search
 " Exact match (whole word)
-nnoremap <leader>aw :lua require('fzf-lua').live_grep({
+nnoremap <leader>qw :lua require('fzf-lua').live_grep({
   \ search = vim.fn.expand('<cword>'),
   \ rg_opts = '-F -w ' .. require('fzf-lua').defaults.grep.rg_opts
   \ })<CR>
 " Substring match
-nnoremap <leader>aW :lua require('fzf-lua').live_grep({
+nnoremap <leader>qW :lua require('fzf-lua').live_grep({
   \ search = vim.fn.expand('<cword>'),
   \ rg_opts = '-F ' .. require('fzf-lua').defaults.grep.rg_opts
   \ })<CR>
 " Search selection
-vnoremap <leader>as "0y :<C-u>lua require('fzf-lua').live_grep({
+vnoremap <leader>qs "0y :<C-u>lua require('fzf-lua').live_grep({
   \ search = vim.fn.getreg('0'),
   \ rg_opts = '-F ' .. require('fzf-lua').defaults.grep.rg_opts
   \ })<CR>
+" Search with native grep
+nnoremap <leader>qg :FzfLua live_grep_native<CR>
 
 " If ESC pressed during search, confirm it instead of cancelling
 cnoremap <expr> <ESC> getcmdtype() == '/' ? "\<CR>:noh\<CR>" : "\<C-c>"
