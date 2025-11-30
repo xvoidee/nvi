@@ -3,11 +3,13 @@ local fzf_lua = require('fzf-lua')
 fzf_lua.setup({
   keymap = {
     fzf = {
-      ["ctrl-q"] = "select-all+accept",
+      ['ctrl-q'] = 'select-all+accept',
+      [';']      = 'down',
+      ['\'']     = 'up',
     },
   },
   grep = {
-    rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096",
+    rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096',
   },
   winopts = {
     fullscreen = true,
