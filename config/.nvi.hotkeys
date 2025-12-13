@@ -92,3 +92,8 @@ nnoremap <leader>qg :FzfLua live_grep_native<CR>
 
 " If ESC pressed during search, confirm it instead of cancelling
 cnoremap <expr> <ESC> getcmdtype() == '/' ? "\<CR>:noh\<CR>" : "\<C-c>"
+
+nnoremap <leader>m :call system("tmux send-keys -t :0 'make' Enter")<CR>
+"vim.keymap.set("n", "<leader>m", function()
+"  vim.fn.system("tmux send-keys -t :0 'make' Enter")
+"end)
