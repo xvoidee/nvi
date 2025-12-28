@@ -3,7 +3,17 @@
 NVI_BIN_DIR="$(cd "$(dirname "$0")" && pwd -P)"
 
 export NVI_RTP_DIR="$(dirname "$NVI_BIN_DIR")"
-export XDG_DATA_HOME=./.nvi
+
+PROJECT_NAME="$(basename "$PWD")"
+PROJECT_HASH="$(pwd | sha1sum | cut -c1-6)"
+PROJECT_ID="${PROJECT_NAME}-${PROJECT_HASH}"
+
+BASE="$HOME/.nvi/$PROJECT_ID"
+
+export XDG_CONFIG_HOME="$HOME/.nvi"
+export XDG_DATA_HOME="$BASE/data"
+export XDG_STATE_HOME="$BASE/state"
+export XDG_CACHE_HOME="$BASE/cache"
 
 source $NVI_RTP_DIR/install/helpers.sh
 
@@ -29,12 +39,16 @@ if [ $failed == true ] ; then
   exit 1
 fi
 
-sandbox="firejail --net=none"
-if [[ $1 == "--unsafe" ]] ; then
-  sandbox=""
+sandbox=""
+if [[ $1 == "--sandboxed" ]] ; then
+  sandbox="firejail --net=none"
 fi
 
-PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $sandbox $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim 
+PATH=$PATH:$NVI_RTP_DIR/3rdparty/node/bin $sandbox $NVI_RTP_DIR/3rdparty/nvim/bin/nvim -u $NVI_RTP_DIR/config/init.vim $@
 
-unset XDG_DATA_HOME
 unset NVI_RTP_DIR
+unset XDG_CONFIG_HOME
+unset XDG_DATA_HOME
+unset XDG_STATE_HOME
+unset XDG_CACHE_HOME
+
