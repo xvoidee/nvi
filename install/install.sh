@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if ! command -v wget >/dev/null 2>&1
+then
+  echo "'wget' not available, required for download"
+  exit 1
+fi
+
 install_path=`pwd`
 dependencies_path="${install_path}/3rdparty"
 
