@@ -84,11 +84,12 @@ exec 'source' g:nvi_rtp_dir . '/config/.cfg.fzf.lua'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.harpoon.lua'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.lightline'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.localvimrc'
+"exec 'source' g:nvi_rtp_dir . '/config/.cfg.lsp.lua'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.nerdtree'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.startify'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.vimade'
 exec 'source' g:nvi_rtp_dir . '/config/.cfg.vimmove'
-exec 'source' g:nvi_rtp_dir . '/config/.cfg.vista'
+"exec 'source' g:nvi_rtp_dir . '/config/.cfg.vista'
 
 " Source user configs
 exec 'source' g:nvi_rtp_dir . '/config/.user.vimrc'

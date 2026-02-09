@@ -12,7 +12,7 @@ Plug 'preservim/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'ibhagwan/fzf-lua'
 Plug 'neoclide/coc.nvim', { 'branch' : 'release' }
-Plug 'liuchengxu/vista.vim'
+"Plug 'liuchengxu/vista.vim'
 Plug 'embear/vim-localvimrc'
 Plug 'jacoborus/tender.vim'
 Plug 'rhysd/vim-clang-format'
@@ -26,6 +26,9 @@ Plug 'ThePrimeagen/harpoon', { 'branch' : 'harpoon2' }
 Plug 'catgoose/nvim-colorizer.lua'
 Plug 'max397574/better-escape.nvim'
 Plug 'sindrets/diffview.nvim'
+
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'p00f/clangd_extensions.nvim'
 
 " Load nerd fonts
 if g:nvi_nerd_fonts == 1

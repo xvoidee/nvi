@@ -44,18 +44,22 @@ nnoremap <leader>w <C-w>w|                               " Forward
 nnoremap <leader>W <C-w>W|                               " Backward
 
 " Working with buffers
-" nnoremap <F2> :ClangFormat<CR>:wa<CR>|                   " Save active buffer, keep opened
 nnoremap <F2> :wa<CR>|                                   " Save active buffer, keep opened
 nnoremap <F8> :bp<bar>sp<bar>bn<bar>bd<CR>|              " Try to close active buffer
 nnoremap <F10> :qa!<CR>|                                 " Ignore changes and quit
 nnoremap <F12> :wqa<CR>|                                 " Save changes and quit
-inoremap <silent> <ESC> <ESC>:wa<CR>|                    " Auto save on switch to command mode
 
 " Cycle through opened buffers
 nnoremap <S-h>     :bprev<CR>
 nnoremap <S-l>     :bnext<CR>
 nnoremap <S-Left>  :bprev<CR>
 nnoremap <S-Right> :bnext<CR>
+
+"nnoremap <silent> <F3>  :lua vim.lsp.buf.definition()<CR>|      " Go to definition
+"nnoremap <silent> <F4>  :lua vim.lsp.buf.implementation()<CR>|  " Go to implementation
+"nnoremap <silent> <F5>  :lua vim.lsp.buf.references()<CR>|      " Find references
+"nnoremap <silent> <F6>  :lua vim.lsp.buf.rename()<CR>|          " Rename symbol
+"nnoremap <silent> <F11> :ClangdTypeHierarchy<CR>|               " Show type hierarchy
 
 " coc mappings
 nmap <silent> <F3>               <Plug>(coc-definition)
@@ -93,7 +97,9 @@ nnoremap <leader>qg :FzfLua live_grep_native<CR>
 " If ESC pressed during search, confirm it instead of cancelling
 cnoremap <expr> <ESC> getcmdtype() == '/' ? "\<CR>:noh\<CR>" : "\<C-c>"
 
+" Send 'make' command to some tmux session (=trigger build)
 nnoremap <leader>m :call system("tmux send-keys -t :0 'make' Enter")<CR>
-"vim.keymap.set("n", "<leader>m", function()
-"  vim.fn.system("tmux send-keys -t :0 'make' Enter")
-"end)
+
+" Invoke clang format
+nnoremap <leader>cf :ClangFormat<CR>:w<CR>
+
