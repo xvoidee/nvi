@@ -1,0 +1,2 @@
+require('timers').setup({
+})
