@@ -99,6 +99,7 @@ cnoremap <expr> <ESC> getcmdtype() == '/' ? "\<CR>:noh\<CR>" : "\<C-c>"
 
 " Send 'make' command to some tmux session (=trigger build)
 nnoremap <leader>m :call system("tmux send-keys -t :0 'make' Enter")<CR>
+nnoremap <leader>M :call system("tmux send-keys -t :0 'Make' Enter")<CR>
 
 " Invoke clang format
 nnoremap <leader>cf :ClangFormat<CR>:w<CR>
